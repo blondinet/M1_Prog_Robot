@@ -1,4 +1,4 @@
-package objetPhysic;
+package general_methods;
 import lejos.hardware.motor.UnregulatedMotor;
 import lejos.hardware.port.MotorPort;
 

@@ -1,7 +1,9 @@
+import java.util.Random;
+
+import general_methods.*;
 import lejos.hardware.Button;
 
 import lejos.hardware.motor.UnregulatedMotor;
-import objetPhysic.*;
 
 public class Ex4 {
 
@@ -19,11 +21,16 @@ public class Ex4 {
 		
 	}
 	
-	public void doStep(Components motors, int directions) { //dir = avant ou arrière
-		int dir= (int)(Math.random()*100);
-		while (Button.getButtons()!=Button.ID_ENTER) {
-			
-		}
+	public void doStep(Components motor) {
 		
+		
+			
+	}
+		
+	
+	public int generateRandomNb(int low, int high) {
+		Random r = new Random();
+		int result = r.nextInt(high-low) + low;
+		return result;
 	}
 }

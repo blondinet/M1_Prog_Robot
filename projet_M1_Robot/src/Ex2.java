@@ -1,7 +1,7 @@
+import general_methods.Components;
 import lejos.hardware.Button;
 import lejos.hardware.Sound;
 import lejos.utility.Delay;
-import objetPhysic.Components;
 
 public class Ex2 {
 	Components comp;
