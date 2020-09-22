@@ -1,8 +1,7 @@
 package ressource_exercice;
 
 import general_methods.*;
-import lejos.hardware.Button;
-import lejos.hardware.Sound;
+import lejos.hardware.*;
 import lejos.utility.Delay;
 
 
@@ -102,8 +101,18 @@ public class ExerciceTd1 extends Ex_Model{
 		System.out.println("DANCE AWAY YOUR PROBLEMS!\n");
 		System.out.println("Press any key to start");
 		
+		while(!Button.LEFT.) {
+			int b_speed = Methode_Utiles.giveRandomSpeedMax();
+			int c_speed = Methode_Utiles.giveRandomSpeedMax();
+			robot.doStep(motor, b_speed);
+			
+
+			Methode_Utiles.giveRandomSpeedMax();
+		}
+		
 	}
 	
-	//do step(motor) ?
 	
+	//do step(motor) ?
+	/* 56 *26 ZR */
 }

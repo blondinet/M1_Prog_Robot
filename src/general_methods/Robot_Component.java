@@ -1,5 +1,5 @@
 package general_methods;
-import lejos.hardware.motor.UnregulatedMotor;
+import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 
 /**
@@ -10,15 +10,15 @@ import lejos.hardware.port.MotorPort;
  *
  */
 public class Robot_Component {
-	private UnregulatedMotor[] tabMotor;
+	private NXTRegulatedMotor[] tabMotor;
 	
 	/**
 	 * Constructeur de la classe
 	 * Ce constructeur récupère les motor physique et donne leurs valeurs a des variables d'instanciation
 	 */
 	public Robot_Component() {
-		tabMotor[0] = new UnregulatedMotor(MotorPort.B); //moteur B = roue de gauche
-		tabMotor[1] = new UnregulatedMotor(MotorPort.C);
+		tabMotor[0] = new NXTRegulatedMotor(MotorPort.B); //moteur B = roue de gauche
+		tabMotor[1] = new NXTRegulatedMotor(MotorPort.C);
 	}
 
 	/**
@@ -26,8 +26,8 @@ public class Robot_Component {
 	 * @param speed la vitesse qu'on souhaite donner à tout les moteurs
 	 */
 	public void setPowerAllMotor(int speed) {
-		for(UnregulatedMotor iM : tabMotor) {
-			iM.setPower(speed);
+		for(NXTRegulatedMotor iM : tabMotor) {
+			iM.setSpeed(speed);
 		}
 	}
 	
@@ -35,7 +35,7 @@ public class Robot_Component {
 	 * Methode qui permet de stopper tous les moteur du robot
 	 */
 	public void stopAllMotor() {
-		for(UnregulatedMotor iM : tabMotor) {
+		for(NXTRegulatedMotor iM : tabMotor) {
 			iM.stop();
 		}
 	}
@@ -44,7 +44,7 @@ public class Robot_Component {
 	 * Methode qui permet de fermer tous les moteurs du robot
 	 */
 	public void closeAllMotor() {
-		for(UnregulatedMotor iM : tabMotor) {
+		for(NXTRegulatedMotor iM : tabMotor) {
 			iM.close();
 		}
 	}
@@ -53,7 +53,7 @@ public class Robot_Component {
 	 * getteur du moteur B
 	 * @return le premier Moteur
 	 */
-	public UnregulatedMotor getMotorOne() {
+	public NXTRegulatedMotor getMotorOne() {
 		return this.tabMotor[0];
 	}
 	
@@ -61,7 +61,22 @@ public class Robot_Component {
 	 * getteur du moteur C
 	 * @return le deuxieme Moteur
 	 */
-	public UnregulatedMotor getMotorTwo() {
+	public NXTRegulatedMotor getMotorTwo() {
 		return this.tabMotor[1];
 	}
+
+	public void doStep(NXTRegulatedMotor motor, int direction) {
+		this.closeAllMotor();
+		
+		if(direction < 0) {
+			direction = Math.abs(direction);
+			motor.setSpeed(direction);
+			motor.backward(); 
+		}else {
+			motor.setSpeed(direction);
+			motor.forward();
+		}
+		
+	}
+
 }

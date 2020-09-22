@@ -1,5 +1,6 @@
 package main_Package;
 import ressource_exercice.*;
+
 import general_methods.*;
 
 /**
@@ -26,7 +27,9 @@ public class Main {
 	
 		//td1.driveForward(50, 5000); //Exercice 2 (speed percentage, delay in milliseconds)
 		
-		td1.turnAround(50, 2000); //Exercice 3
+		//td1.turnAround(50, 2000); //Exercice 3
+
+		
 	}
 	
 }
