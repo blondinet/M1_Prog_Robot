@@ -20,4 +20,10 @@ public class Methode_Utiles {
 		int speed = rnd.nextInt() % 140;
 		return speed;
 	}
+
+	public static int giveRandomSpeed() {
+		Random rnd = new Random();
+		int speed = rnd.nextInt();
+		return speed;
+	}
 }
