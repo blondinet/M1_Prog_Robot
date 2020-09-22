@@ -101,16 +101,24 @@ public class ExerciceTd1 extends Ex_Model{
 	 */
 	public void danceAwayYourProblems() {
 		System.out.println("DANCE AWAY YOUR PROBLEMS!\n");
-		System.out.println("Press any key to start");
 		Button.waitForAnyPress();
+		System.out.println("Press any key to start");
 		Random rnd = new Random(42);
 		int b_speed = rnd.nextInt() % 140;
 		int c_speed = rnd.nextInt() % 140;
-		doStep(motorB, b_speed);
-		doStep(motorC, c_speed);
+		//doStep(motorB, b_speed);
+		//doStep(motorC, c_speed);
 		Delay.msDelay((rnd.nextInt() % 400) + 100);
 		}
 		
+	public void letsHug(Robot_Component rob) {
+		Button.waitForAnyPress();
+		System.out.println(rob.getMotorOne().getPosition()); //permet de connaître la position par rapport à position initiale
+		rob.getMotorOne().rotateTo(-90);
+		System.out.println("Dans mes bras!");
+		Button.waitForAnyPress();
+		rob.getMotorOne().rotateTo(90);
+	}
 	//do step(motor) ?
 	
 }
