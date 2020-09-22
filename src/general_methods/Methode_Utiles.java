@@ -6,10 +6,9 @@ public class Methode_Utiles {
 
 	public static int giveRandom(int low, int high) {
 		
-		//Random r = new Random();
-		//int result = r.nextInt(high-low) + low;
-		//return result;
-		return -1;
+		Random r = new Random();
+		int result = r.nextInt(high-low) + low;
+		return result;
 	}
 	
 }
