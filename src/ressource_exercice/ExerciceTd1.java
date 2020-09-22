@@ -1,5 +1,7 @@
 package ressource_exercice;
 
+import java.util.Random;
+
 import general_methods.*;
 import lejos.hardware.*;
 import lejos.utility.Delay;
@@ -97,9 +99,16 @@ public class ExerciceTd1 extends Ex_Model{
 	 * Methode qui permet de répondre à la question 4
 	 */
 	public void danceAwayYourProblems() {
-		Button.waitForAnyPress();
 		System.out.println("DANCE AWAY YOUR PROBLEMS!\n");
 		System.out.println("Press any key to start");
+		Button.waitForAnyPress();
+		Random rnd = new Random(42);
+		int b_speed = rnd.nextInt() % 140;
+		int c_speed = rnd.nextInt() % 140;
+		doStep(motorB, b_speed);
+		doStep(motorC, c_speed);
+		Delay.msDelay((rnd.nextInt() % 400) + 100);
+		}
 		
 		while(!Button.LEFT.) {
 			int b_speed = Methode_Utiles.giveRandomSpeedMax();
@@ -112,6 +121,7 @@ public class ExerciceTd1 extends Ex_Model{
 		
 	}
 	
+
 	
 	//do step(motor) ?
 	/* 56 *26 ZR */
