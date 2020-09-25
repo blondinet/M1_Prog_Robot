@@ -72,7 +72,6 @@ public class Robot_Component {
 
 	public void doStep(NXTRegulatedMotor motor, int direction) {
 
-		System.out.println(direction);
 		if(direction < 0) {
 			direction = Math.abs(direction);
 			motor.setSpeed(direction);

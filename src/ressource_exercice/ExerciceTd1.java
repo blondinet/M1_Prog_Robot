@@ -144,7 +144,8 @@ public class ExerciceTd1 extends Ex_Model{
 			robot.doStep(robot.getMotorTwo(), c_speed);
 		}		
 		Delay.msDelay((Methode_Utiles.giveRandomSpeed() % 400) + 100);
-		}
+		this.robot.closeAllMotor();
+	}
 	
 	
 	/**
@@ -153,7 +154,7 @@ public class ExerciceTd1 extends Ex_Model{
 	 */
 	public void letsHug() {
 		Button.waitForAnyPress();
-		System.out.println(robot.getMotorOne().getPosition()); //permet de connaître la position par rapport à position initiale
+		//System.out.println(robot.getMotorOne().getPosition()); //permet de connaître la position par rapport à position initiale
 		robot.getMotorOne().rotateTo(-90);
 		System.out.println("Dans mes bras!");
 		Button.waitForAnyPress();
