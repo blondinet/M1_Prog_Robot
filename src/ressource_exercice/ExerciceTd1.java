@@ -3,6 +3,7 @@ package ressource_exercice;
 
 import general_methods.*;
 import lejos.hardware.*;
+import lejos.hardware.motor.Motor;
 import lejos.utility.Delay;
 
 
@@ -109,6 +110,8 @@ public class ExerciceTd1 extends Ex_Model{
 		
 		Thread motorDoStep1 = new Thread() {
 			public void run() {
+				
+				System.out.println("test Thread 1");
 				int b_speed = Methode_Utiles.giveRandomSpeedMax();
 				
 				b_speed = 50;
@@ -119,6 +122,8 @@ public class ExerciceTd1 extends Ex_Model{
 		
 		Thread motorDoStep2 = new Thread() {
 			public void run() {
+
+				System.out.println("Thread 2");
 				int c_speed = Methode_Utiles.giveRandomSpeedMax();
 				
 				c_speed = 50;
@@ -131,7 +136,11 @@ public class ExerciceTd1 extends Ex_Model{
 		
 		
 		
-		
+		robot.getMotorOne().setSpeed(50);
+		robot.getMotorOne().forward();
+		robot.getMotorOne().stop();
+
+		robot.getMotorOne().close();
 		
 		Delay.msDelay((Methode_Utiles.giveRandomSpeed() % 400) + 100);
 		}

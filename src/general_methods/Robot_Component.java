@@ -32,8 +32,8 @@ public class Robot_Component {
 	 * @param speed la vitesse qu'on souhaite donner à tout les moteurs
 	 */
 	public void setPowerAllMotor(int speed) {
-		motorB.setSpeed(speed);
-		motorC.setSpeed(speed);
+		Motor.B.setSpeed(speed);
+		Motor.C.setSpeed(speed);
 		
 	}
 	
@@ -41,8 +41,8 @@ public class Robot_Component {
 	 * Methode qui permet de stopper tous les moteur du robot
 	 */
 	public void stopAllMotor() {
-		motorB.stop();
-		motorC.stop();
+		Motor.B.stop();
+		Motor.C.stop();
 		
 	}
 	
@@ -50,8 +50,8 @@ public class Robot_Component {
 	 * Methode qui permet de fermer tous les moteurs du robot
 	 */
 	public void closeAllMotor() {
-		motorB.close();
-		motorC.close();
+		Motor.B.close();
+		Motor.C.close();
 	}
 	
 	/**
@@ -67,12 +67,12 @@ public class Robot_Component {
 	 * @return le deuxieme Moteur
 	 */
 	public NXTRegulatedMotor getMotorTwo() {
-		return this.motorC;
+		return Motor.C;
 	}
 
 	public void doStep(NXTRegulatedMotor motor, int direction) {
 
-		
+		System.out.println(direction);
 		if(direction < 0) {
 			direction = Math.abs(direction);
 			motor.setSpeed(direction);
