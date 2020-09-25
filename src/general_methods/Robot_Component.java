@@ -1,6 +1,6 @@
 package general_methods;
+import lejos.hardware.motor.Motor;
 import lejos.hardware.motor.NXTRegulatedMotor;
-import lejos.hardware.port.MotorPort;
 
 /**
  * Classe qui permet de d'instancier un robot avec ses composant
@@ -18,8 +18,8 @@ public class Robot_Component {
 	 */
 	public Robot_Component() {
 		try {
-			tabMotor[0] = new NXTRegulatedMotor(MotorPort.B); //moteur B = roue de gauche
-			tabMotor[1] = new NXTRegulatedMotor(MotorPort.C);
+			tabMotor[0] = Motor.B; //moteur B = roue de gauche
+			tabMotor[1] = Motor.C;
 		}catch(NullPointerException e) {
 			System.out.println("Erreur Constructeur");
 			System.out.println(e);
