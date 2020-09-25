@@ -4,6 +4,7 @@ package ressource_exercice;
 import general_methods.*;
 import lejos.hardware.*;
 import lejos.hardware.motor.Motor;
+import lejos.robotics.Color;
 import lejos.utility.Delay;
 
 
@@ -77,15 +78,15 @@ public class ExerciceTd1 extends Ex_Model{
 	        
 	        robot.stopAllMotor(); // on arrete les moteurs
 	        
-	        robot.getMotorOne().backward(); // on effectue une rotation de 90%
-	        robot.getMotorTwo().forward();
+	        robot.getMotor(2).backward(); // on effectue une rotation de 90%
+	        robot.getMotor(3).forward();
 	        robot.setPowerAllMotor(50);	
 	        Delay.msDelay(500);
 	        
 	        robot.stopAllMotor(); // on arrete les moteurs
 	        
-	        robot.getMotorOne().forward(); // on prépare les moteurs pour repartir en ligne droite
-	        robot.getMotorTwo().forward();
+	        robot.getMotor(2).forward(); // on prépare les moteurs pour repartir en ligne droite
+	        robot.getMotor(3).forward();
         }
 		
 		robot.stopAllMotor(); // Séquence de fin
@@ -108,40 +109,39 @@ public class ExerciceTd1 extends Ex_Model{
 		
 		
 		
-		Thread motorDoStep1 = new Thread() {
+		Thread motorDoStepB = new Thread() {
 			public void run() {
 				
 				System.out.println("test Thread 1");
 				int b_speed = Methode_Utiles.giveRandomSpeedMax();
 				
 				//b_speed = 50;
-				robot.doStep(robot.getMotorOne(), b_speed);
+				robot.doStep(robot.getMotor(2), b_speed);
 		    }
 		};
 		
-		
-		Thread motorDoStep2 = new Thread() {
+		Thread motorDoStepC = new Thread() {
 			public void run() {
 
 				System.out.println("Thread 2");
 				int c_speed = Methode_Utiles.giveRandomSpeedMax();
 				
 				//c_speed = 50;
-				robot.doStep(robot.getMotorTwo(), c_speed);
+				robot.doStep(robot.getMotor(3), c_speed);
 		    }
 		};
 		
 		
 		
 		while(!Button.LEFT.isDown()) {
-			//motorDoStep1.start();
-			//motorDoStep2.start();
+			//motorDoStepB.start();
+			//motorDoStepC.start();
 			
 			int b_speed = Methode_Utiles.giveRandomSpeedMax();
-			robot.doStep(robot.getMotorOne(), b_speed);
+			robot.doStep(robot.getMotor(2), b_speed);
 			
 			int c_speed = Methode_Utiles.giveRandomSpeedMax();
-			robot.doStep(robot.getMotorTwo(), c_speed);
+			robot.doStep(robot.getMotor(3), c_speed);
 		}		
 		Delay.msDelay((Methode_Utiles.giveRandomSpeed() % 400) + 100);
 		this.robot.closeAllMotor();
@@ -153,14 +153,51 @@ public class ExerciceTd1 extends Ex_Model{
 	 * @param rob
 	 */
 	public void letsHug() {
+		
 		Button.waitForAnyPress();
-		//System.out.println(robot.getMotorOne().getPosition()); //permet de connaître la position par rapport à position initiale
-		robot.getMotorOne().rotateTo(-90);
+		System.out.println(robot.getMotor(1).getPosition()); //permet de connaître la position par rapport à position initiale
+		
+		robot.getMotor(1).rotateTo(-90);
 		System.out.println("Dans mes bras!");
+		
 		Button.waitForAnyPress();
-		robot.getMotorOne().rotateTo(90);
+		robot.getMotor(1).rotateTo(90);
 	}
 	
+	/**
+	 * Methode qui capte la couleur perçu par le senseur
+	 */
+	public void capteurCouleur() {
+		Button.waitForAnyPress();
+		int valeur;String color;
+		
+		while(!Button.LEFT.isDown()) {
+			valeur=this.robot.getColorID();
+			switch (valeur) {
+				case Color.BLACK : color = "noire";
+				case Color.BLUE : color = "bleue";
+				case Color.BROWN : color = "marron";
+				case Color.CYAN : color = "cyan";
+				case Color.DARK_GRAY : color = "gris fonce";
+				case Color.GRAY : color = "grise";
+				case Color.GREEN : color = "verte";
+				case Color.LIGHT_GRAY : color = "gris clair";
+				case Color.MAGENTA : color = "magenta";
+				case Color.ORANGE : color = "orange";
+				case Color.PINK : color = "rose";
+				case Color.RED : color = "rouge";
+				case Color.WHITE : color = "blanche";
+				case Color.YELLOW : color = "jaune";
+				default : color = "inconnue";
+			} 
+			
+			try { Thread.sleep(500); }catch (InterruptedException e) {e.printStackTrace();} 
+			
+			System.out.println(color);
+		}
+		
+
+	}
 	
 	
 	/*
