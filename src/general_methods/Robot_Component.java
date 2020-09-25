@@ -88,8 +88,7 @@ public class Robot_Component {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		motor.close();
+		motor.stop();
 	}
 
 }
