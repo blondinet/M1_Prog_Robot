@@ -2,6 +2,8 @@ package general_methods;
 
 import java.util.Random;
 
+import lejos.hardware.Button;
+
 public class Methode_Utiles {
 
 	public static int giveRandomLimite(int low, int high) {
@@ -26,4 +28,5 @@ public class Methode_Utiles {
 		int speed = rnd.nextInt();
 		return speed;
 	}
+
 }
