@@ -134,18 +134,15 @@ public class ExerciceTd1 extends Ex_Model{
 		
 		
 		while(!Button.LEFT.isDown()) {
-			motorDoStep1.start();
-			motorDoStep2.start();
+			//motorDoStep1.start();
+			//motorDoStep2.start();
 			
-			try{
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		
-		
+			int b_speed = Methode_Utiles.giveRandomSpeedMax();
+			robot.doStep(robot.getMotorOne(), b_speed);
+			
+			int c_speed = Methode_Utiles.giveRandomSpeedMax();
+			robot.doStep(robot.getMotorTwo(), c_speed);
+		}		
 		Delay.msDelay((Methode_Utiles.giveRandomSpeed() % 400) + 100);
 		}
 	
