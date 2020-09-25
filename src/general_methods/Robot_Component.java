@@ -81,6 +81,13 @@ public class Robot_Component {
 			motor.setSpeed(direction);
 			motor.forward();
 		}
+		
+		try {
+			Thread.sleep(500);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		motor.close();
 	}

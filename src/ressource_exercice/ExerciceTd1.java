@@ -136,12 +136,6 @@ public class ExerciceTd1 extends Ex_Model{
 		
 		
 		
-		robot.getMotorOne().setSpeed(50);
-		robot.getMotorOne().forward();
-		robot.getMotorOne().stop();
-
-		robot.getMotorOne().close();
-		
 		Delay.msDelay((Methode_Utiles.giveRandomSpeed() % 400) + 100);
 		}
 	
