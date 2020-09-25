@@ -117,14 +117,59 @@ public class ExerciceTd1 extends Ex_Model{
 	 * 
 	 * @param rob
 	 */
-	public void letsHug(Robot_Component rob) {
+	public void letsHug() {
 		Button.waitForAnyPress();
-		System.out.println(rob.getMotorOne().getPosition()); //permet de connaître la position par rapport à position initiale
-		rob.getMotorOne().rotateTo(-90);
+		System.out.println(robot.getMotorOne().getPosition()); //permet de connaître la position par rapport à position initiale
+		robot.getMotorOne().rotateTo(-90);
 		System.out.println("Dans mes bras!");
 		Button.waitForAnyPress();
-		rob.getMotorOne().rotateTo(90);
+		robot.getMotorOne().rotateTo(90);
 	}
+	
+	
+	
+	/*
+	 * Texte écrit au tableau par le prof
+	public class Arreter implements Behavior{
+		private EV3TouchSensor touch;
+		private Arbitrator arby;
+		
+		public Arreter(EV3TouchSensir e) {
+			this.touch = e;
+		}
+		
+		public boolean takeControl() {
+			return Button.LEFT.isDown();
+		}
+		
+		public void suppress(){
+		}
+		
+		public void setArbi(Arbitrator a){
+			this.arby=a;
+		}
+		
+		public void action(){
+			this.touch.close();
+			robot.getMotorOne.stop(true);
+			robot.getMotorTwo.stop(true);
+			if(a != null){
+				arby.stop();
+			}
+			System.exit(0);
+		}
+		
+		// inserez dans main \\
+		Behavior b3 = new Arbitrator(to);
+		Behavior[] bArray = new Behavior[]{b3}
+		Arbitrator aby = .......
+		b3.setArbi(arby);
+		arby.go();		
+	}
+	*/
+	
+	
+	
 	
 	//do step(motor) ?
 	/* 56 *26 ZR */
