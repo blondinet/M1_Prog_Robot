@@ -10,7 +10,8 @@ import lejos.hardware.motor.NXTRegulatedMotor;
  *
  */
 public class Robot_Component {
-	private NXTRegulatedMotor[] tabMotor;
+	private NXTRegulatedMotor motorB;
+	private NXTRegulatedMotor motorC;
 	
 	/**
 	 * Constructeur de la classe
@@ -18,8 +19,8 @@ public class Robot_Component {
 	 */
 	public Robot_Component() {
 		try {
-			tabMotor[0] = Motor.B; //moteur B = roue de gauche
-			tabMotor[1] = Motor.C;
+			this.motorB = Motor.B; //moteur B = roue de gauche
+			this.motorC = Motor.C;
 		}catch(NullPointerException e) {
 			System.out.println("Erreur Constructeur");
 			System.out.println(e);
@@ -31,27 +32,26 @@ public class Robot_Component {
 	 * @param speed la vitesse qu'on souhaite donner à tout les moteurs
 	 */
 	public void setPowerAllMotor(int speed) {
-		for(NXTRegulatedMotor iM : tabMotor) {
-			iM.setSpeed(speed);
-		}
+		motorB.setSpeed(speed);
+		motorC.setSpeed(speed);
+		
 	}
 	
 	/**
 	 * Methode qui permet de stopper tous les moteur du robot
 	 */
 	public void stopAllMotor() {
-		for(NXTRegulatedMotor iM : tabMotor) {
-			iM.stop();
-		}
+		motorB.stop();
+		motorC.stop();
+		
 	}
 	
 	/**
 	 * Methode qui permet de fermer tous les moteurs du robot
 	 */
 	public void closeAllMotor() {
-		for(NXTRegulatedMotor iM : tabMotor) {
-			iM.close();
-		}
+		motorB.close();
+		motorC.close();
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class Robot_Component {
 	 * @return le premier Moteur
 	 */
 	public NXTRegulatedMotor getMotorOne() {
-		return this.tabMotor[0];
+		return this.motorB;
 	}
 	
 	/**
@@ -67,7 +67,7 @@ public class Robot_Component {
 	 * @return le deuxieme Moteur
 	 */
 	public NXTRegulatedMotor getMotorTwo() {
-		return this.tabMotor[1];
+		return this.motorC;
 	}
 
 	public void doStep(NXTRegulatedMotor motor, int direction) {
