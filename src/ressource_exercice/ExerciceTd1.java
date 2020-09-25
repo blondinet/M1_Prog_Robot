@@ -99,9 +99,12 @@ public class ExerciceTd1 extends Ex_Model{
 	 */
 	public void danceAwayYourProblems() {
 		System.out.println("DANCE AWAY YOUR PROBLEMS!\n");
-		Button.waitForAnyPress();
 		System.out.println("Press any key to start");
+		
+		Button.waitForAnyPress();
 
+		System.out.println("Ca marche, je danse");
+		
 		int b_speed = Methode_Utiles.giveRandomSpeedMax();
 		int c_speed = Methode_Utiles.giveRandomSpeedMax();
 		
