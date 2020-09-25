@@ -71,7 +71,6 @@ public class Robot_Component {
 	}
 
 	public void doStep(NXTRegulatedMotor motor, int direction) {
-		this.closeAllMotor();
 		
 		if(direction < 0) {
 			direction = Math.abs(direction);
@@ -81,7 +80,8 @@ public class Robot_Component {
 			motor.setSpeed(direction);
 			motor.forward();
 		}
-		
+		this.closeAllMotor();
+
 	}
 
 }
