@@ -3,6 +3,7 @@ target/**
 *.war
 *.ear
 *.class
+*.jar
 
 # eclipse specific
 *.pydevproject
