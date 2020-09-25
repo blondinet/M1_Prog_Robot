@@ -17,8 +17,13 @@ public class Robot_Component {
 	 * Ce constructeur récupère les motor physique et donne leurs valeurs a des variables d'instanciation
 	 */
 	public Robot_Component() {
-		tabMotor[0] = new NXTRegulatedMotor(MotorPort.B); //moteur B = roue de gauche
-		tabMotor[1] = new NXTRegulatedMotor(MotorPort.C);
+		try {
+			tabMotor[0] = new NXTRegulatedMotor(MotorPort.B); //moteur B = roue de gauche
+			tabMotor[1] = new NXTRegulatedMotor(MotorPort.C);
+		}catch(NullPointerException e) {
+			System.out.println("Erreur Constructeur");
+			System.out.println(e);
+		}
 	}
 
 	/**

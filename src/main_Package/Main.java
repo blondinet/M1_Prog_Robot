@@ -20,10 +20,14 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
+		try {
+			ExerciceTd1 td1 = new ExerciceTd1(new Robot_Component());
+			td1.danceAwayYourProblems();
+		}catch(NullPointerException e) {
+			System.out.println("erreur main");
+			System.out.println(e);
+		}
 		
-		ExerciceTd1 td1 = new ExerciceTd1(new Robot_Component());
-		
-		//td1.danceAwayYourProblems();
 		//td1.sayHello(); //Exercice 1
 	
 		//td1.driveForward(50, 5000); //Exercice 2 (speed percentage, delay in milliseconds)
