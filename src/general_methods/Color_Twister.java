@@ -48,4 +48,14 @@ public class Color_Twister {
 		else if (a > MAX) {return 255;}
 		else return a;
 	}
+	
+	/**
+	 * Calcul de la distance euclidienne entre 2 couleurs
+	 * @param x 2e couleur
+	 * @return la distance
+	 */
+	public double DistanceEuclidienneCouleur(Color_Twister x) {
+		return Math.sqrt( Math.pow((this.red-x.getRed()), 2) + Math.pow((this.green-x.getGreen()), 2) + Math.pow((this.blue-x.getBlue()), 2));	
+	}
+	
 }
