@@ -28,7 +28,8 @@ public class ExerciceTd1 extends Ex_Model{
 	 * Fonction qui permet de répondre à la question 1
 	 */
 	public void sayHello() { 
-	    System.out.println("bonjour Madame, bonjour Monsieur !"); 
+	    System.out.println("Bonjour Madame, Bonjour Monsieur !\nAppuyez sur une touche svp.");
+	    System.out.println("Hello !");
 	    Button.waitForAnyPress(); 
 	}
 
@@ -153,6 +154,7 @@ public class ExerciceTd1 extends Ex_Model{
 	 * @param rob
 	 */
 	public void letsHug() {
+		System.out.println("Press any key to start");
 		
 		try {
 			Button.waitForAnyPress();
@@ -172,35 +174,52 @@ public class ExerciceTd1 extends Ex_Model{
 	 * Methode qui capte la couleur perçu par le senseur
 	 */
 	public void capteurCouleur() {
-		System.out.print("Je vais instancier les couleurs dans ma memoire !\n");
+		//System.out.println("Je vais instancier les couleurs dans ma memoire !");
+		System.out.println("Capteur Couleur\nPress any key to start...");
 		Button.waitForAnyPress();
 		int valeur;String color;
 		
-		//while(!Button.LEFT.isDown()) {
-			valeur=this.robot.getColorID();
-			switch (valeur) {
-				case Color.BLACK : color = "noire";
-				case Color.BLUE : color = "bleue";
-				case Color.BROWN : color = "marron";
-				case Color.CYAN : color = "cyan";
-				case Color.DARK_GRAY : color = "gris fonce";
-				case Color.GRAY : color = "grise";
-				case Color.GREEN : color = "verte";
-				case Color.LIGHT_GRAY : color = "gris clair";
-				case Color.MAGENTA : color = "magenta";
-				case Color.ORANGE : color = "orange";
-				case Color.PINK : color = "rose";
-				case Color.RED : color = "rouge";
-				case Color.WHITE : color = "blanche";
-				case Color.YELLOW : color = "jaune";
-				default : color = "inconnue";
-			//} 
+		valeur=this.robot.getColorID();
+		switch (valeur) {
+			case Color.BLACK : color = "noire";
+			case Color.BLUE : color = "bleue";
+			case Color.BROWN : color = "marron";
+			case Color.CYAN : color = "cyan";
+			case Color.DARK_GRAY : color = "gris fonce";
+			case Color.GRAY : color = "grise";
+			case Color.GREEN : color = "verte";
+			case Color.LIGHT_GRAY : color = "gris clair";
+			case Color.MAGENTA : color = "magenta";
+			case Color.ORANGE : color = "orange";
+			case Color.PINK : color = "rose";
+			case Color.RED : color = "rouge";
+			case Color.WHITE : color = "blanche";
+			case Color.YELLOW : color = "jaune";
+			default : color = "inconnue";
+			}
 			
-			try { Thread.sleep(500); }catch (InterruptedException e) {e.printStackTrace();} 	
-		}
-		System.out.println(color);
-		robot.getColorSensor().close();
+		System.out.println("ColorID = "+valeur+ ".\nC'est du " +color+ " !");
+		System.out.println("Press key to quit...");
 		
+		robot.getColorSensor().close();
+		Button.waitForAnyPress();
+		
+	}
+	
+
+	/**
+	 * Methode qui capte la couleur perçu par le senseur (version RGB)
+	 */
+	public void capteurCouleurRGB() {
+		System.out.println("Capteur Couleur RGB\nPress any key to start...");
+		Button.waitForAnyPress();
+		
+		//System.out.println("ColorID = "+valeur+ ".\nC'est du " +color+ " !");
+		this.robot.getColorRGB();
+		
+		System.out.println("Press key to quit...");
+		Button.waitForAnyPress();
+		robot.getColorSensor().close();
 	}
 	
 	

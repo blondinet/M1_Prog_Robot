@@ -66,7 +66,18 @@ public class Robot_Component {
 		int res = colorS.getColorID();
 		return res;
 	}
-
+	
+	public void getColorRGB() {
+		float[] tabRGB = new float[3];
+		colorS.getRGBMode().fetchSample(tabRGB, 0);
+		for (int i = 0; i<=2; i++) {
+			tabRGB[i] = tabRGB[i]*1000;
+		}
+		
+		System.out.println("La couleur est :\nR = "+(int)tabRGB[0]+ "\nV = "+(int)tabRGB[1]+ "\nB = "+(int)tabRGB[2]);
+		//return 
+				
+	}
 	/**
 	 * Methode qui permet de donner la même valeur de vitesse à tout les moteur
 	 * @param speed la vitesse qu'on souhaite donner à tout les moteurs
