@@ -25,6 +25,8 @@ public class Robot_Component {
 	private EV3ColorSensor colorS;
 	private EV3UltrasonicSensor ultraSonicS;
 	
+	private Color_Twister rouge, bleu, vert, orange, blanc, noir;
+	
 	/**
 	 * Constructeur de la classe
 	 * Ce constructeur récupère les motor physique et donne leurs valeurs a des variables d'instanciation
@@ -67,52 +69,53 @@ public class Robot_Component {
 		int res = colorS.getColorID();
 		return res;
 	}
-	
-	public void detectColor() {
-		float[] tabRGB = new float[3];
-		colorS.getRGBMode().fetchSample(tabRGB, 0);
-		for (int i = 0; i<=2; i++) {
-			tabRGB[i] = (int)tabRGB[i]*1000;
-			if(tabRGB[i]>255) {tabRGB[i]=255;}
-		}
-		System.out.println("La couleur est :\nR = "+(int)tabRGB[0]+ "\nV = "+(int)tabRGB[1]+ "\nB = "+(int)tabRGB[2]);
-	}
-	
 	/**
-	 * Getteur de la couleur percue par le senseur (en mode RGB)
-	 * @return
+	 * Detecteur de couleur par capteur
+	 * @return color une couleur au format RGB
 	 */
-	public int[] getColorRGB(int[] tab) {
+	public Color_Twister detectColor() {
 		float[] tabRGB = new float[3];
 		colorS.getRGBMode().fetchSample(tabRGB, 0);
-		for (int i = 0; i<=2; i++) {
-			tab[i] = (int)tabRGB[i]*1000;
-			if(tab[i]>255) {tab[i]=255;}
-		}
-		//System.out.println("La couleur est :\nR = "+(int)tabRGB[0]+ "\nV = "+(int)tabRGB[1]+ "\nB = "+(int)tabRGB[2]);
-		return tab;
+		Color_Twister color = new Color_Twister((int)tabRGB[0]*1000, (int)tabRGB[1]*1000, (int)tabRGB[2]*1000 );
+		return color;
 	}
-	
+			
 
 	/**
 	 * Méthode qui permet au robot d'apprendre les différentes couleurs
 	 * @return
 	 */
 	public void learnColors() {
-		int[] blanc, bleu, vert, rouge, orange;
 		System.out.println("Learn Colors\nPress key to start...");
 		Button.waitForAnyPress();
 		
-		System.out.println("Placez moi sur le NOIR.\nPress key to continue...");
+		System.out.println("Place moi sur le NOIR\nAppuie pour continuer");
 		Button.waitForAnyPress();
 		// le robot va stocker la valeur RGB du noir
-		int[] noir = new int[3];
-		getColorRGB(noir);
-		System.out.println("La couleur est :\nR = "+noir[0]+ "\nV = "+noir[1]+ "\nB = "+noir[2]);
+		noir = detectColor();
 		
-		// fin de l'apprentissage
-		System.out.println("Press key to continue...");
+		System.out.println("Place moi sur le ROUGE\nAppuie pour continuer");
 		Button.waitForAnyPress();
+		rouge = detectColor();
+		
+		System.out.println("Place moi sur le BLEU\nAppuie pour continuer");
+		Button.waitForAnyPress();
+		bleu = detectColor();
+		
+		System.out.println("Place moi sur le VERT\nAppuie pour continuer");
+		Button.waitForAnyPress();
+		vert = detectColor();
+		
+		System.out.println("Place moi sur le ORANGE\nAppuie pour continuer");
+		Button.waitForAnyPress();
+		orange = detectColor();
+		
+		System.out.println("Place moi sur le BLANC\nAppuie pour continuer");
+		Button.waitForAnyPress();
+		blanc = detectColor();
+		
+		System.out.println("Fin de l'apprentissage\nAppuie pour quitter");
+		Button.waitForAnyPress();		
 	}
 	
 	/**

@@ -175,8 +175,10 @@ public class ExerciceTd1 extends Ex_Model{
 	 */
 	public void capteurCouleur() {
 		//System.out.println("Je vais instancier les couleurs dans ma memoire !");
-		System.out.println("Capteur Couleur\nPress any key to start...");
+		System.out.println("Je vais apprendre les couleurs\nAppuie pour continuer");
 		Button.waitForAnyPress();
+		robot.learnColors();
+		
 		int valeur;String color;
 		
 		valeur=this.robot.getColorID();
