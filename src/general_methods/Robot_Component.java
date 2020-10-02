@@ -62,9 +62,8 @@ public class Robot_Component {
 	 * getteur de la couleur percu par le senseur
 	 * @return
 	 */
-	public int afficheCouleur(){
+	public int getColorID(){
 		int res = colorS.getColorID();
-		colorS.close();
 		return res;
 	}
 

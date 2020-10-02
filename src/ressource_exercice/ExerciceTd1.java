@@ -172,11 +172,12 @@ public class ExerciceTd1 extends Ex_Model{
 	 * Methode qui capte la couleur perçu par le senseur
 	 */
 	public void capteurCouleur() {
+		System.out.print("Je vais instancier les couleurs dans ma memoire !\n");
 		Button.waitForAnyPress();
 		int valeur;String color;
 		
-		while(!Button.LEFT.isDown()) {
-			valeur=this.robot.afficheCouleur();
+		//while(!Button.LEFT.isDown()) {
+			valeur=this.robot.getColorID();
 			switch (valeur) {
 				case Color.BLACK : color = "noire";
 				case Color.BLUE : color = "bleue";
@@ -193,14 +194,13 @@ public class ExerciceTd1 extends Ex_Model{
 				case Color.WHITE : color = "blanche";
 				case Color.YELLOW : color = "jaune";
 				default : color = "inconnue";
-			} 
+			//} 
 			
-			try { Thread.sleep(500); }catch (InterruptedException e) {e.printStackTrace();} 
-			
-			System.out.println(color);
+			try { Thread.sleep(500); }catch (InterruptedException e) {e.printStackTrace();} 	
 		}
+		System.out.println(color);
+		robot.getColorSensor().close();
 		
-
 	}
 	
 	
