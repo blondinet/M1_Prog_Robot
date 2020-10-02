@@ -76,10 +76,9 @@ public class Robot_Component {
 	public Color_Twister detectColor() {
 		float[] tabRGB = new float[3];
 		colorS.getRGBMode().fetchSample(tabRGB, 0);
-		Color_Twister color = new Color_Twister((int)tabRGB[0]*1000, (int)tabRGB[1]*1000, (int)tabRGB[2]*1000 );
+		Color_Twister color = new Color_Twister("inconnue", (int)tabRGB[0]*1000, (int)tabRGB[1]*1000, (int)tabRGB[2]*1000 );
 		return color;
 	}
-			
 
 	/**
 	 * Méthode qui permet au robot d'apprendre les différentes couleurs
@@ -93,26 +92,32 @@ public class Robot_Component {
 		Button.waitForAnyPress();
 		// le robot va stocker la valeur RGB du noir
 		noir = detectColor();
+		noir.setName("noir");
 		
 		System.out.println("Place moi sur le ROUGE\nAppuie pour continuer");
 		Button.waitForAnyPress();
 		rouge = detectColor();
+		rouge.setName("rouge");
 		
 		System.out.println("Place moi sur le BLEU\nAppuie pour continuer");
 		Button.waitForAnyPress();
 		bleu = detectColor();
+		bleu.setName("bleu");
 		
 		System.out.println("Place moi sur le VERT\nAppuie pour continuer");
 		Button.waitForAnyPress();
 		vert = detectColor();
+		vert.setName("vert");
 		
 		System.out.println("Place moi sur le ORANGE\nAppuie pour continuer");
 		Button.waitForAnyPress();
 		orange = detectColor();
+		orange.setName("orange");
 		
 		System.out.println("Place moi sur le BLANC\nAppuie pour continuer");
 		Button.waitForAnyPress();
 		blanc = detectColor();
+		blanc.setName("blanc");
 		
 		System.out.println("Fin de l'apprentissage\nAppuie pour quitter");
 		Button.waitForAnyPress();		

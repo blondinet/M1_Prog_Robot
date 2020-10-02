@@ -1,6 +1,7 @@
 package general_methods;
 
 public class Color_Twister {
+	private String name;
 	private int red;
 	private int green;
 	private int blue;
@@ -11,7 +12,8 @@ public class Color_Twister {
 	 * Constructeur de la classe
 	 * Une couleur est composé de 3 valeurs numériques allant de 0 à 255 (rouge, vert, bleu)
 	 */
-	public Color_Twister(int r, int g, int b) {
+	public Color_Twister(String n, int r, int g, int b) {
+		this.name = n;
 		this.red = Limiteur(r);
 		this.green = Limiteur(g);
 		this.blue = Limiteur(b);
@@ -35,6 +37,12 @@ public class Color_Twister {
 	}
 	public void setBlue(short blue) {
 		this.blue = Limiteur(blue);
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	// Méthodes
