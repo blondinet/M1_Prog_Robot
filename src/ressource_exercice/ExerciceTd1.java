@@ -176,7 +176,7 @@ public class ExerciceTd1 extends Ex_Model{
 		int valeur;String color;
 		
 		while(!Button.LEFT.isDown()) {
-			valeur=this.robot.getColorID();
+			valeur=this.robot.afficheCouleur();
 			switch (valeur) {
 				case Color.BLACK : color = "noire";
 				case Color.BLUE : color = "bleue";

@@ -25,6 +25,8 @@ public class Main {
 		
 		//td1.letsHug();
 		
+		td1.capteurCouleur();
+		
 		//td1.sayHello(); //Exercice 1
 	
 		//td1.driveForward(50, 5000); //Exercice 2 (speed percentage, delay in milliseconds)

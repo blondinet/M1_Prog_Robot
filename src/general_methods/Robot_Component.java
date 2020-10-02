@@ -19,7 +19,10 @@ public class Robot_Component {
 	private NXTRegulatedMotor motorC;
 	private NXTRegulatedMotor motorA;
 	
-	private Object capteur[];
+	private EV3TouchSensor toucheS;
+	private EV3GyroSensor gyroS;
+	private EV3ColorSensor colorS;
+	private EV3UltrasonicSensor ultraSonicS;
 	
 	/**
 	 * Constructeur de la classe
@@ -35,24 +38,33 @@ public class Robot_Component {
 			System.out.println(e);
 		}
 		
-		/*try {
-			capteur[0] = new EV3TouchSensor(SensorPort.S1);
-			capteur[1] = new EV3GyroSensor(SensorPort.S2);
-			capteur[2] = new EV3ColorSensor(SensorPort.S3);
-			capteur[3] = new EV3UltrasonicSensor(SensorPort.S4);
+		try {
+			//capteur[0] = new EV3TouchSensor(SensorPort.S1);
+			
+			//capteur[1] = new EV3GyroSensor(SensorPort.S2);
+			
+			//capteur[2] = new EV3ColorSensor(SensorPort.S3);
+			
+			//capteur[3] = new EV3UltrasonicSensor(SensorPort.S4);
+			
+			this.toucheS = new EV3TouchSensor(SensorPort.S1);
+			this.gyroS = new EV3GyroSensor(SensorPort.S2);
+			this.colorS = new EV3ColorSensor(SensorPort.S3);
+			this.ultraSonicS = new EV3UltrasonicSensor(SensorPort.S4);
+			
 		}catch(NullPointerException e) {
-			System.out.print("erreur capteur");
+			System.out.print("erreur capteurs");
 			System.out.print(e);
-		}*/
+		}
 	}
 	
 	/**
 	 * getteur de la couleur percu par le senseur
 	 * @return
 	 */
-	public int getColorID(){
-		int res = ((EV3ColorSensor)capteur[2]).getColorID();
-		((EV3ColorSensor)capteur[2]).close();
+	public int afficheCouleur(){
+		int res = colorS.getColorID();
+		colorS.close();
 		return res;
 	}
 
@@ -109,27 +121,15 @@ public class Robot_Component {
 	
 	/**
 	 * getteur des senseur du robot
-	 * @param senseur le paramètre du senseur souhaité [1 : Toucher | 2 : Gyro | 3 : Color | 4 : Ultrason]
+	 * @param
 	 * @return le senseur voulu
 	 */
-	public Object getSensor(int senseur){
-		Object res=null;
-		
-		switch(senseur) {
-			case 1:
-				res = capteur[0];
-			break;
-			case 2:
-				res = capteur[1];
-			break;
-			case 3:
-				res = capteur[2];
-			break;
-			case 4:
-				res = capteur[3];
-			break;
-		}
-		return res;
+	public EV3ColorSensor getColorSensor() {
+		return this.colorS;
+	}
+	
+	public EV3TouchSensor getTouchSensor() {
+		return this.toucheS;
 	}
 
 	/**
