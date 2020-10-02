@@ -208,18 +208,21 @@ public class ExerciceTd1 extends Ex_Model{
 	
 
 	/**
-	 * Methode qui capte la couleur perçu par le senseur (version RGB)
+	 * Methode qui capte la couleur perçue par le senseur (version RGB)
 	 */
 	public void capteurCouleurRGB() {
 		System.out.println("Capteur Couleur RGB\nPress any key to start...");
 		Button.waitForAnyPress();
 		
-		//System.out.println("ColorID = "+valeur+ ".\nC'est du " +color+ " !");
-		this.robot.getColorRGB();
+		this.robot.learnColors();
+		
+		System.out.println("Placez moi sur une couleur.\nPress key to continue...");
+		Button.waitForAnyPress();
+		this.robot.detectColor();
 		
 		System.out.println("Press key to quit...");
 		Button.waitForAnyPress();
-		robot.getColorSensor().close();
+		robot.getColorSensor().close();		// fermeture des capteurs
 	}
 	
 	

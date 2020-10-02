@@ -1,4 +1,5 @@
 package general_methods;
+import lejos.hardware.Button;
 import lejos.hardware.motor.Motor;
 import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.hardware.port.SensorPort;
@@ -59,25 +60,61 @@ public class Robot_Component {
 	}
 	
 	/**
-	 * getteur de la couleur percu par le senseur
-	 * @return
+	 * Getteur de la couleur percue par le senseur
+	 * @return ID de la couleur
 	 */
 	public int getColorID(){
 		int res = colorS.getColorID();
 		return res;
 	}
 	
-	public void getColorRGB() {
+	public void detectColor() {
 		float[] tabRGB = new float[3];
 		colorS.getRGBMode().fetchSample(tabRGB, 0);
 		for (int i = 0; i<=2; i++) {
-			tabRGB[i] = tabRGB[i]*1000;
+			tabRGB[i] = (int)tabRGB[i]*1000;
+			if(tabRGB[i]>255) {tabRGB[i]=255;}
 		}
-		
 		System.out.println("La couleur est :\nR = "+(int)tabRGB[0]+ "\nV = "+(int)tabRGB[1]+ "\nB = "+(int)tabRGB[2]);
-		//return 
-				
 	}
+	
+	/**
+	 * Getteur de la couleur percue par le senseur (en mode RGB)
+	 * @return
+	 */
+	public int[] getColorRGB(int[] tab) {
+		float[] tabRGB = new float[3];
+		colorS.getRGBMode().fetchSample(tabRGB, 0);
+		for (int i = 0; i<=2; i++) {
+			tab[i] = (int)tabRGB[i]*1000;
+			if(tab[i]>255) {tab[i]=255;}
+		}
+		//System.out.println("La couleur est :\nR = "+(int)tabRGB[0]+ "\nV = "+(int)tabRGB[1]+ "\nB = "+(int)tabRGB[2]);
+		return tab;
+	}
+	
+
+	/**
+	 * Méthode qui permet au robot d'apprendre les différentes couleurs
+	 * @return
+	 */
+	public void learnColors() {
+		int[] blanc, bleu, vert, rouge, orange;
+		System.out.println("Learn Colors\nPress key to start...");
+		Button.waitForAnyPress();
+		
+		System.out.println("Placez moi sur le NOIR.\nPress key to continue...");
+		Button.waitForAnyPress();
+		// le robot va stocker la valeur RGB du noir
+		int[] noir = new int[3];
+		getColorRGB(noir);
+		System.out.println("La couleur est :\nR = "+noir[0]+ "\nV = "+noir[1]+ "\nB = "+noir[2]);
+		
+		// fin de l'apprentissage
+		System.out.println("Press key to continue...");
+		Button.waitForAnyPress();
+	}
+	
 	/**
 	 * Methode qui permet de donner la même valeur de vitesse à tout les moteur
 	 * @param speed la vitesse qu'on souhaite donner à tout les moteurs
