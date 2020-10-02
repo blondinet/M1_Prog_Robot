@@ -154,14 +154,18 @@ public class ExerciceTd1 extends Ex_Model{
 	 */
 	public void letsHug() {
 		
-		Button.waitForAnyPress();
-		System.out.println(robot.getMotor(1).getPosition()); //permet de connaître la position par rapport à position initiale
+		try {
+			Button.waitForAnyPress();
+			System.out.println(robot.getMotor(1).getPosition()); //permet de connaître la position par rapport à position initiale
+			
+			robot.getMotor(1).rotateTo(-90);
+			System.out.println("Dans mes bras!");
+			Button.waitForAnyPress();
+			robot.getMotor(1).rotateTo(90);
+		}catch(NullPointerException e){
+			System.out.print("JE MARCHE PAS");
+		}
 		
-		robot.getMotor(1).rotateTo(-90);
-		System.out.println("Dans mes bras!");
-		
-		Button.waitForAnyPress();
-		robot.getMotor(1).rotateTo(90);
 	}
 	
 	/**
@@ -239,10 +243,4 @@ public class ExerciceTd1 extends Ex_Model{
 		arby.go();		
 	}
 	*/
-	
-	
-	
-	
-	//do step(motor) ?
-	/* 56 *26 ZR */
 }

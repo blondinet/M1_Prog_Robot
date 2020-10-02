@@ -21,8 +21,9 @@ public class Main {
 	public static void main(String[] args) {
 		
 		ExerciceTd1 td1 = new ExerciceTd1(new Robot_Component());
-		td1.danceAwayYourProblems();
+		//td1.danceAwayYourProblems();
 		
+		//td1.letsHug();
 		
 		//td1.sayHello(); //Exercice 1
 	

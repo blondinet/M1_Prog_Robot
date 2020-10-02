@@ -17,6 +17,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 public class Robot_Component {
 	private NXTRegulatedMotor motorB;
 	private NXTRegulatedMotor motorC;
+	private NXTRegulatedMotor motorA;
 	
 	private Object capteur[];
 	
@@ -24,20 +25,25 @@ public class Robot_Component {
 	 * Constructeur de la classe
 	 * Ce constructeur récupère les motor physique et donne leurs valeurs a des variables d'instanciation
 	 */
-	public Robot_Component() {
-		capteur[0] = new EV3TouchSensor(SensorPort.S1);
-		capteur[1] = new EV3GyroSensor(SensorPort.S2);
-		capteur[2] = new EV3ColorSensor(SensorPort.S3);
-		capteur[3] = new EV3UltrasonicSensor(SensorPort.S4);
-		
-		
+	public Robot_Component() {		
 		try {
+			this.motorA = Motor.A; //bras
 			this.motorB = Motor.B; //moteur B = roue de gauche
 			this.motorC = Motor.C;
 		}catch(NullPointerException e) {
 			System.out.println("Erreur Constructeur");
 			System.out.println(e);
 		}
+		
+		/*try {
+			capteur[0] = new EV3TouchSensor(SensorPort.S1);
+			capteur[1] = new EV3GyroSensor(SensorPort.S2);
+			capteur[2] = new EV3ColorSensor(SensorPort.S3);
+			capteur[3] = new EV3UltrasonicSensor(SensorPort.S4);
+		}catch(NullPointerException e) {
+			System.out.print("erreur capteur");
+			System.out.print(e);
+		}*/
 	}
 	
 	/**
@@ -57,7 +63,6 @@ public class Robot_Component {
 	public void setPowerAllMotor(int speed) {
 		Motor.B.setSpeed(speed);
 		Motor.C.setSpeed(speed);
-		
 	}
 	
 	/**
