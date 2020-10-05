@@ -1,10 +1,10 @@
-package general_methods;
+package ressources_twister;
 
 import java.util.Random;
 
 import lejos.hardware.Button;
 
-public class Methode_Utiles {
+public class Methode_utiles {
 
 	public static int giveRandomLimite(int low, int high) {
 		Random r = new Random();

@@ -4,18 +4,17 @@ import lejos.hardware.motor.Motor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.robotics.subsumption.Behavior;
 import lejos.utility.Delay;
-import general_methods.Robot_Component;
+import ressources_twister.Robot;
 
-public class HitWall implements Behavior{
+public class Hit_wall implements Behavior{
 	private EV3TouchSensor touch;
-	//private float[] sample;
-	private float[] sample = new float[] {0};
-	private Robot_Component robot;
+	private float[] sample;
+	private Robot robot;
 	
-	public HitWall(EV3TouchSensor ts, float[] s, Robot_Component r) {
-		this.touch = ts;
-		this.sample = s;
+	public Hit_wall(Robot r) {
 		this.robot = r;
+		this.touch = r.getTouchSensor();
+		this.sample = new float[] {0};
 	}
 
 	@Override

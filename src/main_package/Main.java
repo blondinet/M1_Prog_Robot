@@ -1,7 +1,7 @@
-package main_Package;
-import ressource_exercice.*;
+package main_package;
+//import ressource_exercice.*;
 
-import general_methods.*;
+//import general_methods.*;
 
 /**
  * Classe qui permet d'executer les différentes réponses aux exercices

@@ -1,6 +1,6 @@
-package ressources_Twister;
+package ressources_twister;
 
-public class Color_Twister {
+public class Color_twister {
 	private String name;
 	private int red;
 	private int green;
@@ -12,7 +12,7 @@ public class Color_Twister {
 	 * Constructeur de la classe
 	 * Une couleur est composé de 3 valeurs numériques allant de 0 à 255 (rouge, vert, bleu)
 	 */
-	public Color_Twister(String n, int r, int g, int b) {
+	public Color_twister(String n, int r, int g, int b) {
 		this.name = n;
 		this.red = Limiteur(r);
 		this.green = Limiteur(g);
@@ -60,9 +60,9 @@ public class Color_Twister {
 	/**
 	 * Calcul de la distance euclidienne entre 2 couleurs
 	 * @param x 2e couleur
-	 * @return la distance
+	 * @return la distance entre les couleurs
 	 */
-	public double DistanceEuclidienneCouleur(Color_Twister x) {
+	public double DistanceEuclidienneCouleur(Color_twister x) {
 		return Math.sqrt( Math.pow((this.red-x.getRed()), 2) + Math.pow((this.green-x.getGreen()), 2) + Math.pow((this.blue-x.getBlue()), 2));	
 	}
 	

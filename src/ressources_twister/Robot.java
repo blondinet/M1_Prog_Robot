@@ -1,4 +1,4 @@
-package general_methods;
+package ressources_twister;
 import lejos.hardware.Button;
 import lejos.hardware.motor.Motor;
 import lejos.hardware.motor.NXTRegulatedMotor;
@@ -7,7 +7,6 @@ import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
-import ressources_Twister.Color_Twister;
 
 /**
  * Classe qui permet de d'instancier un robot avec ses composant
@@ -16,7 +15,7 @@ import ressources_Twister.Color_Twister;
  * @author blondin
  *
  */
-public class Robot_Component {
+public class Robot {
 	private NXTRegulatedMotor arms;
 	private NXTRegulatedMotor leftW; //leftWheel
 	private NXTRegulatedMotor rightW;
@@ -26,13 +25,13 @@ public class Robot_Component {
 	private EV3ColorSensor colorS;
 	private EV3UltrasonicSensor ultraSonicS;
 	
-	private Color_Twister rouge, bleu, vert, orange, blanc, noir;
+	private Color_twister rouge, bleu, vert, orange, blanc, noir;
 	
 	/**
 	 * Constructeur de la classe
 	 * Ce constructeur récupère les motor physique et donne leurs valeurs a des variables d'instanciation
 	 */
-	public Robot_Component() {		
+	public Robot() {		
 		try {
 			this.arms = Motor.A; //bras
 			this.leftW = Motor.B; //moteur B = roue de gauche
@@ -43,14 +42,6 @@ public class Robot_Component {
 		}
 		
 		try {
-			//capteur[0] = new EV3TouchSensor(SensorPort.S1);
-			
-			//capteur[1] = new EV3GyroSensor(SensorPort.S2);
-			
-			//capteur[2] = new EV3ColorSensor(SensorPort.S3);
-			
-			//capteur[3] = new EV3UltrasonicSensor(SensorPort.S4);
-			
 			this.touchS = new EV3TouchSensor(SensorPort.S1);
 			this.gyroS = new EV3GyroSensor(SensorPort.S2);
 			this.colorS = new EV3ColorSensor(SensorPort.S3);
@@ -74,10 +65,10 @@ public class Robot_Component {
 	 * Detecteur de couleur par capteur
 	 * @return color une couleur au format RGB
 	 */
-	public Color_Twister detectColor() {
+	public Color_twister detectColor() {
 		float[] tabRGB = new float[3];
 		colorS.getRGBMode().fetchSample(tabRGB, 0);
-		Color_Twister color = new Color_Twister("inconnue", (int)tabRGB[0]*1000, (int)tabRGB[1]*1000, (int)tabRGB[2]*1000 );
+		Color_twister color = new Color_twister("inconnue", (int)tabRGB[0]*1000, (int)tabRGB[1]*1000, (int)tabRGB[2]*1000 );
 		return color;
 	}
 
@@ -139,6 +130,17 @@ public class Robot_Component {
 	public void stopAllMotor() {
 		Motor.B.stop();
 		Motor.C.stop();
+		
+	}
+	
+	/**
+	 * Methode qui permet de stopper tous les moteur du robot
+	 */
+	public void closeAllSensors() {
+		this.touchS.close();
+		this.gyroS.close();
+		this.colorS.close();
+		this.ultraSonicS.close();
 		
 	}
 	
