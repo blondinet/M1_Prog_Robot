@@ -1,4 +1,4 @@
-package general_methods;
+package ressources_Twister;
 
 public class Color_Twister {
 	private String name;

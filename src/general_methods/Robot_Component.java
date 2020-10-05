@@ -7,6 +7,7 @@ import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
+import ressources_Twister.Color_Twister;
 
 /**
  * Classe qui permet de d'instancier un robot avec ses composant

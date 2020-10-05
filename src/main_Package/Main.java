@@ -20,13 +20,13 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		System.out.println("Bonjour ! Je m'appelle Jon !\nVeuillez patienter...");
-		ExerciceTd1 td1 = new ExerciceTd1(new Robot_Component());
+		//ExerciceTd1 td1 = new ExerciceTd1(new Robot_Component());
 		//td1.danceAwayYourProblems();
 		
 		//td1.letsHug();
 		
 		//td1.capteurCouleur();
-		td1.capteurCouleurRGB();
+		//td1.capteurCouleurRGB();
 		
 		//td1.sayHello(); //Exercice 1
 	
