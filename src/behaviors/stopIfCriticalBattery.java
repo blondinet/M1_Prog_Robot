@@ -1,6 +1,7 @@
 package behaviors;
 import lejos.hardware.motor.Motor;
 import lejos.robotics.subsumption.Behavior;
+import lejos.hardware.Battery;
 import general_methods.Robot_Component;
 
 public class stopIfCriticalBattery implements Behavior{
@@ -18,9 +19,12 @@ public class stopIfCriticalBattery implements Behavior{
 	}
 	
 	public void action(Robot_Component r) {
-		r.getArms().stop(true);
-		r.getLeftW().stop(true);
-		r.getRightW().stop(true);
+		Battery b = new Battery();
+		if (b.getVoltageMilliVolt() < 90) {
+			r.getArms().stop(true);
+			r.getLeftW().stop(true);
+			r.getRightW().stop(true);
+		}
 	}
 
 }
