@@ -79,15 +79,15 @@ public class ExerciceTd1 extends Ex_Model{
 	        
 	        robot.stopAllMotor(); // on arrete les moteurs
 	        
-	        robot.getMotor(2).backward(); // on effectue une rotation de 90%
-	        robot.getMotor(3).forward();
+	        robot.getLeftW().backward(); // on effectue une rotation de 90%
+	        robot.getRightW().forward();
 	        robot.setPowerAllMotor(50);	
 	        Delay.msDelay(500);
 	        
 	        robot.stopAllMotor(); // on arrete les moteurs
 	        
-	        robot.getMotor(2).forward(); // on prépare les moteurs pour repartir en ligne droite
-	        robot.getMotor(3).forward();
+	        robot.getLeftW().forward(); // on prépare les moteurs pour repartir en ligne droite
+	        robot.getRightW().forward();
         }
 		
 		robot.stopAllMotor(); // Séquence de fin
@@ -117,7 +117,7 @@ public class ExerciceTd1 extends Ex_Model{
 				int b_speed = Methode_Utiles.giveRandomSpeedMax();
 				
 				//b_speed = 50;
-				robot.doStep(robot.getMotor(2), b_speed);
+				robot.doStep(robot.getLeftW(), b_speed);
 		    }
 		};
 		
@@ -128,7 +128,7 @@ public class ExerciceTd1 extends Ex_Model{
 				int c_speed = Methode_Utiles.giveRandomSpeedMax();
 				
 				//c_speed = 50;
-				robot.doStep(robot.getMotor(3), c_speed);
+				robot.doStep(robot.getRightW(), c_speed);
 		    }
 		};
 		
@@ -139,10 +139,10 @@ public class ExerciceTd1 extends Ex_Model{
 			//motorDoStepC.start();
 			
 			int b_speed = Methode_Utiles.giveRandomSpeedMax();
-			robot.doStep(robot.getMotor(2), b_speed);
+			robot.doStep(robot.getLeftW(), b_speed);
 			
 			int c_speed = Methode_Utiles.giveRandomSpeedMax();
-			robot.doStep(robot.getMotor(3), c_speed);
+			robot.doStep(robot.getRightW(), c_speed);
 		}		
 		Delay.msDelay((Methode_Utiles.giveRandomSpeed() % 400) + 100);
 		this.robot.closeAllMotor();
@@ -158,12 +158,12 @@ public class ExerciceTd1 extends Ex_Model{
 		
 		try {
 			Button.waitForAnyPress();
-			System.out.println(robot.getMotor(1).getPosition()); //permet de connaître la position par rapport à position initiale
+			System.out.println(robot.getArms().getPosition()); //permet de connaître la position par rapport à position initiale
 			
-			robot.getMotor(1).rotateTo(-90);
+			robot.getArms().rotateTo(-90);
 			System.out.println("Dans mes bras!");
 			Button.waitForAnyPress();
-			robot.getMotor(1).rotateTo(90);
+			robot.getArms().rotateTo(90);
 		}catch(NullPointerException e){
 			System.out.print("JE MARCHE PAS");
 		}

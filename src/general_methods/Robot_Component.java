@@ -16,11 +16,11 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
  *
  */
 public class Robot_Component {
-	private NXTRegulatedMotor motorB;
-	private NXTRegulatedMotor motorC;
-	private NXTRegulatedMotor motorA;
+	private NXTRegulatedMotor arms;
+	private NXTRegulatedMotor leftW; //leftWheel
+	private NXTRegulatedMotor rightW;
 	
-	private EV3TouchSensor toucheS;
+	private EV3TouchSensor touchS; //touchSensor
 	private EV3GyroSensor gyroS;
 	private EV3ColorSensor colorS;
 	private EV3UltrasonicSensor ultraSonicS;
@@ -33,9 +33,9 @@ public class Robot_Component {
 	 */
 	public Robot_Component() {		
 		try {
-			this.motorA = Motor.A; //bras
-			this.motorB = Motor.B; //moteur B = roue de gauche
-			this.motorC = Motor.C;
+			this.arms = Motor.A; //bras
+			this.leftW = Motor.B; //moteur B = roue de gauche
+			this.rightW = Motor.C;
 		}catch(NullPointerException e) {
 			System.out.println("Erreur Constructeur");
 			System.out.println(e);
@@ -50,7 +50,7 @@ public class Robot_Component {
 			
 			//capteur[3] = new EV3UltrasonicSensor(SensorPort.S4);
 			
-			this.toucheS = new EV3TouchSensor(SensorPort.S1);
+			this.touchS = new EV3TouchSensor(SensorPort.S1);
 			this.gyroS = new EV3GyroSensor(SensorPort.S2);
 			this.colorS = new EV3ColorSensor(SensorPort.S3);
 			this.ultraSonicS = new EV3UltrasonicSensor(SensorPort.S4);
@@ -145,33 +145,30 @@ public class Robot_Component {
 	 * Methode qui permet de fermer tous les moteurs du robot
 	 */
 	public void closeAllMotor() {
+		Motor.A.close();
 		Motor.B.close();
 		Motor.C.close();
+		
 	}
 	
 	/**
 	 * getteur des moteur 
-	 * @param le moteur a récupérer [1 : A | 2 : B | 3 : C | 4 : D]
+	 * @param none
 	 * @return le premier Moteur
 	 */
-	public NXTRegulatedMotor getMotor(int motor) {
-		NXTRegulatedMotor res=null;
+	public NXTRegulatedMotor getLeftW() {
+		return this.leftW;
 		
-		switch(motor) {
-			case 1:
-				res = Motor.A;
-			break;
-			case 2:
-				res = Motor.B;
-			break;
-			case 3:
-				res = Motor.C;
-			break;
-			case 4:
-				res = Motor.D;
-			break;
-		}
-		return res;
+	}
+	
+	public NXTRegulatedMotor getRightW() {
+		return this.rightW;
+		
+	}
+	
+	public NXTRegulatedMotor getArms() {
+		return this.arms;
+		
 	}
 	
 	/**
@@ -184,7 +181,7 @@ public class Robot_Component {
 	}
 	
 	public EV3TouchSensor getTouchSensor() {
-		return this.toucheS;
+		return this.touchS;
 	}
 
 	/**
