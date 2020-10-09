@@ -132,6 +132,24 @@ public class Robot {
 		Button.waitForAnyPress();
 	}
 	
+	public Color_twister comparerCouleur() {
+		Color_twister couleur_detectee = detectColor();		// On détecte la couleur sous le capteur
+		Color_twister plus_proche_couleur;					// On cherche à savoir la couleur la plus proche
+		double min = couleur_detectee.DistanceEuclidienneCouleur(blanc);
+		plus_proche_couleur = blanc;						// Par défaut la couleur la plus proche est le blanc
+		
+		for(Color_twister couleurs_en_memoire:memoire) {	// On parcourt toutes les couleurs en mémoire
+			if (couleur_detectee.DistanceEuclidienneCouleur(couleurs_en_memoire) < min) {
+				min = couleur_detectee.DistanceEuclidienneCouleur(couleurs_en_memoire);	// plus la distance euclidienne est courte entre deux couleurs, plus les couleurs sont proches
+				plus_proche_couleur = couleurs_en_memoire;
+				// Si la couleur détectée est plus proche d'une autre couleur que du blanc
+				// alors, on change la couleur la plus proche
+			}
+		}
+		
+		return plus_proche_couleur;		// On retourne la couleur la plus proche de la couleur détectée
+	}
+	
 	/**
 	 * Methode qui permet de donner la même valeur de vitesse à tout les moteur
 	 * @param speed la vitesse qu'on souhaite donner à tout les moteurs
