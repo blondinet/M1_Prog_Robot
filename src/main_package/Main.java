@@ -25,6 +25,8 @@ public class Main {
 		//ExerciceTd1 td1 = new ExerciceTd1(new Robot_Component());
 		Robot r = new Robot();
 		r.learnColors();
+		r.closeAllMotor();
+		r.closeAllSensors();
 		//td1.danceAwayYourProblems();
 		
 		//td1.letsHug();

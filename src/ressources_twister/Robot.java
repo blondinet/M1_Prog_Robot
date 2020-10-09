@@ -1,4 +1,6 @@
 package ressources_twister;
+import java.util.ArrayList;
+
 import lejos.hardware.Button;
 import lejos.hardware.motor.Motor;
 import lejos.hardware.motor.NXTRegulatedMotor;
@@ -26,6 +28,7 @@ public class Robot {
 	private EV3UltrasonicSensor ultraSonicS;
 	
 	private Color_twister rouge, bleu, vert, orange, blanc, noir;
+	private ArrayList<Color_twister> memoire = new ArrayList<Color_twister>();
 	
 	/**
 	 * Constructeur de la classe
@@ -45,7 +48,7 @@ public class Robot {
 			this.touchS = new EV3TouchSensor(SensorPort.S1);
 			this.gyroS = new EV3GyroSensor(SensorPort.S2);
 			this.colorS = new EV3ColorSensor(SensorPort.S3);
-			this.ultraSonicS = new EV3UltrasonicSensor(SensorPort.S4);
+			//this.ultraSonicS = new EV3UltrasonicSensor(SensorPort.S4);
 			
 		}catch(NullPointerException e) {
 			System.out.print("erreur capteurs");
@@ -68,7 +71,7 @@ public class Robot {
 	public Color_twister detectColor() {
 		float[] tabRGB = new float[3];
 		colorS.getRGBMode().fetchSample(tabRGB, 0);
-		Color_twister color = new Color_twister("inconnue", (int)tabRGB[0]*1000, (int)tabRGB[1]*1000, (int)tabRGB[2]*1000 );
+		Color_twister color = new Color_twister("inconnue", (int)(tabRGB[0]*1000), (int)(tabRGB[1]*1000), (int)(tabRGB[2]*1000) );
 		return color;
 	}
 
@@ -85,34 +88,48 @@ public class Robot {
 		// le robot va stocker la valeur RGB du noir
 		noir = detectColor();
 		noir.setName("noir");
+		noir.getRGB();
+		memoire.add(noir);
 		
 		System.out.println("Place moi sur le ROUGE\nAppuie pour continuer");
 		Button.waitForAnyPress();
 		rouge = detectColor();
 		rouge.setName("rouge");
+		rouge.getRGB();
+		memoire.add(rouge);
 		
 		System.out.println("Place moi sur le BLEU\nAppuie pour continuer");
 		Button.waitForAnyPress();
 		bleu = detectColor();
 		bleu.setName("bleu");
+		bleu.getRGB();
+		memoire.add(bleu);
 		
 		System.out.println("Place moi sur le VERT\nAppuie pour continuer");
 		Button.waitForAnyPress();
 		vert = detectColor();
 		vert.setName("vert");
+		vert.getRGB();
+		memoire.add(vert);
 		
 		System.out.println("Place moi sur le ORANGE\nAppuie pour continuer");
 		Button.waitForAnyPress();
 		orange = detectColor();
 		orange.setName("orange");
+		orange.getRGB();
+		memoire.add(orange);
 		
 		System.out.println("Place moi sur le BLANC\nAppuie pour continuer");
 		Button.waitForAnyPress();
 		blanc = detectColor();
 		blanc.setName("blanc");
+		blanc.getRGB();
+		memoire.add(blanc);
+		
+		//System.out.println("Voici les couleurs que j'ai appris : "+memoire);
 		
 		System.out.println("Fin de l'apprentissage\nAppuie pour quitter");
-		Button.waitForAnyPress();		
+		Button.waitForAnyPress();
 	}
 	
 	/**
@@ -140,7 +157,7 @@ public class Robot {
 		this.touchS.close();
 		this.gyroS.close();
 		this.colorS.close();
-		this.ultraSonicS.close();
+		//this.ultraSonicS.close();
 		
 	}
 	

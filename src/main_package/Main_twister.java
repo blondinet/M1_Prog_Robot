@@ -10,7 +10,10 @@ public class Main_twister {
 
 	public static void main(String[] args) {
 		Robot robot = new Robot();
-		System.out.println("Bonjour ! Je m'appelle Jon !\nVeuillez patienter...");
+		
+		System.out.println("Execution Main_twister !\nVeuillez patienter...");
+		
+		//robot.learnColors();
 		
 		Behavior b1 = new Drive_forward(robot);
 		Behavior b2 = new Hit_wall(robot);

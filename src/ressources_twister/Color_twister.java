@@ -6,8 +6,8 @@ public class Color_twister {
 	private int green;
 	private int blue;
 	
-	private final short MIN = 0;
-	private final short MAX = 255;
+	private final int MIN = 0;
+	private final int MAX = 255;
 	/**
 	 * Constructeur de la classe
 	 * Une couleur est composé de 3 valeurs numériques allant de 0 à 255 (rouge, vert, bleu)
@@ -23,19 +23,19 @@ public class Color_twister {
 	public int getRed() {
 		return red;
 	}
-	public void setRed(short red) {
+	public void setRed(int red) {
 		this.red = Limiteur(red);
 	}
 	public int getGreen() {
 		return green;
 	}
-	public void setGreen(short green) {
+	public void setGreen(int green) {
 		this.green = Limiteur(green);
 	}
 	public int getBlue() {
 		return blue;
 	}
-	public void setBlue(short blue) {
+	public void setBlue(int blue) {
 		this.blue = Limiteur(blue);
 	}
 	public String getName() {
@@ -44,7 +44,25 @@ public class Color_twister {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+	public int[] getRGBcode() {
+		int[] code = new int[3];
+		try {
+			code[0] = this.red;
+			code[1] = this.green;
+			code[2] = this.blue;
+		}catch(NullPointerException e) {
+			System.out.println("Le robot n'a pas encore appris cette couleur !");
+		}
+		return code;
+	}
+	public void getRGB() {
+		System.out.println("Couleur = "+this.name+" (R:"+this.red+";G:"+this.green+";B:"+this.blue+").");
+	}
+	@Override
+	public String toString() {
+		return "Couleur = "+this.name+" (R:"+this.red+";G:"+this.green+";B:"+this.blue+").";
+		
+	}
 	// Méthodes
 	/**
 	 * Permet de limiter la valeur d'une couleur (toujours supérieure à 0 et inférieur à 255) 

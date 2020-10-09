@@ -17,7 +17,6 @@ public class Drive_forward implements Behavior{
 		this.robot.getRightW().stop(true);
 	}
 	public void action() {
-		this.robot.setPowerAllMotor(50);
 		this.robot.getLeftW().forward();
 		this.robot.getRightW().forward();
 		
