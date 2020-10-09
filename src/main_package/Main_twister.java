@@ -1,6 +1,7 @@
 package main_package;
 
 import behaviors.*;
+import lejos.hardware.Button;
 import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
 import ressources_twister.Robot;
@@ -15,10 +16,10 @@ public class Main_twister {
 		Behavior b2 = new Hit_wall(robot);
 		Behavior b3 = new Stop_if_critical_battery(robot);
 		Behavior b4 = new Bouton_stop(robot);
-		Behavior[] bArray = {b1,b2,b3,b4}; //du plus prioritaire au moins
-		Behavior[] bArraybis = {b1, b3};
-		Arbitrator arby = new Arbitrator(bArraybis);
-		
+		Behavior[] bArray = {b1,b2,b3,b4}; //du moins prioritaire au plus
+		Behavior[] bArrayTest = {b1,b2,b4};
+		Arbitrator arby = new Arbitrator(bArrayTest);
+		Button.waitForAnyPress();
 		arby.go();
 		
 		// Onn arrête tous les moteurs et tous les capteurs avant de quitter le programme

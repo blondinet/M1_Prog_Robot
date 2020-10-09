@@ -21,7 +21,7 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Bonjour ! Je m'appelle Jon !\nVeuillez patienter...");
+		System.out.println("Détection des couleurs !\nVeuillez patienter...");
 		//ExerciceTd1 td1 = new ExerciceTd1(new Robot_Component());
 		Robot r = new Robot();
 		r.learnColors();

@@ -31,7 +31,7 @@ public class Hit_wall implements Behavior{
 		this.robot.getRightW().backward();
 		Delay.msDelay(1000);	// Recule pendant une seconde
 		this.robot.getLeftW().stop(true);	// Arrête la rouge gauche pour tourner
-		Delay.msDelay(300);					// Tourne pendant 300 millisecondes
+		Delay.msDelay(600);					// Tourne pendant 300 millisecondes
 		this.robot.getRightW().stop(true);	// Arrête l'autre roue
 		
 	}
