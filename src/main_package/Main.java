@@ -1,6 +1,8 @@
 package main_package;
 //import ressource_exercice.*;
 
+import ressources_twister.Robot;
+
 //import general_methods.*;
 
 /**
@@ -21,6 +23,8 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("Bonjour ! Je m'appelle Jon !\nVeuillez patienter...");
 		//ExerciceTd1 td1 = new ExerciceTd1(new Robot_Component());
+		Robot r = new Robot();
+		r.learnColors();
 		//td1.danceAwayYourProblems();
 		
 		//td1.letsHug();
