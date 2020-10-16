@@ -25,13 +25,21 @@ public class Main {
 	public static void main(String[] args) {
 		//System.out.println("Bonjour !\nVeuillez patienter...");
 		LCD.clear();
-		LCD.drawString("Bonjour ! Veuillez patienter...",0,0);
-		//LCD.drawString("message",colonne,ligne);
+		//LCD.drawString("message",largeur,hauteur);
+		//largeur : 0 à 18
+		// hauteur : 0 à 7
+		//LCD.drawString("123456789012345678",0,0);
+		//LCD.drawString("Bonjour !\nVeuillez patienter...",3,0);
+		LCD.drawString("test:",0,0);
+		LCD.drawString("Bonjour !",0,2);
+		LCD.drawString("Veuillez patienter...",0,3);
 		LCD.refresh();
 		//Robot r = new Robot();
 		//System.out.println("Appuyez pour continuer.");
 		//LCD.clear();
-		LCD.drawString("Appuyez pour continuer.",3,4);
+		LCD.drawString("Appuyez pour",0,4);
+		LCD.drawString("continuer.",0,5);
+		//LCD.drawString("123456789012345678",0,0);
 		LCD.refresh();
 		Button.waitForAnyPress();
 		//ExerciceTd1 td1 = new ExerciceTd1(new Robot_Component());
