@@ -2,6 +2,7 @@ package main_package;
 
 import behaviors.*;
 import lejos.hardware.Button;
+import lejos.hardware.lcd.LCD;
 import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
 import ressources_twister.*;
@@ -9,14 +10,27 @@ import ressources_twister.*;
 public class Main_twister {
 
 	public static void main(String[] args) {
+		//Début
+		LCD.clear();
+		LCD.drawString("Bonjour !",0,0);
+		LCD.drawString("Veuillez patienter...",0,1);
+		LCD.refresh();
+		//Chargement des constructeurs
 		Robot robot = new Robot();
-		//Map_twister map = new Map_twister();
-		Case_twister[][] map = new Case_twister[5][7];
+		Map_twister map = new Map_twister();
+		//Attente pour la construction
+		LCD.drawString("Press to continue",0,3);
+		//LCD.drawString("Appuyez pour",0,3);
+		//LCD.drawString("continuer.",3,4);
+		LCD.refresh();
+		Button.waitForAnyPress();
+		
+		//Apprentissage des couleurs
+		robot.learnColors();
 		
 		System.out.println("Execution Main_twister !\nVeuillez patienter...");
 		
-		robot.learnColors();
-		robot.cartography();
+		robot.cartography(map);
 		//map[0][0].setCouleur(robot.comparerCouleur());
 		
 		//test comparer couleur

@@ -2,6 +2,7 @@ package ressources_twister;
 import java.util.ArrayList;
 
 import lejos.hardware.Button;
+import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.Motor;
 import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.hardware.port.SensorPort;
@@ -95,7 +96,10 @@ public class Robot {
 	 * @return
 	 */
 	public void learnColors() {
-		System.out.println("Learn Colors\nPress key to start...");
+		LCD.clear();
+		LCD.drawString("Learn Colors",0,0);
+		LCD.drawString("Press to continue",0,1);
+		LCD.refresh();
 		Button.waitForAnyPress();
 		
 		System.out.println("Place moi sur le NOIR\nAppuie pour continuer");
@@ -172,7 +176,7 @@ public class Robot {
 	public void cartography(Map_twister map) {
 		System.out.println("Debut de la cartographie : placez moi sur la case rouge dans le coin...");
 		
-		map.getMap()[0][0].getCouleur() = comparerCouleur();
+		//map.getMap()[0][0].getCouleur() = comparerCouleur();
 		
 		System.out.println("Fin de la cartographie");
 	}
