@@ -16,7 +16,7 @@ public class Main_twister {
 		System.out.println("Execution Main_twister !\nVeuillez patienter...");
 		
 		robot.learnColors();
-		//robot.cartography(map);
+		robot.cartography();
 		//map[0][0].setCouleur(robot.comparerCouleur());
 		
 		//test comparer couleur

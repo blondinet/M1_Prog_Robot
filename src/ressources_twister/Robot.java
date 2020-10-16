@@ -154,7 +154,7 @@ public class Robot {
 	/**
 	 * 
 	 */
-	public void cartography(Map_twister map) {
+	public void cartography() {
 		System.out.println("Debut de la cartographie : placez moi sur la case rouge dans le coin...");
 		
 		//map[0][0].couleur = comparerCouleur();
