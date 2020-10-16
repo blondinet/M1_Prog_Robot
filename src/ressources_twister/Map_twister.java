@@ -13,6 +13,14 @@ public class Map_twister {
 		
 		// Création d'un tableau de couleur de 5x7 cases
 	}
+
+	public Case_twister[][] getMap() {
+		return map;
+	}
+
+	public void setMap(Case_twister[][] map) {
+		this.map = map;
+	}
 	
 
 }

@@ -29,6 +29,7 @@ public class Robot {
 	
 	private Color_twister rouge, bleu, vert, orange, blanc, noir;
 	private ArrayList<Color_twister> memoire = new ArrayList<Color_twister>();
+	private Map_twister map_memoire = new Map_twister();
 	
 	/**
 	 * Constructeur de la classe
@@ -63,6 +64,20 @@ public class Robot {
 	public int getColorID(){
 		int res = colorS.getColorID();
 		return res;
+	}
+	
+	public Map_twister getMapMemoire() {
+		return this.map_memoire;
+	}
+	public void setMapMemoire(Map_twister m) {
+		this.map_memoire =  m;
+	}
+	
+	public ArrayList<Color_twister> getCouleurMemoire() {
+		return this.memoire;
+	}
+	public void setCouleurMemoire(ArrayList<Color_twister> mc) {
+		this.memoire = mc;
 	}
 	/**
 	 * Detecteur de couleur par capteur
@@ -154,10 +169,10 @@ public class Robot {
 	/**
 	 * 
 	 */
-	public void cartography() {
+	public void cartography(Map_twister map) {
 		System.out.println("Debut de la cartographie : placez moi sur la case rouge dans le coin...");
 		
-		//map[0][0].couleur = comparerCouleur();
+		map.getMap()[0][0].getCouleur() = comparerCouleur();
 		
 		System.out.println("Fin de la cartographie");
 	}
