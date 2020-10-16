@@ -10,6 +10,7 @@ public class Map_twister {
 	 */
 	public Map_twister() {
 		this.map = new Case_twister[5][7];
+		
 		// Création d'un tableau de couleur de 5x7 cases
 	}
 	

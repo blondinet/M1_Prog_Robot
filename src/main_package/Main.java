@@ -1,6 +1,8 @@
 package main_package;
 //import ressource_exercice.*;
 
+import lejos.hardware.Button;
+import lejos.hardware.lcd.LCD;
 import ressources_twister.Robot;
 
 //import general_methods.*;
@@ -21,12 +23,30 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Détection des couleurs !\nVeuillez patienter...");
+		//System.out.println("Bonjour !\nVeuillez patienter...");
+		LCD.clear();
+		LCD.drawString("Bonjour ! Veuillez patienter...",0,0);
+		//LCD.drawString("message",colonne,ligne);
+		LCD.refresh();
+		//Robot r = new Robot();
+		//System.out.println("Appuyez pour continuer.");
+		//LCD.clear();
+		LCD.drawString("Appuyez pour continuer.",3,4);
+		LCD.refresh();
+		Button.waitForAnyPress();
 		//ExerciceTd1 td1 = new ExerciceTd1(new Robot_Component());
-		Robot r = new Robot();
-		r.learnColors();
-		r.closeAllMotor();
-		r.closeAllSensors();
+		
+		//r.learnColors();
+		
+		//LCD.clear();
+		//LCD.drawString("Bonjour",3,4);
+		//LCD.refresh();
+		//Button.waitForAnyPress();
+		
+		//LCD.clear();
+		//LCD.drawString("Je suis Jon",3,4);
+		//LCD.refresh();
+		//Button.waitForAnyPress();
 		//td1.danceAwayYourProblems();
 		
 		//td1.letsHug();
@@ -40,7 +60,8 @@ public class Main {
 		
 		//td1.turnAround(50, 2000); //Exercice 3
 
-		
+		//r.closeAllMotor();
+		//r.closeAllSensors();
 	}
 	
 }
