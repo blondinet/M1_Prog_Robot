@@ -173,11 +173,10 @@ public class Robot {
 	/**
 	 * 
 	 */
-	public void cartography(Map_twister map) {
+	
+	public void cartography() {
 		System.out.println("Debut de la cartographie : placez moi sur la case rouge dans le coin...");
-		
-		//map.getMap()[0][0].getCouleur() = comparerCouleur();
-		
+		//map_memoire[0][0].getCouleur() = comparerCouleur();		
 		System.out.println("Fin de la cartographie");
 	}
 	
