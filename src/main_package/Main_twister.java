@@ -28,11 +28,12 @@ public class Main_twister {
 		//Apprentissage des couleurs
 		robot.learnColors();
 		
+		//Cartographie
+		robot.cartography();
+		
+		Button.waitForAnyPress();
+		/*
 		System.out.println("Execution Main_twister !\nVeuillez patienter...");
-		
-		robot.cartography(map);
-		//map[0][0].setCouleur(robot.comparerCouleur());
-		
 		//test comparer couleur
 		while(!Button.DOWN.isDown()) {
 			System.out.println("test comparer couleur, appuyez sur une touche (sauf celle du bas)");
@@ -50,7 +51,8 @@ public class Main_twister {
 		Button.waitForAnyPress();
 		arby.go();
 		
-		// Onn arrête tous les moteurs et tous les capteurs avant de quitter le programme
+		*/
+		// On arrête tous les moteurs et tous les capteurs avant de quitter le programme
 		robot.stopAllMotor();
 		robot.closeAllSensors();
 	}

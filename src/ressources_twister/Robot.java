@@ -30,7 +30,7 @@ public class Robot {
 	
 	private Color_twister rouge, bleu, vert, orange, blanc, noir;
 	private ArrayList<Color_twister> memoire = new ArrayList<Color_twister>();
-	private Map_twister map_memoire = new Map_twister();
+	private Map_twister map_memoire;
 	
 	/**
 	 * Constructeur de la classe
@@ -175,9 +175,23 @@ public class Robot {
 	 */
 	
 	public void cartography() {
-		System.out.println("Debut de la cartographie : placez moi sur la case rouge dans le coin...");
-		//map_memoire[0][0].getCouleur() = comparerCouleur();		
-		System.out.println("Fin de la cartographie");
+		LCD.clear();
+		LCD.drawString("Cartographie",0,0);
+		LCD.drawString("Press to continue",0,1);
+		LCD.refresh();
+		Button.waitForAnyPress();
+		this.map_memoire = new Map_twister();
+		LCD.drawString("test case :",0,2);
+		//map_memoire[0][0].getCouleur() = comparerCouleur();
+		try {
+			LCD.drawString(this.map_memoire.getCase(0, 0).getCouleur().getName(), 0, 3);
+			this.map_memoire.getCase(0, 0).setCouleur(comparerCouleur());
+			LCD.drawString(this.map_memoire.getCase(0, 0).getCouleur().getName(), 0, 4);
+			
+		}catch(Exception e) {
+			LCD.clear();
+			System.out.println("erreur : "+e);
+		}
 	}
 	
 	/**

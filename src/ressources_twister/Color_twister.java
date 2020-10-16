@@ -19,6 +19,14 @@ public class Color_twister {
 		this.blue = Limiteur(b);
 	}
 	
+	public Color_twister() {
+		// TODO Auto-generated constructor stub
+		this.name = "undefined";
+		this.red = 0;
+		this.green = 0;
+		this.blue = 0;
+	}
+
 	// Getters & Setters
 	public int getRed() {
 		return red;

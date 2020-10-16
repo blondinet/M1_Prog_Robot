@@ -10,9 +10,9 @@ public class Map_twister {
 	 */
 	public Map_twister() {
 		this.map = new Case_twister[5][7];
-		for(Case_twister[] l:this.map) {
-			for(Case_twister c:l) {
-				c = new Case_twister();
+		for(int i=0;i<5;i++) {
+			for(int j=0;j<7;j++) {
+				map[i][j] = new Case_twister(i,j);
 			}
 		}
 		// Création d'un tableau de couleur de 5x7 cases
@@ -24,6 +24,10 @@ public class Map_twister {
 
 	public void setMap(Case_twister[][] map) {
 		this.map = map;
+	}
+	
+	public Case_twister getCase(int x, int y) {
+		return map[x][y];
 	}
 	
 
