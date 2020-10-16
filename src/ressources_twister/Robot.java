@@ -147,7 +147,19 @@ public class Robot {
 			}
 		}
 		
+		System.out.println("C'est du "+plus_proche_couleur.getName());
 		return plus_proche_couleur;		// On retourne la couleur la plus proche de la couleur détectée
+	}
+	
+	/**
+	 * 
+	 */
+	public void cartography(Map_twister map) {
+		System.out.println("Debut de la cartographie : placez moi sur la case rouge dans le coin...");
+		
+		//map[0][0].couleur = comparerCouleur();
+		
+		System.out.println("Fin de la cartographie");
 	}
 	
 	/**
