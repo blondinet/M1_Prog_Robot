@@ -30,7 +30,7 @@ public class Robot {
 	
 	private Color_twister rouge, bleu, vert, orange, blanc, noir;
 	private ArrayList<Color_twister> memoire = new ArrayList<Color_twister>();
-	private Map_twister map_memoire;
+	private Map_twister map_memoire = new Map_twister();
 	
 	/**
 	 * Constructeur de la classe
@@ -42,8 +42,8 @@ public class Robot {
 			this.leftW = Motor.B; //moteur B = roue de gauche
 			this.rightW = Motor.C;
 		}catch(NullPointerException e) {
-			System.out.println("Erreur Constructeur");
-			System.out.println(e);
+			LCD.clear();
+			System.out.println("Erreur Constructeurs : "+e);
 		}
 		
 		try {
@@ -53,8 +53,8 @@ public class Robot {
 			//this.ultraSonicS = new EV3UltrasonicSensor(SensorPort.S4);
 			
 		}catch(NullPointerException e) {
-			System.out.print("erreur capteurs");
-			System.out.print(e);
+			LCD.clear();
+			System.out.print("Erreur capteurs : "+e);
 		}
 	}
 	
@@ -80,8 +80,9 @@ public class Robot {
 	public void setCouleurMemoire(ArrayList<Color_twister> mc) {
 		this.memoire = mc;
 	}
+	
 	/**
-	 * Detecteur de couleur par capteur
+	 * Détecteur de couleur par capteur
 	 * @return color une couleur au format RGB
 	 */
 	public Color_twister detectColor() {
@@ -97,58 +98,92 @@ public class Robot {
 	 */
 	public void learnColors() {
 		LCD.clear();
-		LCD.drawString("Learn Colors",0,0);
-		LCD.drawString("Press to continue",0,1);
+		LCD.drawString("Apprendre Couleurs",0,0);
+		LCD.drawString("Pret ! ...",0,1);
 		LCD.refresh();
 		Button.waitForAnyPress();
+		LCD.clear();
 		
-		System.out.println("Place moi sur le NOIR\nAppuie pour continuer");
+		// Début de l'apprentissage des couleurs
+		// Couleur : Noir
+		LCD.clear();
+		LCD.drawString("Placez moi sur :",0,0);
+		LCD.drawString("Le NOIR ...",0,1);
+		LCD.refresh();
 		Button.waitForAnyPress();
-		// le robot va stocker la valeur RGB du noir
+		LCD.clear();
 		noir = detectColor();
 		noir.setName("noir");
 		noir.getRGB();
 		memoire.add(noir);
 		
-		System.out.println("Place moi sur le ROUGE\nAppuie pour continuer");
+		// Couleur : Rouge
+		LCD.clear();
+		LCD.drawString("Placez moi sur :",0,0);
+		LCD.drawString("Le ROUGE ...",0,1);
+		LCD.refresh();
 		Button.waitForAnyPress();
+		LCD.clear();
 		rouge = detectColor();
 		rouge.setName("rouge");
 		rouge.getRGB();
 		memoire.add(rouge);
 		
-		System.out.println("Place moi sur le BLEU\nAppuie pour continuer");
+		// Couleur : Bleu
+		LCD.clear();
+		LCD.drawString("Placez moi sur :",0,0);
+		LCD.drawString("Le BLEU ...",0,1);
+		LCD.refresh();
 		Button.waitForAnyPress();
+		LCD.clear();
 		bleu = detectColor();
 		bleu.setName("bleu");
 		bleu.getRGB();
 		memoire.add(bleu);
 		
-		System.out.println("Place moi sur le VERT\nAppuie pour continuer");
+		// Couleur : Vert
+		LCD.clear();
+		LCD.drawString("Placez moi sur :",0,0);
+		LCD.drawString("Le VERT ...",0,1);
+		LCD.refresh();
 		Button.waitForAnyPress();
+		LCD.clear();
 		vert = detectColor();
 		vert.setName("vert");
 		vert.getRGB();
 		memoire.add(vert);
 		
-		System.out.println("Place moi sur le ORANGE\nAppuie pour continuer");
+		// Couleur : Orange
+		LCD.clear();
+		LCD.drawString("Placez moi sur :",0,0);
+		LCD.drawString("Le ORANGE ...",0,1);
+		LCD.refresh();
 		Button.waitForAnyPress();
+		LCD.clear();
 		orange = detectColor();
 		orange.setName("orange");
 		orange.getRGB();
 		memoire.add(orange);
 		
-		System.out.println("Place moi sur le BLANC\nAppuie pour continuer");
+		// Couleur : Blanc
+		LCD.clear();
+		LCD.drawString("Placez moi sur :",0,0);
+		LCD.drawString("Le BLANC ...",0,1);
+		LCD.refresh();
 		Button.waitForAnyPress();
+		LCD.clear();
 		blanc = detectColor();
 		blanc.setName("blanc");
 		blanc.getRGB();
 		memoire.add(blanc);
 		
+		// Fin de l'apprentissage
 		//System.out.println("Voici les couleurs que j'ai appris : "+memoire);
-		
-		System.out.println("Fin de l'apprentissage\nAppuie pour quitter");
+		LCD.clear();
+		LCD.drawString("Fin ! ...",0,0);
+		LCD.refresh();
 		Button.waitForAnyPress();
+		LCD.clear();
 	}
 	
 	public Color_twister comparerCouleur() {
@@ -166,7 +201,10 @@ public class Robot {
 			}
 		}
 		
-		System.out.println("C'est du "+plus_proche_couleur.getName());
+		LCD.clear();
+		LCD.drawString("C'est du : ",0,0);
+		LCD.drawString(plus_proche_couleur.getName(),0,1);
+		LCD.refresh();
 		return plus_proche_couleur;		// On retourne la couleur la plus proche de la couleur détectée
 	}
 	
@@ -176,22 +214,19 @@ public class Robot {
 	
 	public void cartography() {
 		LCD.clear();
-		LCD.drawString("Cartographie",0,0);
-		LCD.drawString("Press to continue",0,1);
+		LCD.drawString("Cartographie.",0,0);
+		LCD.drawString("Pret ! ...",0,1);
 		LCD.refresh();
 		Button.waitForAnyPress();
-		this.map_memoire = new Map_twister();
-		LCD.drawString("test case :",0,2);
+		LCD.clear();
+		
 		//map_memoire[0][0].getCouleur() = comparerCouleur();
-		try {
-			LCD.drawString(this.map_memoire.getCase(0, 0).getCouleur().getName(), 0, 3);
-			this.map_memoire.getCase(0, 0).setCouleur(comparerCouleur());
-			LCD.drawString(this.map_memoire.getCase(0, 0).getCouleur().getName(), 0, 4);
-			
-		}catch(Exception e) {
-			LCD.clear();
-			System.out.println("erreur : "+e);
-		}
+		
+		LCD.clear();
+		LCD.drawString("Fin ! ...",0,0);
+		LCD.refresh();
+		Button.waitForAnyPress();
+		LCD.clear();
 	}
 	
 	/**

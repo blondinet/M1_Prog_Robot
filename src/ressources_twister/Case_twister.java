@@ -5,13 +5,10 @@ public class Case_twister {
 	private boolean libre;
 	private int posX;
 	private int posY;
-
-	public Case_twister(int i, int j) {
-		// TODO Auto-generated constructor stub
-		this.couleur = new Color_twister();
+	
+	public Case_twister() {
+		this.couleur = null;
 		this.libre = true;
-		this.posX = i;
-		this.posY = j;
 	}
 
 	public Color_twister getCouleur() {
@@ -46,5 +43,4 @@ public class Case_twister {
 		this.posY = posY;
 	}
 	
-
 }

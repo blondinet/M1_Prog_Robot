@@ -1,5 +1,8 @@
 package ressources_twister;
 
+import lejos.hardware.Button;
+import lejos.hardware.lcd.LCD;
+
 public class Color_twister {
 	private String name;
 	private int red;
@@ -19,14 +22,6 @@ public class Color_twister {
 		this.blue = Limiteur(b);
 	}
 	
-	public Color_twister() {
-		// TODO Auto-generated constructor stub
-		this.name = "undefined";
-		this.red = 0;
-		this.green = 0;
-		this.blue = 0;
-	}
-
 	// Getters & Setters
 	public int getRed() {
 		return red;
@@ -59,16 +54,24 @@ public class Color_twister {
 			code[1] = this.green;
 			code[2] = this.blue;
 		}catch(NullPointerException e) {
-			System.out.println("Le robot n'a pas encore appris cette couleur !");
+			LCD.clear();
+			System.out.println("Erreur !\nLe robot n'a pas encore appris cette couleur !");
 		}
 		return code;
 	}
 	public void getRGB() {
-		System.out.println("Couleur = "+this.name+" (R:"+this.red+";G:"+this.green+";B:"+this.blue+").");
+		LCD.clear();
+		LCD.drawString("Couleur = "+this.name,0,0);
+		LCD.drawString("R : "+this.red+" ;",2,1);
+		LCD.drawString("G : "+this.green+" ;",2,2);
+		LCD.drawString("B : "+this.blue+".",2,3);
+		LCD.refresh();
+		Button.waitForAnyPress();
+		LCD.clear();
 	}
 	@Override
 	public String toString() {
-		return "Couleur = "+this.name+" (R:"+this.red+";G:"+this.green+";B:"+this.blue+").";
+		return "Couleur = "+this.name+"\n R : "+this.red+" ;\n G : "+this.green+" ;\n B : "+this.blue+".";
 		
 	}
 	// Méthodes
