@@ -1,6 +1,8 @@
 package ressources_twister;
 
-public class Map_twister {
+import java.io.Serializable;
+
+public class Map_twister implements Serializable {
 	private Case_twister[][] map;
 	
 	/**

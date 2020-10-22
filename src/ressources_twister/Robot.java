@@ -1,4 +1,5 @@
 package ressources_twister;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import lejos.hardware.Button;
@@ -18,7 +19,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
  * @author blondin
  *
  */
-public class Robot {
+public class Robot implements Serializable {
 	private NXTRegulatedMotor arms;
 	private NXTRegulatedMotor leftW; //leftWheel
 	private NXTRegulatedMotor rightW;
@@ -29,8 +30,8 @@ public class Robot {
 	private EV3UltrasonicSensor ultraSonicS;
 	
 	private Color_twister rouge, bleu, vert, orange, blanc, noir;
-	private ArrayList<Color_twister> memoire = new ArrayList<Color_twister>();
-	private Map_twister map_memoire = new Map_twister();
+	private ArrayList<Color_twister> memoire_couleurs = new ArrayList<Color_twister>();
+	private Map_twister memoire_map = new Map_twister();
 	
 	/**
 	 * Constructeur de la classe
@@ -68,17 +69,17 @@ public class Robot {
 	}
 	
 	public Map_twister getMapMemoire() {
-		return this.map_memoire;
+		return this.memoire_map;
 	}
 	public void setMapMemoire(Map_twister m) {
-		this.map_memoire =  m;
+		this.memoire_map =  m;
 	}
 	
 	public ArrayList<Color_twister> getCouleurMemoire() {
-		return this.memoire;
+		return this.memoire_couleurs;
 	}
 	public void setCouleurMemoire(ArrayList<Color_twister> mc) {
-		this.memoire = mc;
+		this.memoire_couleurs = mc;
 	}
 	
 	/**
@@ -115,7 +116,7 @@ public class Robot {
 		noir = detectColor();
 		noir.setName("noir");
 		noir.getRGB();
-		memoire.add(noir);
+		memoire_couleurs.add(noir);
 		
 		// Couleur : Rouge
 		LCD.clear();
@@ -127,7 +128,7 @@ public class Robot {
 		rouge = detectColor();
 		rouge.setName("rouge");
 		rouge.getRGB();
-		memoire.add(rouge);
+		memoire_couleurs.add(rouge);
 		
 		// Couleur : Bleu
 		LCD.clear();
@@ -139,7 +140,7 @@ public class Robot {
 		bleu = detectColor();
 		bleu.setName("bleu");
 		bleu.getRGB();
-		memoire.add(bleu);
+		memoire_couleurs.add(bleu);
 		
 		// Couleur : Vert
 		LCD.clear();
@@ -151,7 +152,7 @@ public class Robot {
 		vert = detectColor();
 		vert.setName("vert");
 		vert.getRGB();
-		memoire.add(vert);
+		memoire_couleurs.add(vert);
 		
 		// Couleur : Orange
 		LCD.clear();
@@ -163,7 +164,7 @@ public class Robot {
 		orange = detectColor();
 		orange.setName("orange");
 		orange.getRGB();
-		memoire.add(orange);
+		memoire_couleurs.add(orange);
 		
 		// Couleur : Blanc
 		LCD.clear();
@@ -175,7 +176,12 @@ public class Robot {
 		blanc = detectColor();
 		blanc.setName("blanc");
 		blanc.getRGB();
-		memoire.add(blanc);
+		memoire_couleurs.add(blanc);
+		
+		// Sauvegarde de la liste des couleurs en mémoire
+		Enregistreur.serialiserCouleurs(memoire_couleurs);
+		// Chargement de la liste des couleurs en mémoire
+		//memoire_couleurs = Enregistreur.deserialiserCouleurs();
 		
 		// Fin de l'apprentissage
 		//System.out.println("Voici les couleurs que j'ai appris : "+memoire);
@@ -192,7 +198,7 @@ public class Robot {
 		double min = couleur_detectee.DistanceEuclidienneCouleur(blanc);
 		plus_proche_couleur = blanc;						// Par défaut la couleur la plus proche est le blanc
 		
-		for(Color_twister couleurs_en_memoire:memoire) {	// On parcourt toutes les couleurs en mémoire
+		for(Color_twister couleurs_en_memoire:memoire_couleurs) {	// On parcourt toutes les couleurs en mémoire
 			if (couleur_detectee.DistanceEuclidienneCouleur(couleurs_en_memoire) < min) {
 				min = couleur_detectee.DistanceEuclidienneCouleur(couleurs_en_memoire);	// plus la distance euclidienne est courte entre deux couleurs, plus les couleurs sont proches
 				plus_proche_couleur = couleurs_en_memoire;
@@ -221,6 +227,11 @@ public class Robot {
 		LCD.clear();
 		
 		//map_memoire[0][0].getCouleur() = comparerCouleur();
+		
+		// Sauvegarde de la map en mémoire
+		//Enregistreur.serialiserMap(memoire_map);
+		// Chargement de la map en mémoire
+		//memoire_map = Enregistreur.deserialiserMap();
 		
 		LCD.clear();
 		LCD.drawString("Fin ! ...",0,0);
