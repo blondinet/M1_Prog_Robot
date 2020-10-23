@@ -25,8 +25,10 @@ public class Main_twister {
 		LCD.clear();
 		
 		//Apprentissage des couleurs
-		robot.learnColors();
-		
+		//robot.learnColors();
+		// Chargement de la liste des couleurs en mémoire
+		robot.setCouleurMemoire(Enregistreur.deserialiserCouleurs());
+				
 		//System.out.println("Execution Main_twister !\nVeuillez patienter...");
 		
 		//robot.cartography(map);

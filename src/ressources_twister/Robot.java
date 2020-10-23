@@ -2,6 +2,10 @@ package ressources_twister;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import behaviors.Bouton_stop;
+import behaviors.Drive_forward;
+import behaviors.Hit_wall;
+import behaviors.Stop_if_critical_battery;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.Motor;
@@ -11,6 +15,8 @@ import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3GyroSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
+import lejos.robotics.subsumption.Arbitrator;
+import lejos.robotics.subsumption.Behavior;
 
 /**
  * Classe qui permet de d'instancier un robot avec ses composant
@@ -195,8 +201,8 @@ public class Robot implements Serializable {
 	public Color_twister comparerCouleur() {
 		Color_twister couleur_detectee = detectColor();		// On détecte la couleur sous le capteur
 		Color_twister plus_proche_couleur;					// On cherche à savoir la couleur la plus proche
-		double min = couleur_detectee.DistanceEuclidienneCouleur(blanc);
-		plus_proche_couleur = blanc;						// Par défaut la couleur la plus proche est le blanc
+		double min = couleur_detectee.DistanceEuclidienneCouleur(memoire_couleurs.get(1));
+		plus_proche_couleur = memoire_couleurs.get(1);						// Par défaut la couleur la plus proche est le blanc
 		
 		for(Color_twister couleurs_en_memoire:memoire_couleurs) {	// On parcourt toutes les couleurs en mémoire
 			if (couleur_detectee.DistanceEuclidienneCouleur(couleurs_en_memoire) < min) {
@@ -215,9 +221,8 @@ public class Robot implements Serializable {
 	}
 	
 	/**
-	 * 
+	 * Cartographie de la map
 	 */
-	
 	public void cartography() {
 		LCD.clear();
 		LCD.drawString("Cartographie.",0,0);
@@ -225,8 +230,23 @@ public class Robot implements Serializable {
 		LCD.refresh();
 		Button.waitForAnyPress();
 		LCD.clear();
+		Behavior b1 = new Drive_forward(this);
+		Behavior b2 = new Detect_noir(this);
+		Behavior[] comportements_cartographie = {b1,b2}; //du moins prioritaire au plus
+		//Arbitrator arby = new Arbitrator(bArray);
+		Arbitrator arbitrator_cartographie = new Arbitrator(comportements_cartographie);
+		//arbitrator_cartographie.go();
 		
-		//map_memoire[0][0].getCouleur() = comparerCouleur();
+		// Le placer sur la case rouge en bas à gauche
+		this.memoire_map.getCase(0,0).setCouleur(comparerCouleur());
+		arbitrator_cartographie.go();
+		for(int x=0;x<memoire_map.lengthX();x++) {
+			this.memoire_map.getCase(x, 0).setCouleur(comparerCouleur());
+			arbitrator_cartographie.go();
+		}
+		if(comparerCouleur() == noir) {
+			
+		}
 		
 		// Sauvegarde de la map en mémoire
 		//Enregistreur.serialiserMap(memoire_map);

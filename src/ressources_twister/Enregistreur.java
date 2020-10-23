@@ -7,6 +7,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import lejos.hardware.Button;
+import lejos.hardware.lcd.LCD;
+
 /**
  * Classe qui permet de sauvegarder la mémoire d'un robot et de la charger
  * Mémoire du robot : liste des couleurs et map
@@ -33,7 +36,11 @@ public class Enregistreur {
 			output.writeObject(save_couleurs);
 			output.flush();
 		} catch(final IOException e) {
-			e.printStackTrace();
+			LCD.clear();
+			LCD.drawString("IOException 1 : "+e,0,0);
+			LCD.refresh();
+			Button.waitForAnyPress();
+			LCD.clear();
 		} finally {
 			try {
 				if(output != null) {
@@ -41,7 +48,11 @@ public class Enregistreur {
 					output.close();
 				}
 			} catch(final IOException ex) {
-				ex.printStackTrace();
+				LCD.clear();
+				LCD.drawString("IOException 2 : "+ex,0,0);
+				LCD.refresh();
+				Button.waitForAnyPress();
+				LCD.clear();
 			}
 		}
 		
@@ -60,16 +71,28 @@ public class Enregistreur {
 			save_couleurs = (ArrayList) input.readObject();
 			return save_couleurs;
 		} catch(final ClassNotFoundException e) {
-			e.printStackTrace();
+			LCD.clear();
+			LCD.drawString("ClassNotFOundException : "+e,0,0);
+			LCD.refresh();
+			Button.waitForAnyPress();
+			LCD.clear();
 		} catch(final IOException e) {
-			e.printStackTrace();
+			LCD.clear();
+			LCD.drawString("IOException 1 : "+e,0,0);
+			LCD.refresh();
+			Button.waitForAnyPress();
+			LCD.clear();
 		} finally {
 			try {
 				if(input != null) {
 					input.close();
 				}
 			} catch(final IOException e) {
-				e.printStackTrace();
+				LCD.clear();
+				LCD.drawString("IOException 2 : "+e,0,0);
+				LCD.refresh();
+				Button.waitForAnyPress();
+				LCD.clear();
 			}
 		}
 		return null;
@@ -93,6 +116,7 @@ public class Enregistreur {
 			output.writeObject(save_map);
 			output.flush();
 		} catch(final IOException e) {
+			LCD.clear();
 			e.printStackTrace();
 		} finally {
 			try {
@@ -101,6 +125,7 @@ public class Enregistreur {
 					output.close();
 				}
 			} catch(final IOException ex) {
+				LCD.clear();
 				ex.printStackTrace();
 			}
 		}
@@ -119,8 +144,10 @@ public class Enregistreur {
 			final Map_twister save_map = (Map_twister) input.readObject();
 			return save_map;
 		} catch(final ClassNotFoundException e) {
+			LCD.clear();
 			e.printStackTrace();
 		} catch(final IOException e) {
+			LCD.clear();
 			e.printStackTrace();
 		} finally {
 			try {
@@ -128,6 +155,7 @@ public class Enregistreur {
 					input.close();
 				}
 			} catch(final IOException e) {
+				LCD.clear();
 				e.printStackTrace();
 			}
 		}
