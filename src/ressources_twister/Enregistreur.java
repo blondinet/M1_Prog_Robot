@@ -31,28 +31,28 @@ public class Enregistreur {
 		ObjectOutputStream output = null;
 		
 		try {
+			LCD.clear();
 			final FileOutputStream fichier_out = new FileOutputStream("memoire_couleurs.ser");
+			LCD.drawString("fichier créé", 0, 0);
 			output = new ObjectOutputStream(fichier_out);
+			LCD.drawString("output créé", 0, 1);
 			output.writeObject(save_couleurs);
+			LCD.drawString("couleurs enregistrées", 0, 2);
 			output.flush();
 		} catch(final IOException e) {
 			LCD.clear();
-			LCD.drawString("IOException 1 : "+e,0,0);
-			LCD.refresh();
-			Button.waitForAnyPress();
-			LCD.clear();
+			LCD.drawString("IOException 1 : ",0,0);
 		} finally {
+			LCD.drawString("finally", 0, 3);
 			try {
 				if(output != null) {
+					LCD.drawString("non null", 0, 4);
 					output.flush();
 					output.close();
 				}
 			} catch(final IOException ex) {
 				LCD.clear();
-				LCD.drawString("IOException 2 : "+ex,0,0);
-				LCD.refresh();
-				Button.waitForAnyPress();
-				LCD.clear();
+				LCD.drawString("IOException 2 : ",0,0);
 			}
 		}
 		
@@ -66,33 +66,31 @@ public class Enregistreur {
 		ObjectInputStream input = null;
 		
 		try {
+			LCD.clear();
 			final FileInputStream fichier_in = new FileInputStream("memoire_couleurs.ser");
+			LCD.drawString("fichier récup", 0, 0);
 			input = new ObjectInputStream(fichier_in);
+			LCD.drawString("input récup", 0, 1);
 			save_couleurs = (ArrayList) input.readObject();
+			LCD.drawString("couleurs récup", 0, 2);
+			LCD.drawString(save_couleurs.get(0).toString(), 0, 3);
 			return save_couleurs;
 		} catch(final ClassNotFoundException e) {
-			LCD.clear();
-			LCD.drawString("ClassNotFOundException : "+e,0,0);
 			LCD.refresh();
-			Button.waitForAnyPress();
-			LCD.clear();
+			LCD.drawString("ClassNotFOundException : ",0,2);
 		} catch(final IOException e) {
-			LCD.clear();
-			LCD.drawString("IOException 1 : "+e,0,0);
 			LCD.refresh();
-			Button.waitForAnyPress();
-			LCD.clear();
+			LCD.drawString("IOException 1 : ",0,2);
 		} finally {
+			LCD.drawString("finally", 0, 4);
 			try {
 				if(input != null) {
+					LCD.drawString("non null", 0, 5);
 					input.close();
 				}
 			} catch(final IOException e) {
-				LCD.clear();
-				LCD.drawString("IOException 2 : "+e,0,0);
 				LCD.refresh();
-				Button.waitForAnyPress();
-				LCD.clear();
+				//LCD.drawString("IOException 2 : "+e,0,0);
 			}
 		}
 		return null;

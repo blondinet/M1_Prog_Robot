@@ -4,11 +4,11 @@ import lejos.robotics.subsumption.Behavior;
 import lejos.robotics.navigation.Navigator;
 import ressources_twister.Robot;
 
-public class goTo implements Behavior {
+public class Se_diriger implements Behavior {
 
 	private Navigator nav;
 	
-	public goTo(Navigator n) {
+	public Se_diriger(Navigator n) {
 		this.nav = n;
 	}
 	@Override
