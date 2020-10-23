@@ -2,10 +2,7 @@ package ressources_twister;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import behaviors.Bouton_stop;
-import behaviors.Drive_forward;
-import behaviors.Hit_wall;
-import behaviors.Stop_if_critical_battery;
+import behaviors.*;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.hardware.motor.Motor;
