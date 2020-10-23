@@ -36,6 +36,8 @@ public class Robot implements Serializable {
 	private ArrayList<Color_twister> memoire_couleurs = new ArrayList<Color_twister>();
 	private Map_twister memoire_map = new Map_twister();
 	
+	private Case_twister position;
+	
 	/**
 	 * Constructeur de la classe
 	 * Ce constructeur récupère les motor physique et donne leurs valeurs a des variables d'instanciation
@@ -83,6 +85,9 @@ public class Robot implements Serializable {
 	}
 	public void setCouleurMemoire(ArrayList<Color_twister> mc) {
 		this.memoire_couleurs = mc;
+	}
+	public Color_twister getNoir() {
+		return this.noir;
 	}
 	
 	/**
@@ -240,9 +245,6 @@ public class Robot implements Serializable {
 		for(int x=0;x<memoire_map.lengthX();x++) {
 			this.memoire_map.getCase(x, 0).setCouleur(comparerCouleur());
 			arbitrator_cartographie.go();
-		}
-		if(comparerCouleur() == noir) {
-			
 		}
 		
 		// Sauvegarde de la map en mémoire
