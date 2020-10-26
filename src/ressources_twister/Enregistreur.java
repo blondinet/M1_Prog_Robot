@@ -24,10 +24,12 @@ public class Enregistreur {
 	 * 
 	 * @param couleurs Liste des couleurs mémorisées par le premier robot 
 	 */
-	public static void serialiserCouleurs(ArrayList<Color_twister> save_couleurs) {
+	public static void serialiserCouleurs(ArrayList<Color_twister> memoire_couleurs) {
 		// Création d'une nouvelle liste de couleur (copie)
-		//final ArrayList<Color_twister> save_couleurs = new ArrayList<Color_twister>();
-		//save_couleurs.setList(couleurs.getList());
+		final ArrayList<Color_twister> save_couleurs = new ArrayList<Color_twister>();
+		for(Color_twister c:memoire_couleurs) {
+			save_couleurs.add(c);
+		}
 		ObjectOutputStream output = null;
 		
 		try {
@@ -41,7 +43,7 @@ public class Enregistreur {
 			output.flush();
 		} catch(final IOException e) {
 			LCD.clear();
-			LCD.drawString("IOException 1 : ",0,0);
+			LCD.drawString("IOException 1 : ",0,3);
 		} finally {
 			LCD.drawString("finally", 0, 3);
 			try {
@@ -52,7 +54,7 @@ public class Enregistreur {
 				}
 			} catch(final IOException ex) {
 				LCD.clear();
-				LCD.drawString("IOException 2 : ",0,0);
+				LCD.drawString("IOException 2 : ",0,5);
 			}
 		}
 		
@@ -68,29 +70,39 @@ public class Enregistreur {
 		try {
 			LCD.clear();
 			final FileInputStream fichier_in = new FileInputStream("memoire_couleurs.ser");
-			LCD.drawString("fichier récup", 0, 0);
+			LCD.drawString("fichier in ok", 0, 0);
 			input = new ObjectInputStream(fichier_in);
-			LCD.drawString("input récup", 0, 1);
-			save_couleurs = (ArrayList) input.readObject();
-			LCD.drawString("couleurs récup", 0, 2);
-			LCD.drawString(save_couleurs.get(0).toString(), 0, 3);
+			LCD.drawString("input ok", 0, 1);
+			//save_couleurs = (ArrayList) input.readObject();
+			//save_couleurs = (ArrayList<Color_twister>) input.readObject();
+			//*
+			ArrayList<Color_twister> read_object = (ArrayList<Color_twister>) input.readObject();
+			for(Color_twister c:read_object) {
+				save_couleurs.add(c);
+			} //*/
+			LCD.drawString("couleurs recup ok", 0, 2);
+			LCD.drawString("couleur 1 : ", 0, 3);
+			LCD.drawString(save_couleurs.get(0).getName(), 0, 4);
 			return save_couleurs;
 		} catch(final ClassNotFoundException e) {
 			LCD.refresh();
-			LCD.drawString("ClassNotFOundException : ",0,2);
+			LCD.drawString("ClassNotFOundException : ",0,5);
 		} catch(final IOException e) {
 			LCD.refresh();
-			LCD.drawString("IOException 1 : ",0,2);
+			//LCD.drawString("IOException 1 : ",0,5);
+			LCD.clear();
+			System.out.println(e);
+			return null;
 		} finally {
-			LCD.drawString("finally", 0, 4);
+			LCD.drawString("finally", 0, 5);
 			try {
 				if(input != null) {
-					LCD.drawString("non null", 0, 5);
+					LCD.drawString("non null", 0, 6);
 					input.close();
 				}
 			} catch(final IOException e) {
 				LCD.refresh();
-				//LCD.drawString("IOException 2 : "+e,0,0);
+				LCD.drawString("IOException 2 : ",0,7);
 			}
 		}
 		return null;

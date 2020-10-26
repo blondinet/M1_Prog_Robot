@@ -73,22 +73,14 @@ public class Robot implements Serializable {
 		}
 		
 		try {
-			LCD.clear();
-			Wheel roueG = WheeledChassis.modelWheel(this.leftW, 56.).offset(60);
-			LCD.drawString("roueG ok", 0, 0);
+			Wheel roueG = WheeledChassis.modelWheel(this.leftW, 56.).offset(-60);
 			Wheel roueD = WheeledChassis.modelWheel(this.rightW, 56.).offset(60);
-			LCD.drawString("roueD ok", 0, 1);
 			this.chassis = new WheeledChassis(new Wheel[]{roueG,roueD}, 2);
-			LCD.drawString("roues ok", 0, 2);
 			this.pilot = new MovePilot(chassis);
-			LCD.drawString("chassis ok", 0, 3);
 			this.nav = new Navigator(this.pilot);
-			LCD.drawString("navigator ok", 0, 4);
 		} catch(Exception e) {
-			//LCD.clear();
-			//LCD.refresh();
-			LCD.drawString("ERREUR", 0, 6);
-			//System.out.print("Erreur chassis : "+e);
+			LCD.clear();
+			System.out.print("Erreur navigator : "+e);
 		}
 	}
 	
@@ -223,9 +215,10 @@ public class Robot implements Serializable {
 		*/
 		
 		// Sauvegarde de la liste des couleurs en mémoire
-		Enregistreur.serialiserCouleurs(memoire_couleurs);
+		Enregistreur.serialiserCouleurs(this.memoire_couleurs);
 		// Chargement de la liste des couleurs en mémoire
-		//memoire_couleurs = Enregistreur.deserialiserCouleurs();
+		//this.memoire_couleurs = Enregistreur.deserialiserCouleurs();
+		//robot.setCouleurMemoire(Enregistreur.deserialiserCouleurs());
 		
 		// Fin de l'apprentissage
 		//System.out.println("Voici les couleurs que j'ai appris : "+memoire);
@@ -283,10 +276,13 @@ public class Robot implements Serializable {
 			arbitrator_cartographie.go();
 		}
 		
+		
+		
 		// Sauvegarde de la map en mémoire
-		//Enregistreur.serialiserMap(memoire_map);
+		//Enregistreur.serialiserMap(this.memoire_map);
 		// Chargement de la map en mémoire
-		//memoire_map = Enregistreur.deserialiserMap();
+		//this.memoire_map = Enregistreur.deserialiserMap();
+		//robot.setMapMemoire(Enregistreur.deserialiserMap());
 		
 		LCD.clear();
 		LCD.drawString("Fin ! ...",0,0);
