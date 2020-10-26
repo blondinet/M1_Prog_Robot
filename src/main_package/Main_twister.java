@@ -33,12 +33,12 @@ public class Main_twister implements Serializable {
 		LCD.clear();
 		
 		// Apprentissage des couleurs
-		//robot.learnColors();
+		robot.learnColors();
 		// Chargement de la liste des couleurs en mémoire
-		robot.setCouleurMemoire(Enregistreur.deserialiserCouleurs());
+		//robot.setCouleurMemoire(Enregistreur.deserialiserCouleurs());
 		
 		// Apprentissage de la carte
-		//robot.cartography();
+		robot.cartography();
 		// Chargement de la map en mémoire
 		//robot.setMapMemoire(Enregistreur.deserialiserMap());
 

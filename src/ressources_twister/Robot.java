@@ -215,7 +215,7 @@ public class Robot implements Serializable {
 		*/
 		
 		// Sauvegarde de la map en mémoire
-		Enregistreur.serialiserCouleurs(this.memoire_couleurs);
+		//Enregistreur.serialiserCouleurs(this.memoire_couleurs);
 		// Chargement de la map en mémoire
 		//this.memoire_map = Enregistreur.deserialiserMap();
 		//robot.setMapMemoire(Enregistreur.deserialiserMap());
