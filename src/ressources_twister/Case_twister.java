@@ -1,6 +1,8 @@
 package ressources_twister;
 
-public class Case_twister {
+import java.io.Serializable;
+
+public class Case_twister implements Serializable{
 	private Color_twister couleur;
 	private boolean libre;
 	private int posX;

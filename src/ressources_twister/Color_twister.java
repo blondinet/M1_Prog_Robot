@@ -1,9 +1,11 @@
 package ressources_twister;
 
+import java.io.Serializable;
+
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 
-public class Color_twister {
+public class Color_twister implements Serializable{
 	private String name;
 	private int red;
 	private int green;

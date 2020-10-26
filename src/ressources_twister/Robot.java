@@ -214,11 +214,12 @@ public class Robot implements Serializable {
 		memoire_couleurs.add(blanc);
 		*/
 		
-		// Sauvegarde de la liste des couleurs en mémoire
+		// Sauvegarde de la map en mémoire
 		Enregistreur.serialiserCouleurs(this.memoire_couleurs);
-		// Chargement de la liste des couleurs en mémoire
-		//this.memoire_couleurs = Enregistreur.deserialiserCouleurs();
-		//robot.setCouleurMemoire(Enregistreur.deserialiserCouleurs());
+		// Chargement de la map en mémoire
+		//this.memoire_map = Enregistreur.deserialiserMap();
+		//robot.setMapMemoire(Enregistreur.deserialiserMap());
+				
 		
 		// Fin de l'apprentissage
 		//System.out.println("Voici les couleurs que j'ai appris : "+memoire);
