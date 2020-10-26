@@ -17,7 +17,8 @@ public class Bouton_stop implements Behavior{
 	@Override
 	public boolean takeControl() {
 		// TODO Auto-generated method stub
-		return Button.LEFT.isDown();
+		//return Button.LEFT.isDown();
+		return Button.ESCAPE.isDown();
 	}
 
 	@Override

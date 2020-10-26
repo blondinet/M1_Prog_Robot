@@ -5,22 +5,22 @@ import lejos.utility.Delay;
 import ressources_twister.Color_twister;
 import ressources_twister.Robot;
 
-public class Detect_noir implements Behavior {
+public class Detecter_noir implements Behavior {
 	private Robot robot;
 	
-	public Detect_noir(Robot r) {
+	public Detecter_noir(Robot r) {
 		this.robot = r;
 	}
 
 	@Override
 	public boolean takeControl() {
-		//conditions de lancement du comportement
+		// Conditions de lancement du comportement
 		return robot.comparerCouleur() == robot.getNoir();
 	}
 
 	@Override
 	public void action() {
-		//Le robot doit être posé sur la case rouge au bord de la map
+		// Le robot doit être posé sur la case rouge au bord de la map
 		this.robot.setPowerAllMotor(200);
 		this.robot.getLeftW().forward();
 		this.robot.getRightW().forward();

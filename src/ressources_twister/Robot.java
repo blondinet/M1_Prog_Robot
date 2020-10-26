@@ -151,8 +151,6 @@ public class Robot implements Serializable {
 		noir.setName("noir");
 		noir.getRGB();
 		memoire_couleurs.add(noir);
-		
-		/*
 		// Couleur : Rouge
 		LCD.clear();
 		LCD.drawString("Placez moi sur :",0,0);
@@ -164,7 +162,6 @@ public class Robot implements Serializable {
 		rouge.setName("rouge");
 		rouge.getRGB();
 		memoire_couleurs.add(rouge);
-		
 		// Couleur : Bleu
 		LCD.clear();
 		LCD.drawString("Placez moi sur :",0,0);
@@ -176,7 +173,6 @@ public class Robot implements Serializable {
 		bleu.setName("bleu");
 		bleu.getRGB();
 		memoire_couleurs.add(bleu);
-		
 		// Couleur : Vert
 		LCD.clear();
 		LCD.drawString("Placez moi sur :",0,0);
@@ -188,7 +184,6 @@ public class Robot implements Serializable {
 		vert.setName("vert");
 		vert.getRGB();
 		memoire_couleurs.add(vert);
-		
 		// Couleur : Orange
 		LCD.clear();
 		LCD.drawString("Placez moi sur :",0,0);
@@ -200,7 +195,6 @@ public class Robot implements Serializable {
 		orange.setName("orange");
 		orange.getRGB();
 		memoire_couleurs.add(orange);
-		
 		// Couleur : Blanc
 		LCD.clear();
 		LCD.drawString("Placez moi sur :",0,0);
@@ -212,14 +206,11 @@ public class Robot implements Serializable {
 		blanc.setName("blanc");
 		blanc.getRGB();
 		memoire_couleurs.add(blanc);
-		*/
 		
 		// Sauvegarde de la map en mémoire
-		//Enregistreur.serialiserCouleurs(this.memoire_couleurs);
-		// Chargement de la map en mémoire
-		//this.memoire_map = Enregistreur.deserialiserMap();
-		//robot.setMapMemoire(Enregistreur.deserialiserMap());
-				
+		Enregistreur.serialiserCouleurs(this.memoire_couleurs);
+		// Chargement de la liste des couleurs en mémoire
+		//robot.setCouleurMemoire(Enregistreur.deserialiserCouleurs());
 		
 		// Fin de l'apprentissage
 		//System.out.println("Voici les couleurs que j'ai appris : "+memoire);
@@ -263,7 +254,7 @@ public class Robot implements Serializable {
 		Button.waitForAnyPress();
 		LCD.clear();
 		Behavior b1 = new Drive_forward(this);
-		Behavior b2 = new Detect_noir(this);
+		Behavior b2 = new Detecter_noir(this);
 		Behavior[] comportements_cartographie = {b1,b2}; //du moins prioritaire au plus
 		//Arbitrator arby = new Arbitrator(bArray);
 		Arbitrator arbitrator_cartographie = new Arbitrator(comportements_cartographie);

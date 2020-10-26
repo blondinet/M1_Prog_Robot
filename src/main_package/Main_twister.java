@@ -12,6 +12,7 @@ import lejos.robotics.navigation.MovePilot;
 import lejos.robotics.navigation.Navigator;
 import lejos.robotics.subsumption.Arbitrator;
 import lejos.robotics.subsumption.Behavior;
+import lejos.utility.Delay;
 import ressources_twister.*;
 
 public class Main_twister implements Serializable {
@@ -22,27 +23,42 @@ public class Main_twister implements Serializable {
 		LCD.setAutoRefresh(true);
 		LCD.drawString("Bonjour !",0,0);
 		LCD.drawString("Chargement...",0,1);
-		//LCD.refresh();
 		//Chargement des constructeurs
 		Robot robot = new Robot();
 		Map_twister map = new Map_twister();
 		//Attente pour la construction
-		//LCD.refresh();
-		LCD.drawString("Pret ! ...",0,3);
+		LCD.drawString("Pret ! Touche Moi.",0,2);
 		Button.waitForAnyPress();
 		LCD.clear();
 		
 		// Apprentissage des couleurs
-		robot.learnColors();
-		// Chargement de la liste des couleurs en mémoire
-		//robot.setCouleurMemoire(Enregistreur.deserialiserCouleurs());
+		LCD.clear();
+		boolean choix_couleurs = true;
+		while(choix_couleurs) {
+			LCD.drawString("Apprendre Couleurs",0,0);
+			LCD.drawString("Memoire ?",0,1);
+			LCD.drawString("Non(G) / Oui(D)",0,2);
+			Button.waitForAnyPress();
+			if (Button.LEFT.isDown()){
+				// Apprentissage manuel
+				robot.learnColors();
+				choix_couleurs = false;
+			} else if (Button.RIGHT.isDown()) {
+				// Apprentissage grâce à un fichier en mémoire
+				robot.setCouleurMemoire(Enregistreur.deserialiserCouleurs());
+				choix_couleurs = false;
+			} else {
+				LCD.clear();
+				LCD.drawString("PAS BONNE TOUCHE><",0,0);
+				Delay.msDelay(2000);
+				LCD.clear();
+			}
+		}
 		
 		// Apprentissage de la carte
-		robot.cartography();
+		//robot.cartography();
 		// Chargement de la map en mémoire
 		//robot.setMapMemoire(Enregistreur.deserialiserMap());
-
-		//Enregistreur.serialiserRobot(robot);
 		
 		//test comparer couleur
 		/*
