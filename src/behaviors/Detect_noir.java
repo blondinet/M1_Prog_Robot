@@ -14,22 +14,32 @@ public class Detect_noir implements Behavior {
 
 	@Override
 	public boolean takeControl() {
-		// TODO Auto-generated method stub
+		//conditions de lancement du comportement
 		return robot.comparerCouleur() == robot.getNoir();
 	}
 
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
-		Delay.msDelay(1000);
+		//Le robot doit être posé sur la case rouge au bord de la map
+		this.robot.setPowerAllMotor(200);
+		this.robot.getLeftW().forward();
+		this.robot.getRightW().forward();
+		Delay.msDelay(500);
+		/*for(int x=0;x<this.robot.getMapMemoire().lengthX();x++) {
+			this.robot.getMapMemoire().getCase(x, 0).setCouleur(this.robot.comparerCouleur());
+			this.robot.setPowerAllMotor(200);
+			this.robot.getLeftW().forward();
+			this.robot.getRightW().forward();
+		}*/
 		this.robot.getLeftW().stop(true);
 		this.robot.getRightW().stop(true);
+		Delay.msDelay(500);
 	}
 
 	@Override
 	public void suppress() {
-		// TODO Auto-generated method stub
-		
+		this.robot.getLeftW().stop(true);
+		this.robot.getRightW().stop(true);
 	}
 
 }
