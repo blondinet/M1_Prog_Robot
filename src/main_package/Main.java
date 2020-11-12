@@ -30,10 +30,13 @@ public class Main {
 		// hauteur : 0 à 7
 		//LCD.drawString("123456789012345678",0,0);
 		//LCD.drawString("Bonjour !\nVeuillez patienter...",3,0);
-		LCD.drawString("test:",0,0);
-		LCD.drawString("Bonjour !",0,2);
-		LCD.drawString("Veuillez patienter...",0,3);
-		LCD.refresh();
+		LCD.drawString("Bonjour !", 3, 0);
+		LCD.drawString("Bonjour !", 3, 1, true);
+		LCD.drawString("Bonjour !", 3, 2, false);
+//		LCD.drawString("test:",0,0);
+//		LCD.drawString("Bonjour !",0,2);
+//		LCD.drawString("Veuillez patienter...",0,3);
+//		LCD.refresh();
 		//Robot r = new Robot();
 		//System.out.println("Appuyez pour continuer.");
 		//LCD.clear();

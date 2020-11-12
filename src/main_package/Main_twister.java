@@ -18,28 +18,27 @@ import ressources_twister.*;
 public class Main_twister implements Serializable {
 
 	public static void main(String[] args) {
-		//Début
+		// Début
 		LCD.clear();
 		LCD.setAutoRefresh(true);
-		LCD.drawString("Bonjour !",0,0);
-		LCD.drawString("Chargement...",0,1);
-		//Chargement des constructeurs
+		LCD.drawString("Bonjour !", 3, 0);
+		LCD.drawString("Chargement...", 0, 1);
+		// Chargement des constructeurs
 		Robot robot = new Robot();
 		Map_twister map = new Map_twister();
-		//Attente pour la construction
-		LCD.drawString("Pret ! Touche Moi.",0,2);
+		// Attente pour la construction
+		LCD.drawString("Pret ! Touche Moi.", 0, 2);
 		Button.waitForAnyPress();
-		LCD.clear();
-		
+
 		// Apprentissage des couleurs
 		LCD.clear();
 		boolean choix_couleurs = true;
-		while(choix_couleurs) {
-			LCD.drawString("Apprendre Couleurs",0,0);
-			LCD.drawString("Memoire ?",0,1);
-			LCD.drawString("Non(G) / Oui(D)",0,2);
+		while (choix_couleurs) {
+			LCD.drawString("Apprendre Couleurs", 0, 0);
+			LCD.drawString("Memoire ?", 0, 1);
+			LCD.drawString("Non(G) / Oui(D)", 0, 2);
 			Button.waitForAnyPress();
-			if (Button.LEFT.isDown()){
+			if (Button.LEFT.isDown()) {
 				// Apprentissage manuel
 				robot.learnColors();
 				choix_couleurs = false;
@@ -49,62 +48,74 @@ public class Main_twister implements Serializable {
 				choix_couleurs = false;
 			} else {
 				LCD.clear();
-				LCD.drawString("PAS BONNE TOUCHE><",0,0);
+				LCD.drawString("PAS BONNE TOUCHE><", 0, 0);
 				Delay.msDelay(2000);
 				LCD.clear();
 			}
 		}
-		
+
 		// Apprentissage de la carte
-		//robot.cartography();
+		// robot.cartography();
 		// Chargement de la map en mémoire
-		//robot.setMapMemoire(Enregistreur.deserialiserMap());
-		
-		//test comparer couleur
-		/*
-		while(!Button.DOWN.isDown()) {
-			LCD.clear();
-			LCD.drawString("test :",0,0);
-			LCD.drawString("comparer couleur",0,1);
-			LCD.drawString("appuyez 1 touche",0,2);
-			LCD.drawString("(tout sauf bas)",0,3);
-			//LCD.refresh();
-			Button.waitForAnyPress();
-			LCD.clear();
-			robot.comparerCouleur();
-		}
-		*/
-			
-		/*
-		// Comportements
-		try {
+		// robot.setMapMemoire(Enregistreur.deserialiserMap());
+
+		// Test
+		// Comparer couleur
 		LCD.clear();
-		LCD.drawString("Chargement",0,1);
-		LCD.drawString("comportements...",2,2);
-		LCD.refresh();
-		Behavior b_forward = new Drive_forward(robot);
-		Behavior b2 = new Hit_wall(robot);
-		Behavior b3 = new Stop_if_critical_battery(robot);
-		Behavior b_stop = new Bouton_stop(robot);
-		Behavior b_goTo = new Se_diriger(robot.getNav());
-		//Behavior[] bArray = {b1,b2,b3,b4}; //du moins prioritaire au plus
-		//Arbitrator arby = new Arbitrator(bArray);
-		Behavior[] bArrayTest = {b_forward,b_goTo,b_stop};
-		Arbitrator arbyTest = new Arbitrator(bArrayTest);
-		//LCD.clear();
-		LCD.clear(0);
-		LCD.clear(1);
-		LCD.drawString("Pret ! ...",0,3);
-		Button.waitForAnyPress();
-		//arby.go();
-		arbyTest.go();
-		} catch(Exception e){
-			LCD.drawString("Erreurs comportements",0,4);
+		boolean choix_test = true;
+		while (choix_test) {
+			LCD.clear();
+			LCD.drawString("Test couleurs ?", 0, 0);
+			LCD.drawString("Non(G) / Oui(D)", 0, 1);
+			Button.waitForAnyPress();
+			if (Button.LEFT.isDown()) {
+				choix_test = false;
+			} else if (Button.RIGHT.isDown()) {
+				LCD.clear(1);
+				LCD.drawString("Placez moi...", 0, 1);
+				LCD.drawString("Pret ! Touche Moi.", 0, 2);
+				Button.waitForAnyPress();
+				LCD.clear();
+				robot.comparerCouleur();
+			}
 		}
-		*/
-		
-		LCD.drawString("Quitter ...",3,7);
+
+		// Comportements
+		LCD.clear();
+		LCD.drawString("Test Comportements", 0, 0);
+		LCD.drawString("Chargement...", 0, 1);
+		try {
+			// Création des comportements
+			Behavior comp_drive_forward = new Drive_forward(robot);
+			Behavior comp_hit_wall = new Hit_wall(robot);
+			Behavior comp_batterie_faible = new Stop_if_critical_battery(robot);
+			Behavior comp_stop = new Bouton_stop(robot);
+			Behavior comp_se_diriger = new Se_diriger(robot.getNav());
+			Behavior comp_detecter_noir = new Detecter_noir(robot);
+			// Création de l'arbitrator pour gérer les comportements
+			// Du moins prioritaire au plus prioritaire
+			// Behavior[] liste_comportements = {b1,b2,b3,b4};
+			// Arbitrator arbitrator = new Arbitrator(liste_comportements);
+			Behavior[] bArrayTest = { comp_drive_forward, comp_se_diriger, comp_stop };
+			Arbitrator arbyTest = new Arbitrator(bArrayTest);
+			for (int i = 0; i < 7; i++) {
+				System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
+			}
+			LCD.drawString("Pret ! Touche Moi.", 0, 2);
+			Button.waitForAnyPress();
+			// Lancement de l'arbitrator
+			// arbitrator.go();
+			arbyTest.go();
+		} catch (Exception exception) {
+			LCD.clear(2);
+			LCD.drawString("ERREUR BEHAVIORS", 0, 2);
+			//exception.printStackTrace();
+		}
+
+		// Fin du programme
+		LCD.drawString("Au revoir !", 3, 7);
 		Button.waitForAnyPress();
+		LCD.clear();
 		// On arrête tous les moteurs et tous les capteurs avant de quitter le programme
 		robot.stopAllMotor();
 		robot.closeAllSensors();
