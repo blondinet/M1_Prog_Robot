@@ -255,10 +255,10 @@ public class Robot implements Serializable {
 			}
 		}
 
-		LCD.clear();
-		LCD.drawString("C'est du : ", 0, 0);
-		LCD.drawString(plus_proche_couleur.getName(), 0, 1);
-		Delay.msDelay(3000);
+		//LCD.clear();
+		//LCD.drawString("C'est du : ", 0, 0);
+		//LCD.drawString(plus_proche_couleur.getName(), 0, 1);
+		//Delay.msDelay(3000);
 		return plus_proche_couleur; // On retourne la couleur la plus proche de la couleur détectée
 	}
 

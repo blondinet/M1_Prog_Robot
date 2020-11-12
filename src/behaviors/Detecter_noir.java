@@ -1,5 +1,6 @@
 package behaviors;
 
+import lejos.hardware.lcd.LCD;
 import lejos.robotics.subsumption.Behavior;
 import lejos.utility.Delay;
 import ressources_twister.Color_twister;
@@ -15,11 +16,18 @@ public class Detecter_noir implements Behavior {
 	@Override
 	public boolean takeControl() {
 		// Conditions de lancement du comportement
-		return robot.comparerCouleur() == robot.getNoir();
+		LCD.clear();
+		LCD.drawString(robot.comparerCouleur().getName(), 0, 0);
+		return (robot.comparerCouleur().getName() == "noir");
+		//return true;
 	}
 
 	@Override
 	public void action() {
+		//System.out.println(robot.comparerCouleur().getName());
+		// if(robot.comparerCouleur().getName()=="noir"){
+		
+		//}
 		// Le robot doit être posé sur la case rouge au bord de la map
 		//this.robot.setPowerAllMotor(200);
 		//this.robot.getLeftW().forward();

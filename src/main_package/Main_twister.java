@@ -98,6 +98,8 @@ public class Main_twister implements Serializable {
 			// Arbitrator arbitrator = new Arbitrator(liste_comportements);
 			Behavior[] bArrayTest = { comp_drive_forward, comp_se_diriger, comp_stop };
 			Behavior[] bArrayTestNoir = {comp_drive_forward,comp_detecter_noir,comp_stop};
+			//Behavior[] bArrayTestDetecterCouleur = {comp_detecter_noir,comp_drive_forward,comp_stop}; // il avance sans détecter la couleur
+			//Behavior[] bArrayTestDetecterCouleur = {comp_drive_forward,comp_detecter_noir,comp_stop}; // il détecte la couleur sans avancer
 			Arbitrator arbyTest = new Arbitrator(bArrayTestNoir);
 			for (int i = 0; i < 7; i++) {
 				System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
