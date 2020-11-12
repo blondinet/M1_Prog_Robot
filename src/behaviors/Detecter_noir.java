@@ -21,10 +21,10 @@ public class Detecter_noir implements Behavior {
 	@Override
 	public void action() {
 		// Le robot doit être posé sur la case rouge au bord de la map
-		this.robot.setPowerAllMotor(200);
-		this.robot.getLeftW().forward();
-		this.robot.getRightW().forward();
-		Delay.msDelay(500);
+		//this.robot.setPowerAllMotor(200);
+		//this.robot.getLeftW().forward();
+		//this.robot.getRightW().forward();
+		//Delay.msDelay(500);
 		/*for(int x=0;x<this.robot.getMapMemoire().lengthX();x++) {
 			this.robot.getMapMemoire().getCase(x, 0).setCouleur(this.robot.comparerCouleur());
 			this.robot.setPowerAllMotor(200);
@@ -33,7 +33,7 @@ public class Detecter_noir implements Behavior {
 		}*/
 		this.robot.getLeftW().stop(true);
 		this.robot.getRightW().stop(true);
-		Delay.msDelay(500);
+		//Delay.msDelay(500);
 	}
 
 	@Override

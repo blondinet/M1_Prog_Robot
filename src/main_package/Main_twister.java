@@ -27,7 +27,7 @@ public class Main_twister implements Serializable {
 		Robot robot = new Robot();
 		Map_twister map = new Map_twister();
 		// Attente pour la construction
-		LCD.drawString("Pret ! Touche Moi.", 0, 2);
+		LCD.drawString("Pret ! Touche moi.", 0, 2);
 		Button.waitForAnyPress();
 
 		// Apprentissage des couleurs
@@ -73,7 +73,7 @@ public class Main_twister implements Serializable {
 			} else if (Button.RIGHT.isDown()) {
 				LCD.clear(1);
 				LCD.drawString("Placez moi...", 0, 1);
-				LCD.drawString("Pret ! Touche Moi.", 0, 2);
+				LCD.drawString("Pret ! Touche moi.", 0, 2);
 				Button.waitForAnyPress();
 				LCD.clear();
 				robot.comparerCouleur();
@@ -97,11 +97,12 @@ public class Main_twister implements Serializable {
 			// Behavior[] liste_comportements = {b1,b2,b3,b4};
 			// Arbitrator arbitrator = new Arbitrator(liste_comportements);
 			Behavior[] bArrayTest = { comp_drive_forward, comp_se_diriger, comp_stop };
-			Arbitrator arbyTest = new Arbitrator(bArrayTest);
+			Behavior[] bArrayTestNoir = {comp_drive_forward,comp_detecter_noir,comp_stop};
+			Arbitrator arbyTest = new Arbitrator(bArrayTestNoir);
 			for (int i = 0; i < 7; i++) {
 				System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
 			}
-			LCD.drawString("Pret ! Touche Moi.", 0, 2);
+			LCD.drawString("Pret ! Touche moi.", 0, 2);
 			Button.waitForAnyPress();
 			// Lancement de l'arbitrator
 			// arbitrator.go();
