@@ -39,7 +39,7 @@ public class Robot implements Serializable {
 	private EV3TouchSensor touchS; // touchSensor
 	private EV3GyroSensor gyroS;
 	private EV3ColorSensor colorS;
-	private EV3UltrasonicSensor ultraSonicS;
+	private EV3UltrasonicSensor sonarS;
 
 	private Color_twister rouge, bleu, vert, orange, blanc, noir;
 	private ArrayList<Color_twister> memoire_couleurs = new ArrayList<Color_twister>();
@@ -68,7 +68,7 @@ public class Robot implements Serializable {
 			this.touchS = new EV3TouchSensor(SensorPort.S1);
 			this.gyroS = new EV3GyroSensor(SensorPort.S2);
 			this.colorS = new EV3ColorSensor(SensorPort.S3);
-			// this.ultraSonicS = new EV3UltrasonicSensor(SensorPort.S4);
+			this.sonarS = new EV3UltrasonicSensor(SensorPort.S4);
 
 		} catch (NullPointerException e) {
 			LCD.clear();
@@ -255,10 +255,10 @@ public class Robot implements Serializable {
 			}
 		}
 
-		//LCD.clear();
-		//LCD.drawString("C'est du : ", 0, 0);
-		//LCD.drawString(plus_proche_couleur.getName(), 0, 1);
-		//Delay.msDelay(3000);
+		// LCD.clear();
+		// LCD.drawString("C'est du : ", 0, 0);
+		// LCD.drawString(plus_proche_couleur.getName(), 0, 1);
+		// Delay.msDelay(3000);
 		return plus_proche_couleur; // On retourne la couleur la plus proche de la couleur détectée
 	}
 
@@ -272,7 +272,7 @@ public class Robot implements Serializable {
 		Enregistreur.resetMemoireMap();
 		LCD.drawString("Pret ! Touche Moi.", 0, 2);
 		Button.waitForAnyPress();
-		
+
 		LCD.clear();
 		Behavior b1 = new Drive_forward(this);
 		Behavior b2 = new Detecter_noir(this);
@@ -376,6 +376,15 @@ public class Robot implements Serializable {
 	public EV3TouchSensor getTouchSensor() {
 		return this.touchS;
 	}
+
+	public EV3GyroSensor getGyroSensor() {
+		return this.gyroS;
+	}
+
+	public EV3UltrasonicSensor getSonarSensor() {
+		return this.sonarS;
+	}
+
 
 	/**
 	 * Methode qui permet de faire avancer un moteur donné en paramètre a la vitesse
