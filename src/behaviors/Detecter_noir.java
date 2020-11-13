@@ -17,27 +17,22 @@ public class Detecter_noir implements Behavior {
 	@Override
 	public boolean takeControl() {
 		// Conditions de lancement du comportement
-		LCD.clear();
-		LCD.drawString(robot.comparerCouleur().getName(), 0, 0);
 		return robot.comparerCouleur()==robot.getNoir();
 	}
 
 	@Override
 	public void action() {
+		LCD.clear();
 
-
-		/*LCD.drawString(this.robot.comparerCouleur().getName(), 0, 0);
 		for (int i=0; i<this.robot.getMapMemoire().lengthX(); i++) {
-			for (j=0; j<this.robot.getMapMemoire().lengthY();j++) {
-				
-			}
-			
-			this.robot.getMapMemoire().getCase(i, 0).setCouleur(this.robot.comparerCouleur());*/
-			//Delay.msDelay(500);
 			this.robot.getLeftW().stop(true);
 			this.robot.getRightW().stop(true);
+			LCD.drawString(this.robot.comparerCouleur().getName(), 0, 0);
+			this.robot.getMapMemoire().getCase(i, 0).setCouleur(this.robot.comparerCouleur());
 		}
-	
+
+	}
+
 
 	@Override
 	public void suppress() {
