@@ -156,7 +156,7 @@ public class Robot implements Serializable {
 		LCD.clear();
 		LCD.drawString("Placez moi sur :", 0, 0);
 		LCD.drawString("Le NOIR...", 2, 1);
-		LCD.drawString("Touche Moi.", 0, 2);
+		LCD.drawString("Touche moi.", 0, 2);
 		LCD.refresh();
 		Button.waitForAnyPress();
 		LCD.clear();
@@ -168,7 +168,7 @@ public class Robot implements Serializable {
 		LCD.clear();
 		LCD.drawString("Placez moi sur :", 0, 0);
 		LCD.drawString("Le ROUGE...", 2, 1);
-		LCD.drawString("Pret ! Touche Moi.", 0, 2);
+		LCD.drawString("Pret ! Touche moi.", 0, 2);
 		LCD.refresh();
 		Button.waitForAnyPress();
 		LCD.clear();
@@ -180,7 +180,7 @@ public class Robot implements Serializable {
 		LCD.clear();
 		LCD.drawString("Placez moi sur :", 0, 0);
 		LCD.drawString("Le BLEU...", 2, 1);
-		LCD.drawString("Pret ! Touche Moi.", 0, 2);
+		LCD.drawString("Pret ! Touche moi.", 0, 2);
 		LCD.refresh();
 		Button.waitForAnyPress();
 		LCD.clear();
@@ -192,7 +192,7 @@ public class Robot implements Serializable {
 		LCD.clear();
 		LCD.drawString("Placez moi sur :", 0, 0);
 		LCD.drawString("Le VERT...", 2, 1);
-		LCD.drawString("Pret ! Touche Moi.", 0, 2);
+		LCD.drawString("Pret ! Touche moi.", 0, 2);
 		LCD.refresh();
 		Button.waitForAnyPress();
 		LCD.clear();
@@ -204,7 +204,7 @@ public class Robot implements Serializable {
 		LCD.clear();
 		LCD.drawString("Placez moi sur :", 0, 0);
 		LCD.drawString("Le ORANGE...", 2, 1);
-		LCD.drawString("Pret ! Touche Moi.", 0, 2);
+		LCD.drawString("Pret ! Touche moi.", 0, 2);
 		LCD.refresh();
 		Button.waitForAnyPress();
 		LCD.clear();
@@ -216,7 +216,7 @@ public class Robot implements Serializable {
 		LCD.clear();
 		LCD.drawString("Placez moi sur :", 0, 0);
 		LCD.drawString("Le BLANC...", 2, 1);
-		LCD.drawString("Pret ! Touche Moi.", 0, 2);
+		LCD.drawString("Pret ! Touche moi.", 0, 2);
 		LCD.refresh();
 		Button.waitForAnyPress();
 		LCD.clear();
@@ -270,7 +270,7 @@ public class Robot implements Serializable {
 		LCD.drawString("Cartographie", 0, 0);
 		LCD.drawString("Chargement...", 0, 1);
 		Enregistreur.resetMemoireMap();
-		LCD.drawString("Pret ! Touche Moi.", 0, 2);
+		LCD.drawString("Pret ! Touche moi.", 0, 2);
 		Button.waitForAnyPress();
 
 		LCD.clear();
@@ -297,7 +297,7 @@ public class Robot implements Serializable {
 
 		// Fin de la cartographie
 		LCD.clear();
-		LCD.drawString("Fin Cartographie.", 0, 0);
+		LCD.drawString("Fin cartographie.", 0, 0);
 		Delay.msDelay(3000);
 		LCD.clear();
 	}
