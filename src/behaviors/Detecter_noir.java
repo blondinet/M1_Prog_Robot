@@ -18,8 +18,7 @@ public class Detecter_noir implements Behavior {
 		// Conditions de lancement du comportement
 		LCD.clear();
 		LCD.drawString(robot.comparerCouleur().getName(), 0, 0);
-		return (robot.comparerCouleur().getName() == "noir");
-		//return true;
+		return robot.comparerCouleur()==robot.getNoir();
 	}
 
 	@Override
@@ -39,9 +38,14 @@ public class Detecter_noir implements Behavior {
 			this.robot.getLeftW().forward();
 			this.robot.getRightW().forward();
 		}*/
+		Delay.msDelay(500);
 		this.robot.getLeftW().stop(true);
 		this.robot.getRightW().stop(true);
-		//Delay.msDelay(500);
+		LCD.clear();
+		LCD.drawString(this.robot.comparerCouleur().getName(), 0, 0);
+		Delay.msDelay(1000);
+		//this.robot.getRightW().forward();
+		//this.robot.getLeftW().forward();		
 	}
 
 	@Override
