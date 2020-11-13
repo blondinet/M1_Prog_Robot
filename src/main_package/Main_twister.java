@@ -34,15 +34,15 @@ public class Main_twister implements Serializable {
 		LCD.clear();
 		boolean choix_couleurs = true;
 		while (choix_couleurs) {
-			LCD.drawString("Apprendre Couleurs", 0, 0);
-			LCD.drawString("Memoire ?", 0, 1);
+			LCD.drawString("Mémoire Couleurs", 0, 0);
+			LCD.drawString("Apprendre ?", 0, 1);
 			LCD.drawString("Non(G) / Oui(D)", 0, 2);
 			Button.waitForAnyPress();
-			if (Button.LEFT.isDown()) {
+			if (Button.RIGHT.isDown()) {
 				// Apprentissage manuel
 				robot.learnColors();
 				choix_couleurs = false;
-			} else if (Button.RIGHT.isDown()) {
+			} else if (Button.LEFT.isDown()) {
 				// Apprentissage grâce à un fichier en mémoire
 				robot.setCouleurMemoire(Enregistreur.deserialiserCouleurs());
 				choix_couleurs = false;
@@ -82,36 +82,60 @@ public class Main_twister implements Serializable {
 
 		// Comportements
 		LCD.clear();
-		LCD.drawString("Test Comportements", 0, 0);
-		LCD.drawString("Chargement...", 0, 1);
-		try {
-			// Création des comportements
-			Behavior comp_drive_forward = new Drive_forward(robot);
-			Behavior comp_hit_wall = new Hit_wall(robot);
-			Behavior comp_stop = new Bouton_stop(robot);
-			Behavior comp_se_diriger = new Se_diriger(robot.getNav());
-			Behavior comp_detecter_noir = new Detecter_noir(robot);
-			// Création de l'arbitrator pour gérer les comportements
-			// Du moins prioritaire au plus prioritaire
-			// Behavior[] liste_comportements = {b1,b2,b3,b4};
-			// Arbitrator arbitrator = new Arbitrator(liste_comportements);
-			//Behavior[] bArrayTest = { comp_drive_forward, comp_se_diriger, comp_stop };
-			Behavior[] bArrayTestNoir = {comp_drive_forward,comp_detecter_noir,comp_stop};
-			//Behavior[] bArrayTestDetecterCouleur = {comp_detecter_noir,comp_drive_forward,comp_stop}; // il avance sans détecter la couleur
-			//Behavior[] bArrayTestDetecterCouleur = {comp_drive_forward,comp_detecter_noir,comp_stop}; // il détecte la couleur sans avancer
-			Arbitrator arbyTest = new Arbitrator(bArrayTestNoir);
-			for (int i = 0; i < 7; i++) {
-				System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
-			}
-			LCD.drawString("Pret ! Touche moi.", 0, 2);
+		boolean choix_comp = true;
+		while (choix_comp) {
+			LCD.drawString("Test Comportements", 0, 0);
+			LCD.drawString("Lancer ?", 0, 1);
+			LCD.drawString("Non(G) / Oui(D)", 0, 2);
 			Button.waitForAnyPress();
-			// Lancement de l'arbitrator
-			// arbitrator.go();
-			arbyTest.go();
-		} catch (Exception exception) {
-			LCD.clear(2);
-			LCD.drawString("ERREUR BEHAVIORS", 0, 2);
-			//exception.printStackTrace();
+			if (Button.RIGHT.isDown()) {
+				// Lancement des comportements
+				LCD.clear(1);
+				LCD.drawString("Chargement...", 0, 1);
+				try {
+					// Création des comportements
+					Behavior comp_drive_forward = new Drive_forward(robot);
+					Behavior comp_hit_wall = new Hit_wall(robot);
+					Behavior comp_stop = new Bouton_stop(robot);
+					Behavior comp_se_diriger = new Se_diriger(robot.getNav());
+					Behavior comp_detecter_noir = new Detecter_noir(robot);
+					// Création de l'arbitrator pour gérer les comportements
+					// Du moins prioritaire au plus prioritaire
+					// Behavior[] liste_comportements = {b1,b2,b3,b4};
+					// Arbitrator arbitrator = new Arbitrator(liste_comportements);
+					// Behavior[] bArrayTest = { comp_drive_forward, comp_se_diriger, comp_stop };
+					Behavior[] bArrayTestNoir = { comp_drive_forward, comp_detecter_noir, comp_stop };
+					// Behavior[] bArrayTestDetecterCouleur =
+					// {comp_detecter_noir,comp_drive_forward,comp_stop}; // il avance sans détecter
+					// la couleur
+					// Behavior[] bArrayTestDetecterCouleur =
+					// {comp_drive_forward,comp_detecter_noir,comp_stop}; // il détecte la couleur
+					// sans avancer
+					Arbitrator arbyTest = new Arbitrator(bArrayTestNoir);
+					for (int i = 0; i < 7; i++) {
+						System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
+					}
+					LCD.drawString("Pret ! Touche moi.", 0, 2);
+					Button.waitForAnyPress();
+					// Lancement de l'arbitrator
+					// arbitrator.go();
+					arbyTest.go();
+				} catch (Exception exception) {
+					LCD.clear(2);
+					LCD.drawString("ERREUR BEHAVIORS", 0, 2);
+					// exception.printStackTrace();
+				}
+				choix_comp = false;
+			} else if (Button.LEFT.isDown()) {
+				// Sinon ne rien faire
+				choix_comp = false;
+				break;
+			} else {
+				LCD.clear();
+				LCD.drawString("PAS BONNE TOUCHE><", 0, 0);
+				Delay.msDelay(2000);
+				LCD.clear();
+			}
 		}
 
 		// Fin du programme
