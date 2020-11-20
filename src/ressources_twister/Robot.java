@@ -275,13 +275,14 @@ public class Robot implements Serializable {
 
 		LCD.clear();
 		Behavior b1 = new Drive_forward(this);
-		Behavior b2 = new Detecter_noir(this);
+		Behavior b2 = new Bouton_stop(this);
 		Behavior[] comportements_cartographie = { b1, b2 }; // du moins prioritaire au plus
-		// Arbitrator arby = new Arbitrator(bArray);
 		Arbitrator arbitrator_cartographie = new Arbitrator(comportements_cartographie);
-		// arbitrator_cartographie.go();
+		arbitrator_cartographie.go();
+
 
 		// Le placer sur la case rouge en bas à gauche
+		/*
 		this.memoire_map.getCase(0, 0).setCouleur(comparerCouleur());
 		arbitrator_cartographie.go();
 		for (int x = 0; x < memoire_map.lengthX(); x++) {
@@ -299,7 +300,17 @@ public class Robot implements Serializable {
 		LCD.clear();
 		LCD.drawString("Fin cartographie.", 0, 0);
 		Delay.msDelay(3000);
-		LCD.clear();
+		LCD.clear();*/
+		
+		for (int i=0; i<this.getMapMemoire().lengthX(); i++) {
+			if (this.comparerCouleur()==this.getNoir()){
+				Delay.msDelay(500);
+				this.getLeftW().stop(true);
+				this.getRightW().stop(true);
+				LCD.drawString(this.comparerCouleur().getName(), 0, 0);
+				this.getMapMemoire().getCase(i, 0).setCouleur(this.comparerCouleur());
+			}
+		}
 	}
 
 	/**
@@ -343,7 +354,7 @@ public class Robot implements Serializable {
 	}
 
 	/**
-	 * getteur des moteur
+	 * getteur des moteurs
 	 * 
 	 * @param none
 	 * @return le premier Moteur
