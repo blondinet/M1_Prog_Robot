@@ -101,8 +101,8 @@ public class Main_twister implements Serializable {
 					Behavior comp_detecter_noir = new Detecter_noir(robot);
 					// Création de l'arbitrator pour gérer les comportements
 					// Du moins prioritaire au plus prioritaire
-					Behavior[] bArray= {comp_drive_forward, comp_detecter_noir, comp_stop };
-					Arbitrator aby = new Arbitrator(bArray);
+					//Behavior[] bArray= {comp_drive_forward, comp_detecter_noir, comp_stop };
+					//Arbitrator aby = new Arbitrator(bArray);
 					
 					// {comp_detecter_noir,comp_drive_forward,comp_stop}; // il avance sans détecter la couleur
 					// {comp_drive_forward,comp_detecter_noir,comp_stop}; // il détecte la couleur
@@ -113,8 +113,7 @@ public class Main_twister implements Serializable {
 					LCD.drawString("Pret ! Touche moi.", 0, 2);
 					Button.waitForAnyPress();
 					// Lancement de l'arbitrator
-					aby.go();
-					//robot.cartography();
+					robot.cartography();
 				} catch (Exception exception) {
 					LCD.clear(2);
 					LCD.drawString("ERREUR BEHAVIORS", 0, 2);
