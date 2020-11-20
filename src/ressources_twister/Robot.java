@@ -273,13 +273,23 @@ public class Robot implements Serializable {
 		LCD.drawString("Pret ! Touche moi.", 0, 2);
 		Button.waitForAnyPress();
 
-		LCD.clear();
-		Behavior b1 = new Drive_forward(this);
-		Behavior b2 = new Bouton_stop(this);
-		Behavior[] comportements_cartographie = { b1, b2 }; // du moins prioritaire au plus
-		Arbitrator arbitrator_cartographie = new Arbitrator(comportements_cartographie);
-		arbitrator_cartographie.go();
+		Behavior comp_avancer = new Drive_forward(this);
+		Behavior comp_detecter_noir = new Detecter_noir(this);
+		Behavior comp_stop = new Bouton_stop(this);
+		// rotate
 		
+		Behavior[] comportements_case_suivante = { comp_avancer, comp_detecter_noir, comp_stop }; // du moins prioritaire au plus
+		//Behavior[] comportements_ligne_suivante = { comp_avancer, comp_detecter_noir, comp_stop };
+		Arbitrator arbitrator_case_suivante = new Arbitrator(comportements_case_suivante);
+		//Arbitrator arbitrator_ligne_suivante = new Arbitrator(comportements_ligne_suivante);
+		
+		for (int i=0; i<this.memoire_map.lengthX(); i++) {
+			LCD.clear();
+			this.memoire_map.getCase(i, 0).setCouleur(this.comparerCouleur());
+			arbitrator_case_suivante.go();
+		}
+		//arbitrator_ligne_suivante.go();
+			
 		
 		// Le placer sur la case rouge en bas à gauche
 		/*
@@ -302,15 +312,7 @@ public class Robot implements Serializable {
 		Delay.msDelay(3000);
 		LCD.clear();*/
 		
-		for (int i=0; i<this.getMapMemoire().lengthX(); i++) {
-			if (this.comparerCouleur()==this.getNoir()){
-				Delay.msDelay(500);
-				this.getLeftW().stop(true);
-				this.getRightW().stop(true);
-				LCD.drawString(this.comparerCouleur().getName(), 0, 0);
-				this.getMapMemoire().getCase(i, 0).setCouleur(this.comparerCouleur());
-			}
-		}
+		
 	}
 
 	/**
