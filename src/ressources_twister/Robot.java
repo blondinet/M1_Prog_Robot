@@ -279,8 +279,8 @@ public class Robot implements Serializable {
 		Behavior[] comportements_cartographie = { b1, b2 }; // du moins prioritaire au plus
 		Arbitrator arbitrator_cartographie = new Arbitrator(comportements_cartographie);
 		arbitrator_cartographie.go();
-
-
+		
+		
 		// Le placer sur la case rouge en bas à gauche
 		/*
 		this.memoire_map.getCase(0, 0).setCouleur(comparerCouleur());
