@@ -7,10 +7,7 @@ import ressources_twister.Robot;
 
 public class Detecter_noir implements Behavior {
 	private Robot robot;
-<<<<<<< HEAD
 	private int compteur;
-=======
->>>>>>> 54fc46921a5a2e02c45d01d15b92e826cfd75e0f
 	
 	public Detecter_noir(Robot r) {
 		this.robot = r;

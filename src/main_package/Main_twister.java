@@ -34,15 +34,15 @@ public class Main_twister implements Serializable {
 		LCD.clear();
 		boolean choix_couleurs = true;
 		while (choix_couleurs) {
-			LCD.drawString("Mémoire Couleurs", 0, 0);
-			LCD.drawString("Apprendre ?", 0, 1);
-			LCD.drawString("Non(G) / Oui(D)", 0, 2);
+			LCD.drawString("Apprendre Couleurs", 0, 0);
+			LCD.drawString("Manuel ou Fichier?", 0, 1);
+			LCD.drawString("Manu(G) / Fich(D)", 0, 2);
 			Button.waitForAnyPress();
-			if (Button.RIGHT.isDown()) {
+			if (Button.LEFT.isDown()) {
 				// Apprentissage manuel
 				robot.learnColors();
 				choix_couleurs = false;
-			} else if (Button.LEFT.isDown()) {
+			} else if (Button.RIGHT.isDown()) {
 				// Apprentissage grâce à un fichier en mémoire
 				robot.setCouleurMemoire(Enregistreur.deserialiserCouleurs());
 				choix_couleurs = false;

@@ -273,22 +273,57 @@ public class Robot implements Serializable {
 		LCD.drawString("Pret ! Touche moi.", 0, 2);
 		Button.waitForAnyPress();
 
+		// création des Comportements
 		Behavior comp_avancer = new Drive_forward(this);
 		Behavior comp_detecter_noir = new Detecter_noir(this);
 		Behavior comp_stop = new Bouton_stop(this);
-		// rotate
+		//Behavior comp_tourner = new Tourner(this) -> avec Rotate ?
 		
-		Behavior[] comportements_case_suivante = { comp_avancer, comp_detecter_noir, comp_stop }; // du moins prioritaire au plus
-		//Behavior[] comportements_ligne_suivante = { comp_avancer, comp_detecter_noir, comp_stop };
+		// création de l'Arbitrator
+		Behavior[] comportements_case_suivante = {comp_avancer, comp_detecter_noir, comp_stop}; // du moins prioritaire au plus
+		//Behavior[] comportements_ligne_suivante = {comp_tourner, comp_stop};
 		Arbitrator arbitrator_case_suivante = new Arbitrator(comportements_case_suivante);
 		//Arbitrator arbitrator_ligne_suivante = new Arbitrator(comportements_ligne_suivante);
-		
+
+		// début de la cartographie
+		LCD.clear(1);
+		LCD.clear(2);
+		LCD.drawString("Place moi sur case", 0, 1); // case rouge dans le coin en bas à gauche
+		LCD.drawString("rouge & touche moi", 0, 2);
+		Button.waitForAnyPress();
+		// for (int j=0; j<this.memoire_map.lengthY(); j++) {
+			// if (j%2)==0 { // si on est sur une colonne paire = robot va dans un sens (aller)
 		for (int i=0; i<this.memoire_map.lengthX(); i++) {
-			LCD.clear();
+			// attribution de la couleur de la case
 			this.memoire_map.getCase(i, 0).setCouleur(this.comparerCouleur());
-			arbitrator_case_suivante.go();
+			//this.memoire_map.getCase(i, 0).setCouleur(this.comparerCouleur());
+			// comportements pour passer à la case ou ligne suivante
+			if(i < this.memoire_map.lengthX()-1) {
+				// comportement classique
+				arbitrator_case_suivante.go();
+			} else {
+				// comportement pour la dernière case de la ligne
+				//arbitrator_ligne_suivante.go();
+			}
+		}
+		/*
+			} else { // si on est sur une colonne impaire = robot va dans l'autre sens (retour)
+				for (int i=this.memoire_map.lengthX()-1; i>=0; i--) {
+					// attribution de la couleur de la case
+					this.memoire_map.getCase(i, j).setCouleur(this.comparerCouleur());
+					// comportements pour passer à la case ou ligne suivante
+					if(i > 1) {
+						// comportement classique
+						arbitrator_case_suivante.go();
+					} else {
+						// comportement pour la dernière case de la ligne
+						//arbitrator_ligne_suivante.go();
+					}
+				}
+			}
 		}
 		//arbitrator_ligne_suivante.go();
+		 */
 			
 		
 		// Le placer sur la case rouge en bas à gauche
