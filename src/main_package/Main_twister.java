@@ -53,14 +53,9 @@ public class Main_twister implements Serializable {
 				LCD.clear();
 			}
 		}
-
-		// Apprentissage de la carte
-		// robot.cartography();
-		// Chargement de la map en mémoire
-		// robot.setMapMemoire(Enregistreur.deserialiserMap());
-
 		// Test
 		// Comparer couleur
+		/*
 		LCD.clear();
 		boolean choix_test = true;
 		while (choix_test) {
@@ -78,13 +73,13 @@ public class Main_twister implements Serializable {
 				LCD.clear();
 				robot.comparerCouleur();
 			}
-		}
+		}*/
 
 		// Comportements
 		LCD.clear();
 		boolean choix_comp = true;
 		while (choix_comp) {
-			LCD.drawString("Test Comportements", 0, 0);
+			LCD.drawString("Test Cartographie", 0, 0);
 			LCD.drawString("Lancer ?", 0, 1);
 			LCD.drawString("Non(G) / Oui(D)", 0, 2);
 			Button.waitForAnyPress();
@@ -93,35 +88,24 @@ public class Main_twister implements Serializable {
 				LCD.clear(1);
 				LCD.drawString("Chargement...", 0, 1);
 				try {
-					// Création des comportements
-					Behavior comp_drive_forward = new Drive_forward(robot);
-					Behavior comp_hit_wall = new Hit_wall(robot);
-					Behavior comp_stop = new Bouton_stop(robot);
-					Behavior comp_se_diriger = new Se_diriger(robot.getNav());
-					Behavior comp_detecter_noir = new Detecter_noir(robot);
-					// Création de l'arbitrator pour gérer les comportements
-					// Du moins prioritaire au plus prioritaire
-					//Behavior[] bArray= {comp_drive_forward, comp_detecter_noir, comp_stop };
-					//Arbitrator aby = new Arbitrator(bArray);
-					
-					// {comp_detecter_noir,comp_drive_forward,comp_stop}; // il avance sans détecter la couleur
-					// {comp_drive_forward,comp_detecter_noir,comp_stop}; // il détecte la couleur
-					// sans avancer
-					for (int i = 0; i < 7; i++) {
-						System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
-					}
 					LCD.drawString("Pret ! Touche moi.", 0, 2);
 					Button.waitForAnyPress();
-					// Lancement de l'arbitrator
+					
 					robot.cartography();
+					
+					//for (int i = 0; i < 7; i++) {
+						//System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
+					//}
+					
 				} catch (Exception exception) {
-					LCD.clear(2);
-					LCD.drawString("ERREUR BEHAVIORS", 0, 2);
+					LCD.clear(5);
+					LCD.drawString("ERREUR BEHAVIORS", 0, 5);
 					// exception.printStackTrace();
 				}
 				choix_comp = false;
 			} else if (Button.LEFT.isDown()) {
-				// Sinon ne rien faire
+				// Chargement de la map en mémoire
+				// robot.setMapMemoire(Enregistreur.deserialiserMap());
 				choix_comp = false;
 				break;
 			} else {

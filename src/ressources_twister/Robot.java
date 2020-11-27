@@ -47,7 +47,7 @@ public class Robot implements Serializable {
 
 	private Case_twister position;
 	private Chassis chassis;
-	private MoveController pilot;
+	private MovePilot pilot;
 	private Navigator nav;
 
 	/**
@@ -117,7 +117,7 @@ public class Robot implements Serializable {
 		return this.noir;
 	}
 
-	public MoveController getPilot() {
+	public MovePilot getPilot() {
 		return this.pilot;
 	}
 
@@ -269,44 +269,33 @@ public class Robot implements Serializable {
 		LCD.clear();
 		LCD.drawString("Cartographie", 0, 0);
 		LCD.drawString("Chargement...", 0, 1);
+		int dist_case = 200;
+		int angle = 180;
 		Enregistreur.resetMemoireMap();
-		LCD.drawString("Pret ! Touche moi.", 0, 2);
-		Button.waitForAnyPress();
-
-		// création des Comportements
-		Behavior comp_avancer = new Drive_forward(this);
-		Behavior comp_detecter_noir = new Detecter_noir(this);
-		Behavior comp_stop = new Bouton_stop(this);
-		//Behavior comp_tourner = new Tourner(this) -> avec Rotate ?
-		
-		// création de l'Arbitrator
-		Behavior[] comportements_case_suivante = {comp_avancer, comp_detecter_noir, comp_stop}; // du moins prioritaire au plus
-		//Behavior[] comportements_ligne_suivante = {comp_tourner, comp_stop};
-		Arbitrator arbitrator_case_suivante = new Arbitrator(comportements_case_suivante);
-		//Arbitrator arbitrator_ligne_suivante = new Arbitrator(comportements_ligne_suivante);
-
-		// début de la cartographie
 		LCD.clear(1);
 		LCD.clear(2);
 		LCD.drawString("Place moi sur case", 0, 1); // case rouge dans le coin en bas à gauche
 		LCD.drawString("rouge & touche moi", 0, 2);
 		Button.waitForAnyPress();
-		// for (int j=0; j<this.memoire_map.lengthY(); j++) {
-			// if (j%2)==0 { // si on est sur une colonne paire = robot va dans un sens (aller)
-		for (int i=0; i<this.memoire_map.lengthX(); i++) {
-			// attribution de la couleur de la case
-			this.memoire_map.getCase(i, 0).setCouleur(this.comparerCouleur());
-			//this.memoire_map.getCase(i, 0).setCouleur(this.comparerCouleur());
-			// comportements pour passer à la case ou ligne suivante
-			if(i < this.memoire_map.lengthX()-1) {
-				// comportement classique
-				arbitrator_case_suivante.go();
-			} else {
-				// comportement pour la dernière case de la ligne
-				//arbitrator_ligne_suivante.go();
-			}
-		}
-		/*
+
+		// début de la cartographie
+		for (int j=0; j<this.memoire_map.lengthY(); j++) {
+			if ((j%2)==0) { // si on est sur une colonne paire = robot va dans un sens (aller)
+				for (int i=0; i<this.memoire_map.lengthX(); i++) {
+					// attribution de la couleur de la case
+					///// PROBLEEEEMMME
+					//this.memoire_map.getCase(i, j).setCouleur(this.comparerCouleur());
+					// comportements pour passer à la case ou ligne suivante
+					if(i < this.memoire_map.lengthX()-1) {
+						// comportement classique
+						this.getPilot().travel(dist_case);
+						//arbitrator_case_suivante.go();
+					} else {
+						// comportement pour la dernière case de la ligne
+						this.getPilot().rotate(-angle);
+						//arbitrator_ligne_suivante.go();
+					}
+				}
 			} else { // si on est sur une colonne impaire = robot va dans l'autre sens (retour)
 				for (int i=this.memoire_map.lengthX()-1; i>=0; i--) {
 					// attribution de la couleur de la case
@@ -314,16 +303,18 @@ public class Robot implements Serializable {
 					// comportements pour passer à la case ou ligne suivante
 					if(i > 1) {
 						// comportement classique
-						arbitrator_case_suivante.go();
+						this.getPilot().travel(dist_case);
+						//arbitrator_case_suivante.go();
 					} else {
 						// comportement pour la dernière case de la ligne
+						this.getPilot().rotate(angle);
 						//arbitrator_ligne_suivante.go();
 					}
 				}
 			}
 		}
 		//arbitrator_ligne_suivante.go();
-		 */
+		
 			
 		
 		// Le placer sur la case rouge en bas à gauche
@@ -432,7 +423,6 @@ public class Robot implements Serializable {
 	public EV3UltrasonicSensor getSonarSensor() {
 		return this.sonarS;
 	}
-
 
 	/**
 	 * Methode qui permet de faire avancer un moteur donné en paramètre a la vitesse
