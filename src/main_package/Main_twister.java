@@ -77,20 +77,14 @@ public class Main_twister implements Serializable {
 
 		// Comportements
 		LCD.clear();
-		boolean choix_comp = true;
-		while (choix_comp) {
+		boolean choix_carto = true;
+		while (choix_carto) {
 			LCD.drawString("Test Cartographie", 0, 0);
 			LCD.drawString("Lancer ?", 0, 1);
 			LCD.drawString("Non(G) / Oui(D)", 0, 2);
 			Button.waitForAnyPress();
 			if (Button.RIGHT.isDown()) {
-				// Lancement des comportements
-				LCD.clear(1);
-				LCD.drawString("Chargement...", 0, 1);
 				try {
-					LCD.drawString("Pret ! Touche moi.", 0, 2);
-					Button.waitForAnyPress();
-					
 					robot.cartography();
 					
 					//for (int i = 0; i < 7; i++) {
@@ -102,11 +96,11 @@ public class Main_twister implements Serializable {
 					LCD.drawString("ERREUR BEHAVIORS", 0, 5);
 					// exception.printStackTrace();
 				}
-				choix_comp = false;
+				choix_carto = false;
 			} else if (Button.LEFT.isDown()) {
 				// Chargement de la map en mémoire
 				// robot.setMapMemoire(Enregistreur.deserialiserMap());
-				choix_comp = false;
+				choix_carto = false;
 				break;
 			} else {
 				LCD.clear();

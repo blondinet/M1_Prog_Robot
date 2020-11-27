@@ -269,7 +269,7 @@ public class Robot implements Serializable {
 		LCD.clear();
 		LCD.drawString("Cartographie", 0, 0);
 		LCD.drawString("Chargement...", 0, 1);
-		int dist_case = 200;
+		int dist_case = 133;
 		int angle = 180;
 		Enregistreur.resetMemoireMap();
 		LCD.clear(1);
@@ -283,8 +283,8 @@ public class Robot implements Serializable {
 			if ((j%2)==0) { // si on est sur une colonne paire = robot va dans un sens (aller)
 				for (int i=0; i<this.memoire_map.lengthX(); i++) {
 					// attribution de la couleur de la case
-					///// PROBLEEEEMMME
-					//this.memoire_map.getCase(i, j).setCouleur(this.comparerCouleur());
+					///// COULEURS
+					///////this.memoire_map.getCase(i, j).setCouleur(this.comparerCouleur());
 					// comportements pour passer à la case ou ligne suivante
 					if(i < this.memoire_map.lengthX()-1) {
 						// comportement classique
@@ -292,22 +292,29 @@ public class Robot implements Serializable {
 						//arbitrator_case_suivante.go();
 					} else {
 						// comportement pour la dernière case de la ligne
+						///// ROTATION
+						//////this.getLeftW().stop(true);
 						this.getPilot().rotate(-angle);
+						//////this.getLeftW().forward();
 						//arbitrator_ligne_suivante.go();
 					}
 				}
 			} else { // si on est sur une colonne impaire = robot va dans l'autre sens (retour)
 				for (int i=this.memoire_map.lengthX()-1; i>=0; i--) {
 					// attribution de la couleur de la case
-					this.memoire_map.getCase(i, j).setCouleur(this.comparerCouleur());
+					///// COULEURS
+					//////this.memoire_map.getCase(i, j).setCouleur(this.comparerCouleur());
 					// comportements pour passer à la case ou ligne suivante
-					if(i > 1) {
+					if(i > 0) {
 						// comportement classique
 						this.getPilot().travel(dist_case);
 						//arbitrator_case_suivante.go();
 					} else {
 						// comportement pour la dernière case de la ligne
+						///// ROTATION
+						/////this.getRightW().stop(true);
 						this.getPilot().rotate(angle);
+						/////this.getRightW().forward();
 						//arbitrator_ligne_suivante.go();
 					}
 				}
