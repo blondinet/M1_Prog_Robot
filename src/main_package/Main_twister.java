@@ -92,7 +92,7 @@ public class Main_twister implements Serializable {
 						System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
 					}
 					arbitrator_cartography.go();
-					
+					// test
 					//for (int i = 0; i < 7; i++) {
 						//System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
 					//}
