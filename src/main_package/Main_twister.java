@@ -25,7 +25,6 @@ public class Main_twister implements Serializable {
 		LCD.drawString("Chargement...", 0, 1);
 		// Chargement des constructeurs
 		Robot robot = new Robot();
-		Map_twister map = new Map_twister();
 		// Attente pour la construction
 		LCD.drawString("Pret ! Touche moi.", 0, 2);
 		Button.waitForAnyPress();
@@ -75,7 +74,7 @@ public class Main_twister implements Serializable {
 			}
 		}*/
 
-		// Comportements
+		// Cartographie
 		LCD.clear();
 		boolean choix_carto = true;
 		while (choix_carto) {
@@ -85,7 +84,14 @@ public class Main_twister implements Serializable {
 			Button.waitForAnyPress();
 			if (Button.RIGHT.isDown()) {
 				try {
-					robot.cartography();
+					Behavior b_stop = new Bouton_stop(robot);
+					Behavior b_cartography = new Cartography(robot);
+					Behavior[] comportements_cartography = {b_cartography,b_stop}; // du moins prioritaire au plus prioritaire
+					Arbitrator arbitrator_cartography = new Arbitrator(comportements_cartography);
+					for(int x=0;x<7;x++) {
+						System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
+					}
+					arbitrator_cartography.go();
 					
 					//for (int i = 0; i < 7; i++) {
 						//System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
@@ -93,7 +99,7 @@ public class Main_twister implements Serializable {
 					
 				} catch (Exception exception) {
 					LCD.clear(5);
-					LCD.drawString("ERREUR BEHAVIORS", 0, 5);
+					LCD.drawString("ERREUR CARTOGRAPHY", 0, 5);
 					// exception.printStackTrace();
 				}
 				choix_carto = false;
