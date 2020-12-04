@@ -68,7 +68,7 @@ public class Robot implements Serializable {
 			this.touchS = new EV3TouchSensor(SensorPort.S1);
 			this.gyroS = new EV3GyroSensor(SensorPort.S2);
 			this.colorS = new EV3ColorSensor(SensorPort.S3);
-			this.sonarS = new EV3UltrasonicSensor(SensorPort.S4);
+			// this.sonarS = new EV3UltrasonicSensor(SensorPort.S4);
 
 		} catch (NullPointerException e) {
 			LCD.clear();
@@ -115,6 +115,15 @@ public class Robot implements Serializable {
 
 	public Color_twister getNoir() {
 		return this.noir;
+	}
+
+	public Color_twister getCouleur(String nom) {
+		for (Color_twister c : memoire_couleurs) {
+			if (c.getName() == nom) {
+				return c;
+			}
+		}
+		return null;
 	}
 
 	public MovePilot getPilot() {
@@ -260,6 +269,24 @@ public class Robot implements Serializable {
 		// LCD.drawString(plus_proche_couleur.getName(), 0, 1);
 		// Delay.msDelay(3000);
 		return plus_proche_couleur; // On retourne la couleur la plus proche de la couleur détectée
+	}
+
+	public void printMap() {
+		try {
+			LCD.clear();
+			System.out.println("Map :");
+			System.out.println(this.memoire_map.toString());
+		} catch (Error e) {
+			LCD.clear();
+			System.out.println(e);
+			Button.waitForAnyPress();
+		}
+	}
+
+	public void clearPrint() {
+		for (int x = 0; x < 7; x++) {
+			System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
+		}
 	}
 
 	/**
