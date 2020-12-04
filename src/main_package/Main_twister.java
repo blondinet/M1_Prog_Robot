@@ -52,9 +52,9 @@ public class Main_twister implements Serializable {
 				LCD.clear();
 			}
 		}
+		
 		// Test
 		// Comparer couleur
-		/*
 		LCD.clear();
 		boolean choix_test = true;
 		while (choix_test) {
@@ -69,10 +69,22 @@ public class Main_twister implements Serializable {
 				LCD.drawString("Placez moi...", 0, 1);
 				LCD.drawString("Pret ! Touche moi.", 0, 2);
 				Button.waitForAnyPress();
-				LCD.clear();
-				robot.comparerCouleur();
+				LCD.clear(3);
+				robot.printMap();
+				Button.waitForAnyPress();
+				try {
+					robot.getMapMemoire().getCase(0, 0).setCouleur(robot.comparerCouleur());
+					robot.clearPrint();
+					robot.printMap();
+					Button.waitForAnyPress();
+					robot.clearPrint();
+				} catch(Error e) {
+					LCD.clear();
+					System.out.println(e);
+					Button.waitForAnyPress();
+				}
 			}
-		}*/
+		}
 
 		// Cartographie
 		LCD.clear();
