@@ -12,6 +12,13 @@ public class Case_twister implements Serializable{
 		this.couleur = null;
 		this.libre = true;
 	}
+	
+	public Case_twister(int x, int y) {
+		this.posX = x;
+		this.posY = y;
+		this.couleur = null;
+		this.libre = true;
+	}
 
 	public Color_twister getCouleur() {
 		return couleur;
@@ -44,5 +51,11 @@ public class Case_twister implements Serializable{
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
+	
+	public String toString() {
+		   return "Case(" + this.posX +
+			  "," + this.posY +
+			  "), couleur : " + this.couleur;
+		}
 	
 }

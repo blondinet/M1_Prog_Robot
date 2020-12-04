@@ -12,12 +12,20 @@ public class Map_twister implements Serializable {
 	 */
 	public Map_twister() {
 		this.map = new Case_twister[X][Y];
+		/*
 		for(Case_twister[] l:this.map) {
 			for(Case_twister c:l) {
 				c = new Case_twister();
 			}
-		}
+		}*/
 		// Création d'un tableau de couleur de 5x7 cases
+		for (int y=0; y<Y; y++) {
+			for (int x=0; x<X; x++) {
+				Case_twister c = new Case_twister(x,y);
+				this.map[x][y] = c;
+				
+			}
+		}
 	}
 
 	public Case_twister[][] getMap() {
@@ -37,5 +45,26 @@ public class Map_twister implements Serializable {
 	}
 	public int lengthY() {
 		return Y;
+	}
+	
+	public String toString() {
+		String result="";
+		
+		for (int x=0; x<X; x++) {
+			result+="|";
+			for (int y=0; y<Y; y++) {
+				if(this.map[x][y].getCouleur()!= null) {
+					result+=this.map[x][y].getCouleur().getName().charAt(0);
+				}
+				else {
+					result+="/";
+				}
+				result+="|";
+				
+			}
+			result+="\n";
+		}
+		
+		return result;
 	}
 }
