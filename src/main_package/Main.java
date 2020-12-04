@@ -25,6 +25,8 @@ public class Main {
 	public static void main(String[] args) {
 		//System.out.println("Bonjour !\nVeuillez patienter...");
 		LCD.clear();
+
+		Robot robot = new Robot();
 		//LCD.drawString("message",largeur,hauteur);
 		//largeur : 0 à 18
 		// hauteur : 0 à 7
@@ -45,6 +47,9 @@ public class Main {
 		//LCD.drawString("123456789012345678",0,0);
 		LCD.refresh();
 		Button.waitForAnyPress();
+		
+		robot.getMapMemoire();
+		
 		//ExerciceTd1 td1 = new ExerciceTd1(new Robot_Component());
 		
 		//r.learnColors();

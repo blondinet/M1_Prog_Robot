@@ -10,13 +10,15 @@ import ressources_twister.Robot;
 
 public class Cartography implements Behavior {
 	private Robot robot;
+	private boolean non_fini;
 
 	public Cartography(Robot r) {
 		this.robot = r;
+		non_fini = true;
 	}
 
 	public boolean takeControl() {
-		return true; // activé en premier par défaut
+		return non_fini; // activé en premier par défaut
 	}
 
 	public void action() {
@@ -34,12 +36,14 @@ public class Cartography implements Behavior {
 		// début de la cartographie
 		this.robot.getPilot().setAngularSpeed(100);
 		this.robot.getPilot().setLinearSpeed(100);
+		first:
 		for (int j=0; j<this.robot.getMapMemoire().lengthY(); j++) {
 			if ((j%2)==0) { // si on est sur une colonne paire = robot va dans un sens (aller)
 				for (int i=0; i<this.robot.getMapMemoire().lengthX(); i++) {
 					// attribution de la couleur de la case
-					///// COULEURS
-					//this.robot.getMapMemoire().getCase(i, j).setCouleur(this.robot.comparerCouleur());
+					this.robot.getMapMemoire().getCase(i, j).setCouleur(this.robot.comparerCouleur());
+					this.robot.clearPrint();
+					this.robot.printMap();
 					// comportements pour passer à la case ou ligne suivante
 					if(i < this.robot.getMapMemoire().lengthX()-1) {
 						// comportement classique
@@ -48,7 +52,8 @@ public class Cartography implements Behavior {
 						// comportement pour la dernière case de la ligne
 						///// ROTATION
 						this.robot.getPilot().travel(dist_case);
-						this.robot.getPilot().rotate(340);
+						this.robot.getPilot().rotate(100);
+						//Button.waitForAnyPress();
 						
 					}
 					
@@ -56,8 +61,9 @@ public class Cartography implements Behavior {
 			} else { // si on est sur une colonne impaire = robot va dans l'autre sens (retour)
 				for (int i=this.robot.getMapMemoire().lengthX()-1; i>=0; i--) {
 					// attribution de la couleur de la case
-					///// COULEURS
-					//this.robot.getMapMemoire().getCase(i, j).setCouleur(this.robot.comparerCouleur());
+					this.robot.getMapMemoire().getCase(i, j).setCouleur(this.robot.comparerCouleur());
+					this.robot.clearPrint(); 	// Permet d'effacer la carte précédente
+					this.robot.printMap();		 // Permet d'afficher la carte actuelle
 					// comportements pour passer à la case ou ligne suivante
 					if(i > 0) {
 						// comportement classique
@@ -68,37 +74,21 @@ public class Cartography implements Behavior {
 						///// ROTATION
 						this.robot.getPilot().travel(dist_case);
 						this.robot.getPilot().rotate(-340);
+						//Button.waitForAnyPress();
 					
 					}
 				}
 			}
 		}
 		
-		//arbitrator_ligne_suivante.go();
-		
-			
-		
-		// Le placer sur la case rouge en bas à gauche
-		/*
-		this.getMapMemoire().getCase(0, 0).setCouleur(comparerCouleur());
-		arbitrator_cartographie.go();
-		for (int x = 0; x < getMapMemoire().lengthX(); x++) {
-			this.getMapMemoire().getCase(x, 0).setCouleur(comparerCouleur());
-			arbitrator_cartographie.go();
-		}
-
 		// Sauvegarde de la map en mémoire
-		// Enregistreur.serialiserMap(this.getMapMemoire());
+		Enregistreur.serialiserMap(this.robot.getMapMemoire());
 		// Chargement de la map en mémoire
 		// this.getMapMemoire() = Enregistreur.deserialiserMap();
 		// robot.setMapMemoire(Enregistreur.deserialiserMap());
 
 		// Fin de la cartographie
-		LCD.clear();
-		LCD.drawString("Fin cartographie.", 0, 0);
-		Delay.msDelay(3000);
-		LCD.clear();*/
-
+		non_fini=false;
 	}
 
 	public void suppress() {

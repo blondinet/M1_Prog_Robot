@@ -53,6 +53,7 @@ public class Main_twister implements Serializable {
 			}
 		}
 		
+		/*
 		// Test
 		// Comparer couleur
 		LCD.clear();
@@ -85,39 +86,36 @@ public class Main_twister implements Serializable {
 				}
 			}
 		}
+		*///
 
 		// Cartographie
 		LCD.clear();
 		boolean choix_carto = true;
 		while (choix_carto) {
 			LCD.drawString("Test Cartographie", 0, 0);
-			LCD.drawString("Lancer ?", 0, 1);
-			LCD.drawString("Non(G) / Oui(D)", 0, 2);
+			LCD.drawString("Manuel ou Fichier?", 0, 1);
+			LCD.drawString("Manu(G) / Fich(D)", 0, 2);
 			Button.waitForAnyPress();
-			if (Button.RIGHT.isDown()) {
+			if (Button.LEFT.isDown()) {
 				try {
 					Behavior b_stop = new Bouton_stop(robot);
 					Behavior b_cartography = new Cartography(robot);
 					Behavior[] comportements_cartography = {b_cartography,b_stop}; // du moins prioritaire au plus prioritaire
 					Arbitrator arbitrator_cartography = new Arbitrator(comportements_cartography);
-					for(int x=0;x<7;x++) {
-						System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
-					}
+					robot.clearPrint();  // Permet d'effacer le message du constructeur de l'Arbitrator
 					arbitrator_cartography.go();
-					// test
-					//for (int i = 0; i < 7; i++) {
-						//System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
-					//}
-					
 				} catch (Exception exception) {
 					LCD.clear(5);
 					LCD.drawString("ERREUR CARTOGRAPHY", 0, 5);
 					// exception.printStackTrace();
 				}
 				choix_carto = false;
-			} else if (Button.LEFT.isDown()) {
+			} else if (Button.RIGHT.isDown()) {
 				// Chargement de la map en mémoire
-				// robot.setMapMemoire(Enregistreur.deserialiserMap());
+				robot.setMapMemoire(Enregistreur.deserialiserMap());
+				robot.printMap();
+				Button.waitForAnyPress();
+				robot.clearPrint();
 				choix_carto = false;
 				break;
 			} else {
