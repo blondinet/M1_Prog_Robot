@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="behaviors.Drive_forward" project="M1_Prog_Robot" 
     file="/M1_Prog_Robot/src/behaviors/Drive_forward.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="132" y="467"/>    
+    <position height="-1" width="-1" x="133" y="446"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="main_package.Main_twister" project="M1_Prog_Robot" 
     file="/M1_Prog_Robot/src/main_package/Main_twister.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="879" y="692"/>    
+    <position height="-1" width="-1" x="745" y="570"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <class id="10" language="java" name="ressources_twister.Case_twister" project="M1_Prog_Robot" 
     file="/M1_Prog_Robot/src/ressources_twister/Case_twister.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="471" y="796"/>    
+    <position height="-1" width="-1" x="149" y="970"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,7 +93,7 @@
   </class>  
   <class id="11" language="java" name="ressources_twister.Enregistreur" project="M1_Prog_Robot" 
     file="/M1_Prog_Robot/src/ressources_twister/Enregistreur.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="710" y="868"/>    
+    <position height="-1" width="-1" x="816" y="882"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="ressources_twister.Map_twister" project="M1_Prog_Robot" 
     file="/M1_Prog_Robot/src/ressources_twister/Map_twister.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="147" y="686"/>    
+    <position height="-1" width="-1" x="148" y="643"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="ressources_twister.Methode_utiles" project="M1_Prog_Robot" 
     file="/M1_Prog_Robot/src/ressources_twister/Methode_utiles.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="700" y="672"/>    
+    <position height="-1" width="-1" x="870" y="707"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="ressources_twister.Robot" project="M1_Prog_Robot" 
     file="/M1_Prog_Robot/src/ressources_twister/Robot.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="327" width="271" x="336" y="225"/>    
+    <position height="853" width="271" x="337" y="162"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
