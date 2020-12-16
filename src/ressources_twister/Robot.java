@@ -24,57 +24,61 @@ import lejos.robotics.subsumption.Behavior;
 import lejos.utility.Delay;
 
 /**
- * Classe qui permet de d'instancier un robot avec ses composant Nous
- * l'utiliserons afin de programmer le robot physique et de repondre aux
- * question du td
+ * Classe qui permet d'instancier un robot avec ses composants. Nous
+ * l'utiliserons afin de programmer le robot physique.
  * 
- * @author blondin
+ * @author Lucille Dumont & William Tardot
  *
  */
 public class Robot implements Serializable {
-	private NXTRegulatedMotor arms;
-	private NXTRegulatedMotor leftW; // leftWheel
-	private NXTRegulatedMotor rightW;
+	// Variables
+	// moteurs
+	private NXTRegulatedMotor arms; // bras
+	private NXTRegulatedMotor leftW; // roue gauche
+	private NXTRegulatedMotor rightW; // roue droite
+	// capteurs
+	private EV3TouchSensor touchS; // capteur tactile
+	private EV3GyroSensor gyroS; // capteur gyroscope
+	private EV3ColorSensor colorS; // capteur de couleur
+	private EV3UltrasonicSensor sonarS; // capteur utrasonique
+	// mémoire
+	private Color_twister rouge, bleu, vert, orange, blanc, noir; // couleurs de la map
+	private ArrayList<Color_twister> memoire_couleurs = new ArrayList<Color_twister>(); // liste des couleurs
+																						// (enregistrable)
+	private Map_twister memoire_map = new Map_twister(); // environnement sur lequel le robot se déplace (enregistrable)
+	// navigation
+	private Case_twister position; // case dans laquelle se situe le robot
+	private Chassis chassis; // chassis du robot
+	private MovePilot pilot; // pilote du robot
+	private Navigator nav; // navigateur du robot
 
-	private EV3TouchSensor touchS; // touchSensor
-	private EV3GyroSensor gyroS;
-	private EV3ColorSensor colorS;
-	private EV3UltrasonicSensor sonarS;
-
-	private Color_twister rouge, bleu, vert, orange, blanc, noir;
-	private ArrayList<Color_twister> memoire_couleurs = new ArrayList<Color_twister>();
-	private Map_twister memoire_map = new Map_twister();
-
-	private Case_twister position;
-	private Chassis chassis;
-	private MovePilot pilot;
-	private Navigator nav;
-
+	// Constructeur
 	/**
-	 * Constructeur de la classe Ce constructeur récupère les motor physique et
-	 * donne leurs valeurs a des variables d'instanciation
+	 * Constructeur de la classe. Ce constructeur instancie les différentes
+	 * variables du robot.
 	 */
 	public Robot() {
+		// instanciation des moteurs
 		try {
-			this.arms = Motor.A; // bras
+			this.arms = Motor.A; // moteur A = bras
 			this.leftW = Motor.B; // moteur B = roue de gauche
-			this.rightW = Motor.C;
+			this.rightW = Motor.C; // moteur C = roue de droite
 		} catch (NullPointerException e) {
 			LCD.clear();
 			System.out.println("Erreur Constructeurs : " + e);
 		}
-
+		// instanciation des capteurs
 		try {
 			this.touchS = new EV3TouchSensor(SensorPort.S1);
 			this.gyroS = new EV3GyroSensor(SensorPort.S2);
 			this.colorS = new EV3ColorSensor(SensorPort.S3);
-			// this.sonarS = new EV3UltrasonicSensor(SensorPort.S4);
+			this.sonarS = new EV3UltrasonicSensor(SensorPort.S4);
 
 		} catch (NullPointerException e) {
 			LCD.clear();
 			System.out.print("Erreur capteurs : " + e);
 		}
-
+		// instanciation du chassis & du navigator
 		try {
 			Wheel roueG = WheeledChassis.modelWheel(this.leftW, 56.).offset(-60);
 			Wheel roueD = WheeledChassis.modelWheel(this.rightW, 56.).offset(60);
@@ -87,8 +91,75 @@ public class Robot implements Serializable {
 		}
 	}
 
+	// Getters & Setters
 	/**
-	 * Getteur de la couleur percue par le senseur
+	 * Getteur du moteur de la roue gauche
+	 * 
+	 * @return le moteur de la roue gauche
+	 */
+	public NXTRegulatedMotor getLeftW() {
+		return this.leftW;
+
+	}
+
+	/**
+	 * Getteur du moteur de la roue droite
+	 * 
+	 * @return le moteur de la roue droite
+	 */
+	public NXTRegulatedMotor getRightW() {
+		return this.rightW;
+
+	}
+
+	/**
+	 * Getteur du moteur contrôlant les bras
+	 * 
+	 * @return le moteur des bras
+	 */
+	public NXTRegulatedMotor getArms() {
+		return this.arms;
+
+	}
+
+	/**
+	 * Getteur du capteur de couleur du robot
+	 * 
+	 * @return le capteur de couleur
+	 */
+	public EV3ColorSensor getColorSensor() {
+		return this.colorS;
+	}
+
+	/**
+	 * Getteur du capteur tactile du robot
+	 * 
+	 * @return le capteur tactile
+	 */
+	public EV3TouchSensor getTouchSensor() {
+		return this.touchS;
+	}
+
+	/**
+	 * Getteur du capteur gyroscopique du robot
+	 * 
+	 * @return le capteur gyroscopique
+	 */
+	public EV3GyroSensor getGyroSensor() {
+		return this.gyroS;
+	}
+
+	/**
+	 * Getteur du capteur ultrasonique du robot
+	 * 
+	 * @return le capteur ultrasonique
+	 */
+	public EV3UltrasonicSensor getSonarSensor() {
+		return this.sonarS;
+	}
+
+	/**
+	 * Getteur de la couleur percue par le capteur de couleur
 	 * 
 	 * @return ID de la couleur
 	 */
@@ -97,26 +168,48 @@ public class Robot implements Serializable {
 		return res;
 	}
 
+	/**
+	 * Getteur de l'état de la map dans la mémoire du robot
+	 * 
+	 * @return la carte
+	 */
 	public Map_twister getMapMemoire() {
 		return this.memoire_map;
 	}
 
+	/**
+	 * Setteur de l'état de la map dans la mémoire du robot
+	 * 
+	 * @param m la carte
+	 */
 	public void setMapMemoire(Map_twister m) {
 		this.memoire_map = m;
 	}
 
+	/**
+	 * Getteur de la liste de couleurs dans la mémoire du robot
+	 * 
+	 * @return la liste des couleurs apprises
+	 */
 	public ArrayList<Color_twister> getCouleurMemoire() {
 		return this.memoire_couleurs;
 	}
 
+	/**
+	 * Setteur de la liste de couleurs dans la mémoire du robot
+	 * 
+	 * @param mc la liste de couleurs
+	 */
 	public void setCouleurMemoire(ArrayList<Color_twister> mc) {
 		this.memoire_couleurs = mc;
 	}
 
-	public Color_twister getNoir() {
-		return this.noir;
-	}
-
+	/**
+	 * Getteur d'une couleur dont le nom est entré en paramètre
+	 * 
+	 * @param nom de la couleur
+	 * @return la couleur si le nom en paramètre est correct, null sinon
+	 */
 	public Color_twister getCouleur(String nom) {
 		for (Color_twister c : memoire_couleurs) {
 			if (c.getName() == nom) {
@@ -126,18 +219,31 @@ public class Robot implements Serializable {
 		return null;
 	}
 
+	/**
+	 * Getteur du pilote du robot
+	 * 
+	 * @return le pilote du robot
+	 */
 	public MovePilot getPilot() {
 		return this.pilot;
 	}
 
+	/**
+	 * Getteur du navigateur du robot
+	 * 
+	 * @return le navigateur du robot
+	 */
 	public Navigator getNav() {
 		return this.nav;
 	}
+	
 
+	// Méthodes
 	/**
-	 * Détecteur de couleur par capteur
+	 * Le capteur de couleur détecte une couleur, récupère son code RGB et créé une
+	 * nouvelle couleur sans nom à partir de ces valeurs
 	 * 
-	 * @return color une couleur au format RGB
+	 * @return color une nouvelle couleur, sans nom, avec ses 3 valeurs RGB
 	 */
 	public Color_twister detectColor() {
 		float[] tabRGB = new float[3];
@@ -148,9 +254,8 @@ public class Robot implements Serializable {
 	}
 
 	/**
-	 * Méthode qui permet au robot d'apprendre les différentes couleurs
-	 * 
-	 * @return
+	 * Méthode qui permet au robot d'apprendre les différentes couleurs, puis
+	 * enregistre la liste de couleur dans un fichier en mémoire
 	 */
 	public void learnColors() {
 		LCD.clear();
@@ -158,7 +263,7 @@ public class Robot implements Serializable {
 		LCD.drawString("Chargement...", 0, 1);
 		Enregistreur.resetMemoireCouleurs();
 		LCD.drawString("Pret ! Touche Moi.", 0, 2);
-		Button.waitForAnyPress();
+		Button.waitForAnyPress(); // On attend que l'utilisateur soit prêt
 
 		// Début de l'apprentissage des couleurs
 		// Couleur : Noir
@@ -167,12 +272,13 @@ public class Robot implements Serializable {
 		LCD.drawString("Le NOIR...", 2, 1);
 		LCD.drawString("Touche moi.", 0, 2);
 		LCD.refresh();
-		Button.waitForAnyPress();
+		Button.waitForAnyPress(); // On attend que l'utilisateur le place sur la bonne couleur
 		LCD.clear();
-		noir = detectColor();
-		noir.setName("noir");
-		noir.getRGB();
-		memoire_couleurs.add(noir);
+		noir = detectColor(); // Créé une nouvelle couleur grâce au code RGB
+		noir.setName("noir"); // On nomme la couleur
+		noir.getRGB(); // On affiche le code de la couleur à l'écran pour que l'utilisateur ait un
+						// retour
+		memoire_couleurs.add(noir); // On ajoute la couleur à la liste des couleurs en mémoire
 		// Couleur : Rouge
 		LCD.clear();
 		LCD.drawString("Placez moi sur :", 0, 0);
@@ -235,17 +341,23 @@ public class Robot implements Serializable {
 		memoire_couleurs.add(blanc);
 
 		// Sauvegarde de la map en mémoire
-		Enregistreur.serialiserCouleurs(this.memoire_couleurs);
-		// Chargement de la liste des couleurs en mémoire
-		// robot.setCouleurMemoire(Enregistreur.deserialiserCouleurs());
+		Enregistreur.serialiserCouleurs(this.memoire_couleurs); // On sauvegarde la liste des couleurs sur un fichier
+																// dans la mémoire du robot
 
 		// Fin de l'apprentissage
 		LCD.clear();
 		LCD.drawString("Fin Apprentissage.", 0, 0);
-		Delay.msDelay(3000);
+		Delay.msDelay(3000); // Petit délai avant de quitter la méthode
 		LCD.clear();
 	}
 
+	/**
+	 * Détecte une couleur grâce à son capteur, la compare avec la liste des
+	 * couleurs en mémoire, puis retourne la couleur la plus proche de celle qu'il
+	 * détecte
+	 * 
+	 * @return la couleur la plus proche de celle détectée par le capteur
+	 */
 	public Color_twister comparerCouleur() {
 		Color_twister couleur_detectee = detectColor(); // On détecte la couleur sous le capteur
 		Color_twister plus_proche_couleur; // On cherche à savoir la couleur la plus proche
@@ -263,14 +375,16 @@ public class Robot implements Serializable {
 				// alors, on change la couleur la plus proche
 			}
 		}
-
-		// LCD.clear();
-		// LCD.drawString("C'est du : ", 0, 0);
-		// LCD.drawString(plus_proche_couleur.getName(), 0, 1);
-		// Delay.msDelay(3000);
 		return plus_proche_couleur; // On retourne la couleur la plus proche de la couleur détectée
 	}
 
+	/**
+	 * Permet d'avoir un visuel sur l'environnement du robot tel qu'il est
+	 * représenté dans sa mémoire Se présente ainsi : "Map : |x|x|x|x|x|x|x|
+	 * |x|x|x|x|x|x|x| |x|x|x|x|x|x|x| |x|x|x|x|x|x|x| |x|x|x|x|x|x|x|" x représente
+	 * la couleur de la case (première lettre de la couleur ou '/' si la couleur de
+	 * la case est nulle)
+	 */
 	public void printMap() {
 		try {
 			LCD.clear();
@@ -283,6 +397,10 @@ public class Robot implements Serializable {
 		}
 	}
 
+	/**
+	 * Permet d'afficher le texte à l'écran issu de la commande 'System.out.println'
+	 * (concerne le message de création de l'Arbitrator ou l'affichage de la carte)
+	 */
 	public void clearPrint() {
 		for (int x = 0; x < 7; x++) {
 			System.out.println(" "); // Permet d'effacer le message du constructeur de l'Arbitrator
@@ -290,9 +408,9 @@ public class Robot implements Serializable {
 	}
 
 	/**
-	 * Methode qui permet de donner la même valeur de vitesse à tout les moteur
+	 * Permet de donner la même vitesse à tous les moteurs
 	 * 
-	 * @param speed la vitesse qu'on souhaite donner à tout les moteurs
+	 * @param speed la vitesse que l'on souhaite donner aux moteurs
 	 */
 	public void setPowerAllMotor(int speed) {
 		Motor.B.setSpeed(speed);
@@ -300,7 +418,7 @@ public class Robot implements Serializable {
 	}
 
 	/**
-	 * Methode qui permet de stopper tous les moteur du robot
+	 * Permet de stopper les moteurs des roues du robot
 	 */
 	public void stopAllMotor() {
 		Motor.B.stop();
@@ -309,18 +427,18 @@ public class Robot implements Serializable {
 	}
 
 	/**
-	 * Methode qui permet de stopper tous les moteur du robot
+	 * Permet de fermer tous les capteurs du robot (lors de l'arrêt du robot)
 	 */
 	public void closeAllSensors() {
 		this.touchS.close();
 		this.gyroS.close();
 		this.colorS.close();
-		// this.ultraSonicS.close();
+		this.sonarS.close();
 
 	}
 
 	/**
-	 * Methode qui permet de fermer tous les moteurs du robot
+	 * Permet de fermer tous les moteurs du robot (lors de l'arrêt du robot)
 	 */
 	public void closeAllMotor() {
 		Motor.A.close();
@@ -330,62 +448,19 @@ public class Robot implements Serializable {
 	}
 
 	/**
-	 * getteur des moteurs
+	 * Methode qui permet de faire avancer un moteur donné en paramètre à la vitesse
+	 * et la direction donnée en paramètre
 	 * 
-	 * @param none
-	 * @return le premier Moteur
-	 */
-	public NXTRegulatedMotor getLeftW() {
-		return this.leftW;
-
-	}
-
-	public NXTRegulatedMotor getRightW() {
-		return this.rightW;
-
-	}
-
-	public NXTRegulatedMotor getArms() {
-		return this.arms;
-
-	}
-
-	/**
-	 * getteur des senseur du robot
-	 * 
-	 * @param
-	 * @return le senseur voulu
-	 */
-	public EV3ColorSensor getColorSensor() {
-		return this.colorS;
-	}
-
-	public EV3TouchSensor getTouchSensor() {
-		return this.touchS;
-	}
-
-	public EV3GyroSensor getGyroSensor() {
-		return this.gyroS;
-	}
-
-	public EV3UltrasonicSensor getSonarSensor() {
-		return this.sonarS;
-	}
-
-	/**
-	 * Methode qui permet de faire avancer un moteur donné en paramètre a la vitesse
-	 * et la direction donné en paramètre
-	 * 
-	 * @param motor     C'est le moteur à utiliser
-	 * @param direction C'est la direction et la vitesse à lui donner
+	 * @param motor moteur à utiliser
+	 * @param direction la direction et la vitesse à lui donner
 	 */
 	public void doStep(NXTRegulatedMotor motor, int direction) {
 
-		if (direction < 0) { // si la direction est inférieur à zero, on le fait reculer a la vitesse donné
+		if (direction < 0) { // si la direction est inférieure à zero, on le fait reculer à la vitesse donnée
 			direction = Math.abs(direction);
 			motor.setSpeed(direction);
 			motor.backward();
-		} else { // sinon, on le fait avancer à la vitesse donné
+		} else { // sinon, on le fait avancer à la vitesse donnée
 			motor.setSpeed(direction);
 			motor.forward();
 		}
@@ -395,7 +470,7 @@ public class Robot implements Serializable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} // On attend deux secondes
-		motor.stop(); // on stop le moteur
+		motor.stop(); // On stoppe le moteur
 	}
 
 }
