@@ -380,9 +380,14 @@ public class Robot implements Serializable {
 
 	/**
 	 * Permet d'avoir un visuel sur l'environnement du robot tel qu'il est
-	 * représenté dans sa mémoire Se présente ainsi : "Map : |x|x|x|x|x|x|x|
-	 * |x|x|x|x|x|x|x| |x|x|x|x|x|x|x| |x|x|x|x|x|x|x| |x|x|x|x|x|x|x|" x représente
-	 * la couleur de la case (première lettre de la couleur ou '/' si la couleur de
+	 * représenté dans sa mémoire Se présente ainsi : 
+	 * "Map :
+	 * |x|x|x|x|x|x|x|
+	 * |x|x|x|x|x|x|x|
+	 * |x|x|x|x|x|x|x|
+	 * |x|x|x|x|x|x|x|
+	 * |x|x|x|x|x|x|x|"
+	 * x représente la couleur de la case (première lettre de la couleur ou '/' si la couleur de
 	 * la case est nulle)
 	 */
 	public void printMap() {

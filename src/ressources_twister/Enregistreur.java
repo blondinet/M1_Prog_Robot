@@ -14,7 +14,7 @@ import lejos.hardware.lcd.LCD;
  * Classe qui permet de sauvegarder la mémoire d'un robot et de la charger
  * Mémoire du robot : liste des couleurs et map
  * 
- * @author William
+ * @author Lucille Dumont & William Tardot
  */
 public class Enregistreur {
 
