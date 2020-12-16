@@ -236,7 +236,6 @@ public class Robot implements Serializable {
 	public Navigator getNav() {
 		return this.nav;
 	}
-	
 
 	// Méthodes
 	/**
@@ -380,15 +379,16 @@ public class Robot implements Serializable {
 
 	/**
 	 * Permet d'avoir un visuel sur l'environnement du robot tel qu'il est
-	 * représenté dans sa mémoire Se présente ainsi : 
-	 * "Map :
-	 * |x|x|x|x|x|x|x|
-	 * |x|x|x|x|x|x|x|
-	 * |x|x|x|x|x|x|x|
-	 * |x|x|x|x|x|x|x|
-	 * |x|x|x|x|x|x|x|"
-	 * x représente la couleur de la case (première lettre de la couleur ou '/' si la couleur de
-	 * la case est nulle)
+	 * représenté dans sa mémoire Se présente ainsi :
+	 * <p>
+	 * |x|x|x|x|x|x|x|</br>
+	 * |x|x|x|x|x|x|x|</br>
+	 * |x|x|x|x|x|x|x|</br>
+	 * |x|x|x|x|x|x|x|</br>
+	 * |x|x|x|x|x|x|x|</br>
+	 * </p>
+	 * x représente la couleur de la case (première lettre de la couleur ou '/' si
+	 * la couleur de la case est nulle)
 	 */
 	public void printMap() {
 		try {
@@ -456,7 +456,7 @@ public class Robot implements Serializable {
 	 * Methode qui permet de faire avancer un moteur donné en paramètre à la vitesse
 	 * et la direction donnée en paramètre
 	 * 
-	 * @param motor moteur à utiliser
+	 * @param motor     moteur à utiliser
 	 * @param direction la direction et la vitesse à lui donner
 	 */
 	public void doStep(NXTRegulatedMotor motor, int direction) {

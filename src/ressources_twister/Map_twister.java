@@ -56,11 +56,13 @@ public class Map_twister implements Serializable {
 	/**
 	 * Permet d'afficher la map sous forme de chaîne de caractères. Une map
 	 * s'affichera sous la forme suivante :
-	 * "|x|x|x|x|x|x|x|
-	 *  |x|x|x|x|x|x|x|
-	 *  |x|x|x|x|x|x|x|
-	 *  |x|x|x|x|x|x|x|
-	 *  |x|x|x|x|x|x|x|"
+	 * <p>
+	 * |x|x|x|x|x|x|x|</br>
+	 * |x|x|x|x|x|x|x|</br>
+	 * |x|x|x|x|x|x|x|</br>
+	 * |x|x|x|x|x|x|x|</br>
+	 * |x|x|x|x|x|x|x|</br>
+	 * </p>
 	 */
 	public String toString() {
 		String result = "";
