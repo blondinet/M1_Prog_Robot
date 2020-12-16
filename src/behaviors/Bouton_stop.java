@@ -9,11 +9,14 @@ import ressources_twister.Robot;
 
 public class Bouton_stop implements Behavior{
 	private Robot robot;
-	
+
 	public Bouton_stop(Robot r) {
 		this.robot = r;
 	}
-	
+	/**
+	 * Prend le contrôle de l'Arbitrator et éxecute la méthode action() si le boutton échape du robot est appuyé
+	 * @return boolean
+	 */
 	@Override
 	public boolean takeControl() {
 		// TODO Auto-generated method stub
@@ -22,18 +25,21 @@ public class Bouton_stop implements Behavior{
 	}
 
 	@Override
+	/**
+	 * Ferme tous les moteurs et tous les sensors du robot et quitte le programme en cours
+	 */
 	public void action() {
 		// TODO Auto-generated method stub
-		robot.stopAllMotor();
-		robot.closeAllSensors();
+		this.robot.stopAllMotor();
+		this.robot.closeAllSensors();
 		System.exit(1);
 	}
 
 	@Override
 	public void suppress() {
 		// TODO Auto-generated method stub
-		robot.stopAllMotor();
-		robot.closeAllSensors();
+		this.robot.stopAllMotor();
+		this.robot.closeAllSensors();
 		System.exit(1);
 	}
 
