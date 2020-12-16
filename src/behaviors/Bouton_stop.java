@@ -7,6 +7,13 @@ import lejos.robotics.subsumption.Behavior;
 import lejos.utility.Delay;
 import ressources_twister.Robot;
 
+/**
+ * Comportement qui s'éxecute lorsque l'on appuie sur le bouton échappe
+ * Le robot va s'arrêter et stopper le programme en cours
+ * 
+ * @author Lucille Dumont & William Tardot
+ *
+ */
 public class Bouton_stop implements Behavior{
 	private Robot robot;
 

@@ -8,6 +8,14 @@ import lejos.utility.Delay;
 import ressources_twister.Enregistreur;
 import ressources_twister.Robot;
 
+/**
+ * Comportement qui s'éxecute dès qu'on lance le mode cartographie
+ * Le robot va commencer sa navigation à partir de la case rouge dans le coin et finir dans l'autre coin en diagonale de la carte
+ * Il va attribuer une couleur à chaque case de la map au fur et-à-mesure de son parcours
+ * 
+ * @author Lucille Dumont & William Tardot
+ *
+ */
 public class Cartography implements Behavior {
 	private Robot robot;
 	private boolean non_fini;
@@ -32,6 +40,7 @@ public class Cartography implements Behavior {
 	 * Lors de la navigation, le robot va mettre à jour sa carte en mémoire de la carte du jeu en attribuant les couleurs aux cases respectives
 	 * Lorsque le robot arrive au bout d'une ligne, il tourne afin de se positionner à la première case de la deuxième ligne et avance jusqu'à la dernière case de cette ligne.
 	 * Réitère l'opération jusqu'à la dernière case de la carte x: 5 et y: 7
+	 * Enregistre la carte avec les couleurs dans un fichier .ser
 	 */
 	public void action() {
 		LCD.clear();

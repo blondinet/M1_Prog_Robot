@@ -5,6 +5,13 @@ import lejos.robotics.subsumption.Behavior;
 import lejos.utility.Delay;
 import ressources_twister.Robot;
 
+/**
+ * Comportement qui s'éxecute lorsque le robot voit la couleur noir
+ * Le robot va afficher le nom de la couleur visitée et avancer pendant 600 millisecondes afin d'arriver au milieu de la case adjacente
+ * 
+ * @author Lucille Dumont & William Tardot
+ *
+ */
 public class Detecter_noir implements Behavior {
 	private Robot robot;
 	private int compteur;
@@ -16,7 +23,7 @@ public class Detecter_noir implements Behavior {
 	@Override
 	public boolean takeControl() {
 		// Conditions de lancement du comportement
-		return robot.comparerCouleur()==robot.getNoir();
+		return robot.comparerCouleur()==robot.getCouleur("noir");
 	}
 
 	/**

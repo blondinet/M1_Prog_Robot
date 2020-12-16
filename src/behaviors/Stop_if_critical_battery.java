@@ -4,6 +4,13 @@ import lejos.robotics.subsumption.Behavior;
 import ressources_twister.Robot;
 import lejos.hardware.Battery;
 
+/**
+ * Comportement qui s'éxecute en parallèle
+ * Le robot va s'arrêter et quitter le programme en cours si le niveau de batterie atteint un seuil trop bas
+ * 
+ * @author Lucille Dumont & William Tardot
+ *
+ */
 public class Stop_if_critical_battery implements Behavior{
 	private Robot robot;
 	
@@ -31,6 +38,7 @@ public class Stop_if_critical_battery implements Behavior{
 			this.robot.getArms().stop(true);
 			this.robot.getLeftW().stop(true);
 			this.robot.getRightW().stop(true);
+			System.exit(1);
 		}
 	}
 

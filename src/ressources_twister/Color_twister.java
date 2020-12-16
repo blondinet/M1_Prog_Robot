@@ -5,7 +5,13 @@ import java.io.Serializable;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
-
+/**
+ * Classe qui permet d'instancier une couleur.
+ * Nous l'utiliserons afin de stocker des couleurs avec leur code RGB
+ * 
+ * @author Lucille Dumont & William Tardot
+ *
+ */
 public class Color_twister implements Serializable {
 	private String name;
 	private int red;
@@ -59,6 +65,11 @@ public class Color_twister implements Serializable {
 		this.name = name;
 	}
 
+	/**
+	 * Créer un tableau de 3 nombres correspondant aux 3 valeurs d'un code RGB d'une couleur
+	 * Y ajoute les valeurs d'une couleur détectée par le capteur du robot
+	 * @return tableau de 3 nombres correspondant à un code RGB
+	 */
 	public int[] getRGBcode() {
 		int[] code = new int[3];
 		try {

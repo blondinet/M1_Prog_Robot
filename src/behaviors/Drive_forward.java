@@ -4,6 +4,13 @@ import lejos.hardware.motor.Motor;
 import lejos.robotics.subsumption.Behavior;
 import ressources_twister.Robot;
 
+/**
+ * Comportement qui s'éxecute en premier via sa priorité dans le tableau de l'Arbitrator
+ * Le robot va avancer jusqu'à ce que l'on appuie sur la touche échappe 
+ * 
+ * @author Lucille Dumont & William Tardot
+ *
+ */
 public class Drive_forward implements Behavior {
 	private Robot robot;
 

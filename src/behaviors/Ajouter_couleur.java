@@ -4,6 +4,13 @@ import lejos.hardware.lcd.LCD;
 import lejos.robotics.subsumption.Behavior;
 import ressources_twister.Robot;
 
+/**
+ * Comportement qui s'éxecute en parallèle des autres comportements
+ * Le robot va attribuer une couleur à chaque case dans sa carte en mémoire, en parallèle d'un comportement qui le fait avancer
+ * 
+ * @author Lucille Dumont & William Tardot
+ *
+ */
  class Ajouter_couleur implements Behavior{
 	
 	private Robot robot;

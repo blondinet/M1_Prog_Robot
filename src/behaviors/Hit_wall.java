@@ -6,6 +6,13 @@ import lejos.robotics.subsumption.Behavior;
 import lejos.utility.Delay;
 import ressources_twister.Robot;
 
+/**
+ * Comportement qui s'éxecute lorsque le robot touche un obstacle avec son sensor tactile
+ * Le robot va reculer et faire demi tour 
+ * 
+ * @author Lucille Dumont & William Tardot
+ *
+ */
 public class Hit_wall implements Behavior {
 	private Robot robot;
 	private EV3TouchSensor touch;
