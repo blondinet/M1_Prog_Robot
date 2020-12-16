@@ -18,6 +18,9 @@ public class Se_diriger implements Behavior {
 		return true;
 	}
 
+	/**
+	 * Navigue seccessivement jusqu'à un objet Waypoint and notifie de son arrivé au Waypoint
+	 */
 	@Override
 	public void action() {
 		for (int i=20; i<1000; i+=20){
@@ -28,6 +31,9 @@ public class Se_diriger implements Behavior {
 		//this.robot.getNav().stopAllMotor();
 	}
 
+	/**
+	 * Arrête le robot si le bouton droit est appuyé
+	 */
 	@Override
 	public void suppress() {
 		Button.RIGHT.isDown();

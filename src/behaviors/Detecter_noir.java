@@ -19,18 +19,22 @@ public class Detecter_noir implements Behavior {
 		return robot.comparerCouleur()==robot.getNoir();
 	}
 
+	/**
+	 * Indique le nom de la couleur de la case en train d'être visitée
+	 * S'arrête and avance pendant 600 milliseconds
+	 */
 	@Override
 	public void action() {
 			System.out.println(robot.comparerCouleur().getName());
 			this.robot.setPowerAllMotor(100);
 			this.robot.getLeftW().forward();
 			this.robot.getRightW().forward();
+			Delay.msDelay(600);
 	}
 
 
 	@Override
 	public void suppress() {
-		Delay.msDelay(600);
 		robot.stopAllMotor();
 		robot.closeAllSensors();
 		System.exit(1);

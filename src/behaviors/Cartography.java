@@ -17,10 +17,22 @@ public class Cartography implements Behavior {
 		non_fini = true;
 	}
 
+	/**
+	 * Prend le contrôle de l'Arbitrator et éxecute la méthode action() si  non_fini est passé à true, ce qui veut dire que le processus n'est pas terminé
+	 * non_fini est passé à true par défaut
+	 * @return boolean
+	 */
 	public boolean takeControl() {
 		return non_fini; // activé en premier par défaut
 	}
 
+	/**
+	 * Indique que le mode cartographie est activé et commence la navigation à travers la map
+	 * Le point de départ est la case rouge dans le coin dans la carte et le point d'arrivée correspond à la dernière case non visitée
+	 * Lors de la navigation, le robot va mettre à jour sa carte en mémoire de la carte du jeu en attribuant les couleurs aux cases respectives
+	 * Lorsque le robot arrive au bout d'une ligne, il tourne afin de se positionner à la première case de la deuxième ligne et avance jusqu'à la dernière case de cette ligne.
+	 * Réitère l'opération jusqu'à la dernière case de la carte x: 5 et y: 7
+	 */
 	public void action() {
 		LCD.clear();
 		LCD.drawString("Cartographie", 0, 0);

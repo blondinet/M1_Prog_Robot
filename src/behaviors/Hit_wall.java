@@ -25,6 +25,10 @@ public class Hit_wall implements Behavior {
 		return sample[0] == 1;
 	}
 
+	/**
+	 * Recule pendant 1 seconde et arrête la roue gauche pour tourner puis arrête la roue de droite 1 seconde plus tard
+	 * La rotation du robot correspond à une rotation à 180 degrés
+	 */
 	@Override
 	public void action() {
 		// TODO Auto-generated method stub
